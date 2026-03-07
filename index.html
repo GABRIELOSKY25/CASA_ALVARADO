@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Titutlo de Navegacion-->
+    <title> Casa Alvarado </title>
+    <!-- Logo de Navegacion -->
+    <link rel = "icon" href = "" type = "image/x-icon">
+    <!-- Enlaces a hojas de estilo -->
+    <link rel = "stylesheet" href = "CSS/index.css">
+    <!-- Fuentes de Google (para un diseño elegante) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+</head>
+
+<!--Contenido de la Pagina-->
+<body>
+    <!--Menu de navegacion (AHORA STICKY Y AZUL)-->
+    <header>
+        <!--Contenido-->
+        <div class = "menu_navegacion">
+            <div class = "contenedor">
+                <div class = "logo">
+                    <!--Ruta relativa-->
+                    <a href = "index.html">
+                        <!--Ruta de imagen // src = ruta // alt = nombre // style = (width = ancho // height = alto)-->
+                        <!-- ESPACIO PARA TU LOGO: Reemplaza la URL de abajo con la ruta de tu logo -->
+                        <img src = "https://img.icons8.com/ios-filled/100/FFFFFF/piano.png" alt = "Casa Alvarado Logo" style = "width: 60px; height: auto;">
+                        <span>Casa Alvarado</span>
+                    </a>
+                </div>
+
+                <nav>
+                    <!--Lista no ordenada-->
+                    <ul>
+                        <li><a href = "index.html"> Inicio </a></li>
+                        <li><a href = ""> Catálogo </a></li>
+                        <li><a href = ""> Contacto </a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!--Contenido principal-->
+    <main>
+        <!-- Sección de Inicio (Hero) con imagen de fondo elegante -->
+        <section class="inicio">
+            <div class="contenedor">
+                <div class="contenido_inicio">
+                    <h1 id="inicio">Casa Alvarado</h1>
+                    <h2>Casa Alvarado 1a Sur y Casa Alvarado 2a Poniente</h2>
+                    <h2>Instrumentos Musicales de Alta Gama</h2>
+                    <p>Desde 1985, dando voz a la pasión musical de México.</p>
+                    <a href="Paginas/catalogo.php" class="boton_presentacion">Explorar Catálogo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Introducción / Misión y Visión (combinadas para elegancia) -->
+        <section class="introduccion mision-vision">
+            <div class="contenedor">
+                <div class="mision">
+                    <h2 id="mision">Nuestra Misión</h2>
+                    <p>Proporcionar a músicos de todos los niveles acceso a instrumentos musicales de alta calidad, ofreciendo asesoría profesional y un servicio excepcional que inspire y apoye el desarrollo de la pasión musical en nuestra comunidad.</p>
+                </div>
+                <div class="vision">
+                    <h2 id="vision">Nuestra Visión</h2>
+                    <p>Ser la tienda de instrumentos musicales líder en la región, reconocida por nuestra excelencia en servicio, variedad de productos de primera calidad y compromiso con el crecimiento de la cultura musical en nuestra comunidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Marcas que Trabajamos (CON IMÁGENES) -->
+        <section class="marcas">
+            <div class="contenedor">
+                <h2 id="marcas">Marcas que Trabajamos</h2>
+                <div class="grid_marcas">
+                    <div class="marca-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Yamaha_logo.png/800px-Yamaha_logo.png" alt="Yamaha">
+                    </div>
+                    <div class="marca-item">
+                        <img src="https://1000marcas.net/wp-content/uploads/2021/02/Roland-Logo.png" alt="Roland">
+                    </div>
+                    <div class="marca-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Shure_logo.svg/1200px-Shure_logo.svg.png" alt="Shure">
+                    </div>
+                    <div class="marca-item">
+                        <img src="https://1000marcas.net/wp-content/uploads/2021/02/Fender-Logo.png" alt="Fender">
+                    </div>
+                    <div class="marca-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/JBL_logo.svg/1200px-JBL_logo.svg.png" alt="JBL">
+                    </div>
+                    <div class="marca-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Bose_logo.svg/1280px-Bose_logo.svg.png" alt="Bose">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Productos Destacados -->
+        <section class="productos">
+            <div class="contenedor">
+                <h2 id="productos">Productos Destacados</h2>
+                <div class="grid_productos">
+                    <div class="targeta_producto">
+                        <img src="https://images.unsplash.com/photo-1550985616-10810253b84d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Guitarra Eléctrica">
+                        <h3>Guitarra Eléctrica Profesional</h3>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="precio">$12,499</p>
+                        <a href="#" class="boton_producto">Ver más</a>
+                    </div>
+                    <div class="targeta_producto">
+                        <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Batería Acústica">
+                        <h3>Batería Acústica Premium</h3>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="precio">$24,999</p>
+                        <a href="#" class="boton_producto">Ver más</a>
+                    </div>
+                    <div class="targeta_producto">
+                        <img src="https://images.unsplash.com/photo-1598565117806-54d3a4f60c5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Micrófono de Condensador">
+                        <h3>Micrófono de Condensador</h3>
+                        <div class="rating">⭐⭐⭐⭐</div>
+                        <p class="precio">$3,299</p>
+                        <a href="#" class="boton_producto">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Sucursales (CON MAPAS) -->
+        <section class="sucursales">
+            <div class="contenedor">
+                <h2 id="sucursales">Nuestras Sucursales</h2>
+                <div class="grid_sucursales">
+                    <!-- Sucursal 1 con mapa -->
+                    <div class="targeta_sucursal-con-mapa">
+                        <h3>Casa Alvarado 1</h3>
+                        <p class="direccion">Av 1a. Sur Pte 366-B, El Calvario, 29000 Tuxtla Gutiérrez, Chis.</p>
+                        
+                        <!-- Contenedor del mapa responsive -->
+                        <div class="mapa-contenedor">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4352.806617244927!2d-93.12111232484045!3d16.750752162520975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f35f50c95d%3A0xd3feb8ec12cd3a65!2sCasa%20Alvarado!5e1!3m2!1ses-419!2smx!4v1772851950757!5m2!1ses-419!2smx" 
+                                    title="Casa Alvarado" 
+                                    allowfullscreen="" 
+                                    loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- Sucursal 2 con mapa -->
+                    <div class="targeta_sucursal-con-mapa">
+                        <h3>Casa Alvarado 2</h3>
+                        <p class="direccion">Calle Segunda Pte. Sur 450-Planta Baja, Centro, 29000 Tuxtla Gutiérrez, Chis.</p>
+                        
+                        <!-- Contenedor del mapa responsive -->
+                        <div class="mapa-contenedor">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4352.806851428296!2d-93.12111232438137!3d16.750741920832365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f4db285061%3A0x153bbda57341c650!2sCasa%20Alvarado%202!5e1!3m2!1ses-419!2smx!4v1772851854562!5m2!1ses-419!2smx" 
+                                    title="Casa Alvarado 2" 
+                                    allowfullscreen="" 
+                                    loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--Pie de pagina-->
+    <footer>
+        <div class="contenedor">
+            <div class="espacio_footer">
+                <div class="seccion_footer">
+                    <h3>Casa Alvarado</h3>
+                    <p>La mejor tienda de instrumentos musicales, con el mejor servicio y asesoría.</p>
+                </div>
+                <div class="seccion_footer">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="Paginas/catalogo.php">Catálogo</a></li>
+                        <li><a href="Paginas/contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="seccion_footer">
+                    <h4>Horarios</h4>
+                    <ul>
+                        <li>Lun - Vie: 9:00 AM - 7:00 PM</li>
+                        <li>Sábados: 10:00 AM - 6:00 PM</li>
+                        <li>Domingos: Cerrado</li>
+                    </ul>
+                </div>
+                <div class="seccion_footer">
+                    <h4>Síguenos</h4>
+                    <div class="link_social">
+                        <ul>
+                            <li><a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook"></a></li>
+                            <li><a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitterx.png" alt="X"></a></li>
+                            <li><a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="derechos">
+                <p>&copy; 2026 Casa Alvarado. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

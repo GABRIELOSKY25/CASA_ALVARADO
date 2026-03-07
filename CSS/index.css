@@ -1,0 +1,582 @@
+/* === VARIABLES === */
+:root {
+    --azul-profundo: #003B6F;      /* Azul principal para el header */
+    --azul-claro: #e6f0fa;          /* Fondo suave para secciones */
+    --negro: #1a1a1a;               /* Casi negro para textos */
+    --gris-oscuro: #4a4a4a;          /* Texto secundario */
+    --gris-claro: #f0f4f8;           /* Bordes y fondos alternativos */
+    --blanco: #ffffff;
+    --fuente-titulos: 'Prata', serif;      /* Tipografía elegante para títulos */
+    --fuente-cuerpo: 'Montserrat', sans-serif; /* Moderna y legible */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-cuerpo);
+    color: var(--gris-oscuro);
+    line-height: 1.6;
+    background-color: var(--blanco);
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--fuente-titulos);
+    font-weight: 400; /* Prata se ve mejor con peso normal */
+    margin-bottom: 1rem;
+    color: var(--negro);
+}
+
+h2 {
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+
+/* Línea decorativa debajo de los títulos principales */
+h2:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 70px;
+    height: 3px;
+    background-color: var(--azul-profundo);
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* === HEADER / MENÚ DE NAVEGACIÓN (AHORA AZUL Y STICKY) === */
+.menu_navegacion {
+    background-color: var(--azul-profundo);
+    box-shadow: 0 4px 15px rgba(0, 59, 111, 0.3);
+    position: fixed;  /* <--- Ahora es fixed */
+    top: 0;
+    width: 100%;      /* <--- Añade esta línea */
+    z-index: 1000;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu_navegacion .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--blanco);              /* Texto del logo en blanco */
+    font-size: 1.5rem;
+    font-family: var(--fuente-titulos);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.logo img {
+    transition: transform 0.3s ease;
+    filter: brightness(0) invert(1);    /* Hace el icono blanco */
+}
+
+.logo a:hover img {
+    transform: scale(1.05);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--blanco);                /* Texto del menú en blanco */
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+    color: var(--blanco);
+    border-bottom-color: var(--blanco);  /* Subrayado blanco al hover */
+}
+
+/* === SECCIÓN INICIO (HERO) === */
+.inicio {
+    background: linear-gradient(135deg, rgba(0, 59, 111, 0.85), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center 30%;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    color: var(--blanco);
+    margin-top: -2px; /* Ajuste para el header sticky */
+}
+
+.inicio .contenedor {
+    width: 100%;
+    padding-top: 3rem;
+}
+
+.contenido_inicio {
+    max-width: 700px;
+}
+
+.contenido_inicio h1 {
+    font-size: 4.5rem;
+    color: var(--blanco);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    font-family: var(--fuente-titulos);
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+}
+
+.contenido_inicio h2 {
+    font-size: 2rem;
+    font-family: var(--fuente-cuerpo);
+    font-weight: 300;
+    color: var(--blanco);
+    margin-bottom: 1rem;
+}
+
+.contenido_inicio h2:after {
+    display: none;
+}
+
+.contenido_inicio p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.boton_presentacion {
+    display: inline-block;
+    background-color: var(--blanco);
+    color: var(--azul-profundo);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--blanco);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.boton_presentacion:hover {
+    background-color: transparent;
+    color: var(--blanco);
+    border-color: var(--blanco);
+}
+
+/* === SECCIÓN MISIÓN Y VISIÓN === */
+.mision-vision {
+    background-color: var(--azul-claro);
+    border-top: 1px solid var(--gris-claro);
+    border-bottom: 1px solid var(--gris-claro);
+    padding: 3rem 0;
+}
+
+.mision-vision .contenedor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.mision p, .vision p {
+    color: var(--gris-oscuro);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* === SECCIÓN DE MARCAS === */
+.marcas {
+    background-color: var(--blanco);
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.marcas h2 {
+    text-align: center;
+    display: block;
+}
+
+.marcas h2:after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.grid_marcas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.marca-item {
+    background-color: var(--blanco);
+    padding: 2rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 59, 111, 0.08);
+    border: 1px solid var(--gris-claro);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+}
+
+.marca-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 59, 111, 0.15);
+    border-color: var(--azul-profundo);
+}
+
+.marca-item img {
+    max-width: 100%;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    filter: grayscale(10%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+    object-fit: contain;
+}
+
+.marca-item:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+/* === SECCIÓN DE PRODUCTOS DESTACADOS === */
+.productos {
+    padding: 4rem 0;
+    background-color: var(--azul-claro);
+}
+
+.grid_productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.targeta_producto {
+    background-color: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 59, 111, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid var(--gris-claro);
+    padding-bottom: 1.5rem;
+}
+
+.targeta_producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
+    border-color: var(--azul-profundo);
+}
+
+.targeta_producto img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.targeta_producto:hover img {
+    transform: scale(1.02);
+}
+
+.targeta_producto h3 {
+    font-size: 1.3rem;
+    margin: 1.5rem 1rem 0.5rem 1rem;
+    color: var(--negro);
+    font-family: var(--fuente-cuerpo);
+    font-weight: 600;
+}
+
+.rating {
+    margin: 0 1rem 0.5rem 1rem;
+    color: var(--azul-profundo);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.precio {
+    margin: 0 1rem 1.5rem 1rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--negro);
+}
+
+.boton_producto {
+    display: inline-block;
+    margin-left: 1rem;
+    padding: 0.6rem 1.5rem;
+    background-color: transparent;
+    color: var(--azul-profundo);
+    text-decoration: none;
+    border: 2px solid var(--azul-profundo);
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.boton_producto:hover {
+    background-color: var(--azul-profundo);
+    color: var(--blanco);
+    border-color: var(--azul-profundo);
+}
+
+/* === SECCIÓN DE SUCURSALES CON MAPAS === */
+.sucursales {
+    background-color: var(--blanco);
+    padding: 4rem 0;
+}
+
+.grid_sucursales {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.targeta_sucursal-con-mapa {
+    background-color: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 59, 111, 0.08);
+    border: 1px solid var(--gris-claro);
+    transition: all 0.3s ease;
+    padding: 1.5rem;
+}
+
+.targeta_sucursal-con-mapa:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
+    border-color: var(--azul-profundo);
+}
+
+.targeta_sucursal-con-mapa h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--azul-profundo);
+    font-family: var(--fuente-titulos);
+}
+
+.targeta_sucursal-con-mapa .direccion {
+    color: var(--gris-oscuro);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--azul-claro);
+}
+
+/* Contenedor responsive para el mapa */
+.mapa-contenedor {
+    position: relative;
+    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mapa-contenedor iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    transition: all 0.3s ease;
+}
+
+.mapa-contenedor:hover iframe {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 59, 111, 0.2);
+}
+
+/* === FOOTER === */
+footer {
+    background-color: var(--negro);
+    color: #aaa;
+    padding: 3rem 0 1rem 0;
+    font-size: 0.95rem;
+    border-top: 4px solid var(--azul-profundo);
+}
+
+footer .contenedor {
+    padding: 1rem 0;
+}
+
+footer h3, footer h4 {
+    color: var(--blanco);
+    font-family: var(--fuente-cuerpo);
+}
+
+footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--fuente-titulos);
+}
+
+footer h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--blanco);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+footer p, footer li, footer a {
+    color: #aaa;
+    text-decoration: none;
+    list-style: none;
+    line-height: 2;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--blanco);
+}
+
+.espacio_footer {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 3rem;
+    margin-bottom: 2rem;
+}
+
+.seccion_footer ul {
+    padding: 0;
+}
+
+/* Redes sociales en footer */
+.link_social ul {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.link_social ul li a img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(0.7);
+    transition: filter 0.3s ease;
+}
+
+.link_social ul li a:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.derechos {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.derechos p {
+    color: #666;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 992px) {
+    .espacio_footer {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .mision-vision .contenedor {
+        gap: 2rem;
+    }
+    
+    .grid_sucursales {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu_navegacion .contenedor {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .contenido_inicio h1 {
+        font-size: 3rem;
+    }
+
+    .contenido_inicio h2 {
+        font-size: 1.5rem;
+    }
+
+    .mision-vision .contenedor {
+        grid-template-columns: 1fr;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .grid_marcas {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+    }
+
+    .marca-item {
+        padding: 1rem;
+    }
+    
+    .mapa-contenedor {
+        padding-bottom: 60%; /* Un poco más alto en móviles */
+    }
+}
+
+@media (max-width: 576px) {
+    .espacio_footer {
+        grid-template-columns: 1fr;
+    }
+
+    .contenido_inicio h1 {
+        font-size: 2.5rem;
+    }
+    
+    .grid_sucursales {
+        grid-template-columns: 1fr;
+    }
+}
