@@ -37,17 +37,6 @@ h2 {
     margin-bottom: 2rem;
 }
 
-/* Línea decorativa debajo de los títulos principales */
-h2:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    width: 70px;
-    height: 3px;
-    background-color: var(--azul-profundo);
-}
-
 .contenedor {
     width: 90%;
     max-width: 1200px;
@@ -189,6 +178,65 @@ nav a:hover {
     background-color: transparent;
     color: var(--blanco);
     border-color: var(--blanco);
+}
+
+.contacto{
+    background: linear-gradient(135deg, rgba(50, 205, 50, 0.85), rgba(0, 100, 0, 0.7));
+    max-width: 900px;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.contacto .info{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.contacto .icono{
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido_contacto h2 {
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 300;
+    color: var(--blanco);
+    margin-bottom: 0.2rem;
+}
+
+.contenido_contacto p{
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    color: var(--blanco);
+    margin-bottom: 1rem;
+}
+
+.contacto .btn{
+    background: var(--azul-claro);
+    color: #000000;
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.contacto .btn:hover{
+    box-shadow: 0 4px 10px rgba(0,0,0,1);
 }
 
 /* === SECCIÓN MISIÓN Y VISIÓN === */
