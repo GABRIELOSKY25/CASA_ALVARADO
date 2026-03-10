@@ -663,3 +663,175 @@ footer a:hover {
         }
     }
 }
+
+
+/* ==========================================
+   MEGA MENÚ - MODO CASCADA (VERTICAL)
+   ========================================== */
+
+/* El mega menú - OCULTO POR DEFECTO */
+.mega-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: 600px !important;
+    max-width: 90vw !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 12px 40px rgba(0, 59, 111, 0.25) !important;
+    border-radius: 0 0 10px 10px !important;
+    padding: 20px !important;
+    z-index: 9999 !important;
+    border-top: 4px solid var(--azul-profundo) !important;
+}
+
+/* Mostrar al hacer hover */
+nav ul > li.nav-item-mega:hover .mega-menu {
+    display: block !important;
+}
+
+/* Contenido en cascada - UNA SOLA COLUMNA */
+.mega-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+}
+
+/* Columna izquierda: Categorías (ahora en la parte superior) */
+.mega-categorias {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 2px solid var(--gris-claro) !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 15px !important;
+}
+
+.mega-categorias li {
+    display: inline-block !important;
+    margin-right: 10px !important;
+    margin-bottom: 5px !important;
+}
+
+.mega-categorias a {
+    display: inline-block !important;
+    padding: 8px 15px !important;
+    color: var(--gris-oscuro) !important;
+    text-decoration: none !important;
+    border-radius: 20px !important;
+    transition: all 0.25s ease !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    background-color: var(--azul-claro) !important;
+}
+
+.mega-categorias a:hover {
+    background-color: var(--azul-profundo) !important;
+    color: var(--blanco) !important;
+}
+
+.mega-categorias i {
+    margin-right: 5px !important;
+}
+
+/* Columna derecha: Subcategorías EN CASCADA */
+/* VERSIÓN 100% VERTICAL - UNA SOLA COLUMNA */
+.mega-subcategorias {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+}
+
+.subgrupo {
+    background-color: var(--azul-claro) !important;
+    padding: 15px !important;
+    border-radius: 8px !important;
+}
+
+.subgrupo h4 {
+    margin: 0 0 12px 0 !important;
+    color: var(--azul-profundo) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid var(--azul-claro) !important;
+    padding-bottom: 8px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.mega-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 10px !important;
+    margin-bottom: 8px !important;
+    text-decoration: none !important;
+    color: var(--gris-oscuro) !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+    font-size: 13px !important;
+    border: 1px solid transparent !important;
+}
+
+.mega-item:hover {
+    background-color: var(--azul-claro) !important;
+    color: var(--azul-profundo) !important;
+    border-color: var(--azul-profundo) !important;
+    transform: translateX(5px) !important;
+}
+
+.mega-icono {
+    width: 40px !important;
+    height: 40px !important;
+    background-color: var(--azul-claro) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--azul-profundo) !important;
+    font-size: 16px !important;
+    flex-shrink: 0 !important;
+    transition: all 0.2s ease !important;
+}
+
+.mega-item:hover .mega-icono {
+    background-color: var(--azul-profundo) !important;
+    color: var(--blanco) !important;
+}
+
+/* RESPONSIVE: Tablets */
+@media (max-width: 1024px) {
+    .mega-menu {
+        width: 500px !important;
+    }
+    .mega-subcategorias {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* RESPONSIVE: Móviles */
+@media (max-width: 768px) {
+    .mega-menu {
+        display: none !important;
+        position: static !important;
+        width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 15px !important;
+        background: var(--azul-claro) !important;
+    }
+    
+    .mega-content {
+        flex-direction: column !important;
+    }
+    
+    .mega-subcategorias {
+        grid-template-columns: 1fr !important;
+    }
+    
+    nav ul > li.nav-item-mega:hover .mega-menu {
+        display: none !important;
+    }
+}
