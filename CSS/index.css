@@ -259,16 +259,17 @@ nav a:hover {
     line-height: 1.8;
 }
 
-/* === SECCIÓN DE MARCAS === */
+/* === CARRUSEL DE MARCAS === */
 .marcas {
     background-color: var(--blanco);
-    padding: 4rem 0;
-    text-align: center;
+    padding: 3rem 0;
+    overflow: hidden; /* Oculta el desbordamiento */
 }
 
 .marcas h2 {
     text-align: center;
     display: block;
+    margin-bottom: 2rem;
 }
 
 .marcas h2:after {
@@ -276,36 +277,46 @@ nav a:hover {
     transform: translateX(-50%);
 }
 
-.grid_marcas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 2rem;
-    align-items: center;
-    margin-top: 3rem;
+.carrusel-contenedor {
+    width: 100%;
+    overflow: hidden;
+    padding: 1rem 0;
 }
 
-.marca-item {
+.carrusel-track {
+    display: flex;
+    animation: scroll 25s linear infinite;
+    width: fit-content;
+}
+
+.carrusel-track:hover {
+    animation-play-state: paused; /* Pausa al hacer hover */
+}
+
+.carrusel-item {
+    flex: 0 0 auto;
+    width: 180px;
+    margin: 0 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--blanco);
-    padding: 2rem 1rem;
+    padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0, 59, 111, 0.08);
     border: 1px solid var(--gris-claro);
     transition: all 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 120px;
 }
 
-.marca-item:hover {
+.carrusel-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 25px rgba(0, 59, 111, 0.15);
     border-color: var(--azul-profundo);
 }
 
-.marca-item img {
+.carrusel-item img {
     max-width: 100%;
-    max-height: 80px;
+    max-height: 70px;
     width: auto;
     height: auto;
     filter: grayscale(10%);
@@ -313,7 +324,7 @@ nav a:hover {
     object-fit: contain;
 }
 
-.marca-item:hover img {
+.carrusel-item:hover img {
     filter: grayscale(0%);
     transform: scale(1.05);
 }
@@ -626,5 +637,29 @@ footer a:hover {
     
     .grid_sucursales {
         grid-template-columns: 1fr;
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-180px * 6 - 3rem * 6)); /* Ancho total a desplazar */
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .carrusel-item {
+        width: 140px;
+        margin: 0 1rem;
+        padding: 1rem;
+    }
+    
+    @keyframes scroll {
+        100% {
+            transform: translateX(calc(-140px * 6 - 2rem * 6));
+        }
     }
 }
