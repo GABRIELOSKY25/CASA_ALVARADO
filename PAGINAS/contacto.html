@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "CSS/index.css">
+    <link rel="stylesheet" href="../CSS/index.css">
     <title>Contacto</title>
 </head>
 <body>
-    <div id="header"></div>
+    <h1>Prueba de rutas</h1>
+<div id="header"></div>
+
+<script>
+    console.log('Intentando cargar: ../header.html');
+    
+    fetch('../header.html')
+        .then(r => {
+            console.log('Respuesta:', r);
+            if (r.ok) return r.text();
+            throw new Error('Status: ' + r.status);
+        })
+        .then(text => {
+            console.log('Contenido:', text.substring(0, 100) + '...');
+            document.getElementById('header').innerHTML = text;
+        })
+        .catch(e => {
+            console.error('Error:', e);
+            document.getElementById('header').innerHTML = 'Error: ' + e.message;
+        });
+</script>
     <main>
        
     <br>
@@ -67,15 +87,27 @@
     </main>
     <div id="footer"></div>
     <script>
-        fetch("header.html")
-        .then(res => res.text())
-        .then(data => document.getElementById("header").innerHTML = data);
+    fetch("../header.html")
+    .then(res => {
+        if (!res.ok) throw new Error(`Error HTTP: ${res.status}`);
+        return res.text();
+    })
+    .then(data => document.getElementById("header").innerHTML = data)
+    .catch(error => {
+        console.error("Error cargando header:", error);
+        document.getElementById("header").innerHTML = "Error al cargar el header";
+    });
 
-        fetch("footer.html")
-        .then(res => res.text())
-        .then(data => document.getElementById("footer").innerHTML = data);
-    </script>
-
-
+    fetch("../footer.html")
+    .then(res => {
+        if (!res.ok) throw new Error(`Error HTTP: ${res.status}`);
+        return res.text();
+    })
+    .then(data => document.getElementById("footer").innerHTML = data)
+    .catch(error => {
+        console.error("Error cargando footer:", error);
+        document.getElementById("footer").innerHTML = "Error al cargar el footer";
+    });
+</script>
 </body>
 </html>
