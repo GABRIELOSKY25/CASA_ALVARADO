@@ -3,56 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "CSS/index.css">
-    <title>Contacto</title>
+    
+    <!-- SOLO UN ARCHIVO CSS -->
+    <link rel="stylesheet" href="/CSS/contacto.css">
+    
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+    
+    <title>Contacto - Casa Alvarado</title>
 </head>
 <body>
-    <div id="header"></div>
-    <main>
-       
-    <br>
-    <br>
-    <br>
-    <div class="contacto">
-    <div class="info">
-        <div class="icono">
-            <img src = "https://th.bing.com/th/id/R.1dbed5efc2986f28cfe82c67274a7976?rik=jll0LYSaqOJ6jQ&pid=ImgRaw&r=0" style = "width: 40px; height: auto;">
-        </div>
-
-        <div class="contenido_contacto">
-            <h2>Consulta con Nosotros</h2>
-            <p>Nuestro equipo esta para asesorarte y ayudarte a encontrar el producto indicado.</p>
-        </div>
-    </div>
-
-    <a href="#" class="btn">Abrir WhatsApp</a>
-
-</div>
-<section class="sucursales">
+    <!-- HEADER -->
+    <header>
+        <div class="menu_navegacion">
             <div class="contenedor">
-                <h2 id="sucursales">Nuestras Sucursales</h2>
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="https://img.icons8.com/ios-filled/100/FFFFFF/piano.png" alt="Casa Alvarado Logo">
+                        <span>Casa Alvarado</span>
+                    </a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="contacto.html" style="border-bottom-color: var(--blanco);">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección de Contacto WhatsApp -->
+        <div class="contacto">
+            <div class="info">
+                <div class="icono">
+                    <img src="https://th.bing.com/th/id/R.1dbed5efc2986f28cfe82c67274a7976?rik=jll0LYSaqOJ6jQ&pid=ImgRaw&r=0" alt="WhatsApp">
+                </div>
+                <div class="contenido_contacto">
+                    <h2>Consulta con Nosotros</h2>
+                    <p>Nuestro equipo está para asesorarte y ayudarte a encontrar el producto indicado.</p>
+                </div>
+            </div>
+            <a href="#" class="btn">Abrir WhatsApp</a>
+        </div>
+
+        <!-- Sección de Sucursales con Mapas -->
+        <section class="sucursales">
+            <div class="contenedor">
+                <h2>Nuestras Sucursales</h2>
                 <div class="grid_sucursales">
-                    <!-- Sucursal 1 con mapa -->
+                    <!-- Sucursal 1 -->
                     <div class="targeta_sucursal-con-mapa">
                         <h3>Casa Alvarado 1</h3>
-                        <p class="direccion">Av 1a. Sur Pte 366-B, El Calvario, Tuxtla Gutierrez</p>
-                        
-                        <!-- Contenedor del mapa responsive -->
+                        <p class="direccion">Av 1a. Sur Pte 366-B, El Calvario, Tuxtla Gutiérrez</p>
                         <div class="mapa-contenedor">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4352.806617244927!2d-93.12111232484045!3d16.750752162520975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f35f50c95d%3A0xd3feb8ec12cd3a65!2sCasa%20Alvarado!5e1!3m2!1ses-419!2smx!4v1772851950757!5m2!1ses-419!2smx" 
-                                    title="Casa Alvarado" 
+                                    title="Casa Alvarado 1" 
                                     allowfullscreen="" 
                                     loading="lazy">
                             </iframe>
                         </div>
                     </div>
 
-                    <!-- Sucursal 2 con mapa -->
+                    <!-- Sucursal 2 -->
                     <div class="targeta_sucursal-con-mapa">
                         <h3>Casa Alvarado 2</h3>
-                        <p class="direccion">Calle Segunda Pte. Sur 450-Planta Baja, Centro, Tuxtla Gutierrez</p>
-                        
-                        <!-- Contenedor del mapa responsive -->
+                        <p class="direccion">Calle Segunda Pte. Sur 450-Planta Baja, Centro, Tuxtla Gutiérrez</p>
                         <div class="mapa-contenedor">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4352.806851428296!2d-93.12111232438137!3d16.750741920832365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f4db285061%3A0x153bbda57341c650!2sCasa%20Alvarado%202!5e1!3m2!1ses-419!2smx!4v1772851854562!5m2!1ses-419!2smx" 
                                     title="Casa Alvarado 2" 
@@ -65,17 +85,46 @@
             </div>
         </section>
     </main>
-    <div id="footer"></div>
-    <script>
-        fetch("header.html")
-        .then(res => res.text())
-        .then(data => document.getElementById("header").innerHTML = data);
 
-        fetch("footer.html")
-        .then(res => res.text())
-        .then(data => document.getElementById("footer").innerHTML = data);
-    </script>
-
-
+    <!-- FOOTER -->
+    <footer>
+        <div class="contenedor">
+            <div class="espacio_footer">
+                <div class="seccion_footer">
+                    <h3>Casa Alvarado</h3>
+                    <p>La mejor tienda de instrumentos musicales, con el mejor servicio y asesoría.</p>
+                </div>
+                <div class="seccion_footer">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="seccion_footer">
+                    <h4>Horarios</h4>
+                    <ul>
+                        <li>Lun - Vie: 9:00 AM - 7:00 PM</li>
+                        <li>Sábados: 10:00 AM - 6:00 PM</li>
+                        <li>Domingos: Cerrado</li>
+                    </ul>
+                </div>
+                <div class="seccion_footer">
+                    <h4>Síguenos</h4>
+                    <div class="link_social">
+                        <ul>
+                            <li><a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook"></a></li>
+                            <li><a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitterx.png" alt="X"></a></li>
+                            <li><a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="derechos">
+                <p>&copy; 2026 Casa Alvarado. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

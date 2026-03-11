@@ -1,0 +1,442 @@
+/* === VARIABLES (copiadas de index.css) === */
+:root {
+    --azul-profundo: #003B6F;      /* Azul principal para el header */
+    --azul-claro: #e6f0fa;          /* Fondo suave para secciones */
+    --negro: #1a1a1a;               /* Casi negro para textos */
+    --gris-oscuro: #4a4a4a;          /* Texto secundario */
+    --gris-claro: #f0f4f8;           /* Bordes y fondos alternativos */
+    --blanco: #ffffff;
+    --fuente-titulos: 'Prata', serif;      /* Tipografía elegante para títulos */
+    --fuente-cuerpo: 'Montserrat', sans-serif; /* Moderna y legible */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-cuerpo);
+    color: var(--gris-oscuro);
+    line-height: 1.6;
+    background-color: var(--blanco);
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--fuente-titulos);
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--negro);
+}
+
+h2 {
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* === HEADER / MENÚ DE NAVEGACIÓN === */
+.menu_navegacion {
+    background-color: var(--azul-profundo);
+    box-shadow: 0 4px 15px rgba(0, 59, 111, 0.3);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu_navegacion .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--blanco);
+    font-size: 1.5rem;
+    font-family: var(--fuente-titulos);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.logo img {
+    transition: transform 0.3s ease;
+    filter: brightness(0) invert(1);
+    width: 60px;
+    height: auto;
+}
+
+.logo a:hover img {
+    transform: scale(1.05);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--blanco);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+    color: var(--blanco);
+    border-bottom-color: var(--blanco);
+}
+
+/* === AJUSTE PARA HEADER FIJO === */
+main {
+    margin-top: 80px;
+    min-height: calc(100vh - 80px - 300px);
+}
+
+/* === SECCIÓN DE CONTACTO WHATSAPP === */
+.contacto {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    max-width: 900px;
+    margin: 40px auto;
+    border-radius: 16px;
+    padding: 30px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contacto .info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.contacto .icono {
+    width: 70px;
+    height: 70px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contacto .icono img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.contenido_contacto h2 {
+    font-size: 2rem;
+    font-family: var(--fuente-titulos);
+    font-weight: 400;
+    color: var(--blanco);
+    margin-bottom: 0.3rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.contenido_contacto p {
+    font-size: 1rem;
+    font-family: var(--fuente-cuerpo);
+    font-weight: 300;
+    color: var(--blanco);
+    margin-bottom: 0;
+    opacity: 0.95;
+}
+
+.contacto .btn {
+    background: var(--blanco);
+    color: #25D366;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--blanco);
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contacto .btn:hover {
+    background: transparent;
+    color: var(--blanco);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* === SECCIÓN DE SUCURSALES CON MAPAS === */
+.sucursales {
+    padding: 2rem 0 4rem 0;
+    background-color: var(--blanco);
+}
+
+.sucursales h2 {
+    text-align: center;
+    display: block;
+    margin-bottom: 2.5rem;
+}
+
+.sucursales h2:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    width: 70px;
+    height: 3px;
+    background-color: var(--azul-profundo);
+}
+
+.grid_sucursales {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2.5rem;
+    margin-top: 1rem;
+}
+
+.targeta_sucursal-con-mapa {
+    background-color: var(--blanco);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 59, 111, 0.08);
+    border: 1px solid var(--gris-claro);
+    transition: all 0.3s ease;
+    padding: 1.5rem;
+}
+
+.targeta_sucursal-con-mapa:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
+    border-color: var(--azul-profundo);
+}
+
+.targeta_sucursal-con-mapa h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--azul-profundo);
+    font-family: var(--fuente-titulos);
+}
+
+.targeta_sucursal-con-mapa .direccion {
+    color: var(--gris-oscuro);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--azul-claro);
+}
+
+/* Contenedor responsive para el mapa */
+.mapa-contenedor {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mapa-contenedor iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    transition: all 0.3s ease;
+}
+
+.mapa-contenedor:hover iframe {
+    transform: scale(1.02);
+}
+
+/* === FOOTER === */
+footer {
+    background-color: var(--negro);
+    color: #aaa;
+    padding: 3rem 0 1rem 0;
+    font-size: 0.95rem;
+    border-top: 4px solid var(--azul-profundo);
+}
+
+footer .contenedor {
+    padding: 1rem 0;
+}
+
+footer h3, footer h4 {
+    color: var(--blanco);
+    font-family: var(--fuente-cuerpo);
+}
+
+footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--fuente-titulos);
+}
+
+footer h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--blanco);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+footer p, footer li, footer a {
+    color: #aaa;
+    text-decoration: none;
+    list-style: none;
+    line-height: 2;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--blanco);
+}
+
+.espacio_footer {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 3rem;
+    margin-bottom: 2rem;
+}
+
+.seccion_footer ul {
+    padding: 0;
+}
+
+/* Redes sociales en footer */
+.link_social ul {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.link_social ul li a img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(0.7);
+    transition: filter 0.3s ease;
+}
+
+.link_social ul li a:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.derechos {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.derechos p {
+    color: #666;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .menu_navegacion .contenedor {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+    
+    .contacto {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 25px;
+        margin: 20px;
+    }
+    
+    .contacto .info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .grid_sucursales {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+    
+    .contenido_contacto h2 {
+        font-size: 1.8rem;
+    }
+    
+    .contacto .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .mapa-contenedor {
+        padding-bottom: 60%;
+    }
+    
+    .espacio_footer {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contacto {
+        padding: 20px;
+    }
+    
+    .contacto .icono {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .contacto .icono img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .contenido_contacto h2 {
+        font-size: 1.5rem;
+    }
+    
+    .contenido_contacto p {
+        font-size: 0.9rem;
+    }
+    
+    .espacio_footer {
+        grid-template-columns: 1fr;
+    }
+}
