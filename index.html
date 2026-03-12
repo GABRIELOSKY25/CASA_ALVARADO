@@ -37,13 +37,21 @@
                     <!--Lista no ordenada-->
                     <ul>
                         <li><a href = "index.html"> Inicio </a></li>
-                        <li><a href = ""> Catálogo </a></li>
+                        <li><a href="#" id="btnProductos">Nuestros Productos</a></li>
                         <li><a href = "./PAGINAS/contacto.html"> Contacto </a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
+    <div id="megaMenu" class="mega-menu hidden">
+        <div id="categorias" class="categorias"></div>
+
+        <div id="subcategorias" class="subcategorias">
+            <h2 id="tituloCategoria">Selecciona una categoría</h2>
+            <div id="gridSubcategorias" class="grid-subcategorias"></div>
+        </div>
+    </div>
 
     <!--Contenido principal-->
     <main>
@@ -59,7 +67,7 @@
                 </div>
             </div>
         </section>
-
+        
         <!-- Sección de Introducción / Misión y Visión (combinadas para elegancia) -->
         <section class="introduccion mision-vision">
             <div class="contenedor">
@@ -163,7 +171,7 @@
                         
                         <!-- Contenedor del mapa responsive -->
                         <div class="mapa-contenedor">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4352.806617244927!2d-93.12111232484045!3d16.750752162520975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f35f50c95d%3A0xd3feb8ec12cd3a65!2sCasa%20Alvarado!5e1!3m2!1ses-419!2smx!4v1772851950757!5m2!1ses-419!2smx" 
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1005.4444513059073!2d-93.11926085946016!3d16.753110238851928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f35f50c95d%3A0xd3feb8ec12cd3a65!2sCasa%20Alvarado!5e0!3m2!1ses-419!2smx!4v1773349725054!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"> 
                                     title="Casa Alvarado" 
                                     allowfullscreen="" 
                                     loading="lazy">
@@ -232,6 +240,7 @@
     </footer>
 
     <!-- JavaScript para el carrusel de marcas -->
+    <script src="./JS/app.js"></script>
     <script src="./JS/megamenu-cataalogo.js"></script>
 
 </body>
