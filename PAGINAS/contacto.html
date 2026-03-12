@@ -48,13 +48,21 @@
                 <nav>
                     <ul>
                         <li><a href="../index.html">Inicio</a></li>
-                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="#" id="btnProductos">Nuestros Productos</a></li>
                         <li><a href="contacto.html" style="border-bottom-color: var(--blanco);">Contacto</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
+
+    <div id="megaMenu" class="mega-menu hidden">
+        <div id="categorias" class="categorias"></div>
+        <div id="subcategorias" class="subcategorias">
+            <h2 id="tituloCategoria">Selecciona una categoría</h2>
+            <div id="gridSubcategorias" class="grid-subcategorias"></div>
+        </div>
+    </div>
 
     <main>
         <!-- TÍTULO DE LA PÁGINA CONTACTO (CENTRADO) -->
@@ -82,25 +90,29 @@
         <!-- Sección de Sucursales con Mapas -->
         <section class="sucursales">
             <div class="contenedor">
-                <h2>Nuestras Sucursales</h2>
+                <h2 id="sucursales">Nuestras Sucursales</h2>
                 <div class="grid_sucursales">
-                    <!-- Sucursal 1 -->
+                    <!-- Sucursal 1 con mapa -->
                     <div class="targeta_sucursal-con-mapa">
                         <h3>Casa Alvarado 1</h3>
-                        <p class="direccion">Av 1a. Sur Pte 366-B, El Calvario, Tuxtla Gutiérrez</p>
+                        <p class="direccion">Av 1a. Sur Pte 366-B, El Calvario, Tuxtla Gutierrez</p>
+                        
+                        <!-- Contenedor del mapa responsive -->
                         <div class="mapa-contenedor">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2769.7706212649805!2d-93.1205506960814!3d16.753331689805115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f35f50c95d%3A0xd3feb8ec12cd3a65!2sCasa%20Alvarado!5e0!3m2!1ses-419!2smx!4v1773350084881!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                                    title="Casa Alvarado 1" 
+                                    title="Casa Alvarado" 
                                     allowfullscreen="" 
                                     loading="lazy">
                             </iframe>
                         </div>
                     </div>
 
-                    <!-- Sucursal 2 -->
+                    <!-- Sucursal 2 con mapa -->
                     <div class="targeta_sucursal-con-mapa">
                         <h3>Casa Alvarado 2</h3>
-                        <p class="direccion">Calle Segunda Pte. Sur 450-Planta Baja, Centro, Tuxtla Gutiérrez</p>
+                        <p class="direccion">Calle Segunda Pte. Sur 450-Planta Baja, Centro, Tuxtla Gutierrez</p>
+                        
+                        <!-- Contenedor del mapa responsive -->
                         <div class="mapa-contenedor">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2701.4929873837586!2d-93.119742262067!3d16.75237851545194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f4db285061%3A0x153bbda57341c650!2sCasa%20Alvarado%202!5e0!3m2!1ses-419!2smx!4v1773350158010!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                                     title="Casa Alvarado 2" 
@@ -154,5 +166,6 @@
             </div>
         </div>
     </footer>
+    <script src="../JS/app.js"></script>
 </body>
 </html>

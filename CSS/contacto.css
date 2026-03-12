@@ -1,13 +1,13 @@
-/* === VARIABLES (copiadas de index.css) === */
+/* === VARIABLES === */
 :root {
-    --azul-profundo: #003B6F;      /* Azul principal para el header */
-    --azul-claro: #e6f0fa;          /* Fondo suave para secciones */
-    --negro: #1a1a1a;               /* Casi negro para textos */
-    --gris-oscuro: #4a4a4a;          /* Texto secundario */
-    --gris-claro: #f0f4f8;           /* Bordes y fondos alternativos */
+    --azul-profundo: #003B6F;
+    --azul-claro: #e6f0fa;
+    --negro: #1a1a1a;
+    --gris-oscuro: #4a4a4a;
+    --gris-claro: #f0f4f8;
     --blanco: #ffffff;
-    --fuente-titulos: 'Prata', serif;      /* Tipografía elegante para títulos */
-    --fuente-cuerpo: 'Montserrat', sans-serif; /* Moderna y legible */
+    --fuente-titulos: 'Prata', serif;
+    --fuente-cuerpo: 'Montserrat', sans-serif;
 }
 
 * {
@@ -23,18 +23,15 @@ body {
     background-color: var(--blanco);
 }
 
+.hidden {
+    display: none !important;
+}
+
 h1, h2, h3, h4 {
     font-family: var(--fuente-titulos);
     font-weight: 400;
     margin-bottom: 1rem;
     color: var(--negro);
-}
-
-h2 {
-    font-size: 2.5rem;
-    position: relative;
-    display: inline-block;
-    margin-bottom: 2rem;
 }
 
 .contenedor {
@@ -71,14 +68,11 @@ h2 {
     color: var(--blanco);
     font-size: 1.5rem;
     font-family: var(--fuente-titulos);
-    font-weight: 400;
-    letter-spacing: 0.5px;
 }
 
 .logo img {
     transition: transform 0.3s ease;
-    filter: brightness(0) invert(1);
-    width: 60px;
+    width: 40px;
     height: auto;
 }
 
@@ -98,24 +92,239 @@ nav a {
     font-weight: 500;
     transition: all 0.3s ease;
     font-size: 0.9rem;
-    letter-spacing: 0.5px;
     text-transform: uppercase;
     padding: 0.5rem 0;
     border-bottom: 2px solid transparent;
 }
 
 nav a:hover {
-    color: var(--blanco);
     border-bottom-color: var(--blanco);
+}
+
+/* === MEGA MENÚ === */
+.mega-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--blanco);
+    box-shadow: 0 10px 30px rgba(0, 59, 111, 0.2);
+    z-index: 999;
+    padding: 2rem;
+    border-top: 3px solid var(--azul-profundo);
+    display: flex;
+    gap: 2rem;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.mega-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid var(--blanco);
+    filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.05));
+}
+
+/* Columna de categorías */
+.categorias {
+    flex: 1.2;
+    border-right: 1px solid var(--gris-claro);
+    padding-right: 2rem;
+}
+
+.categorias h3 {
+    font-family: var(--fuente-titulos);
+    color: var(--azul-profundo);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--azul-claro);
+}
+
+.cat {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: var(--gris-oscuro);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    margin-bottom: 0.3rem;
+}
+
+.cat:hover {
+    background-color: var(--azul-claro);
+    color: var(--azul-profundo);
+    border-left-color: var(--azul-profundo);
+    padding-left: 1.3rem;
+}
+
+.cat.activo {
+    background-color: var(--azul-claro);
+    color: var(--azul-profundo);
+    border-left-color: var(--azul-profundo);
+    border-left-width: 4px;
+    padding-left: 1.3rem;
+    font-weight: 600;
+}
+
+.subcategorias {
+    flex: 3;
+    background: var(--blanco);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.subcategorias h2 {
+    font-size: 1.5rem;
+    color: var(--azul-profundo);
+    margin-bottom: 1.5rem;
+    font-family: var(--fuente-titulos);
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--azul-claro);
+}
+
+.grid-subcategorias {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    align-items: start;
+}
+
+/* Items simples y expandibles */
+.item-sub {
+    padding: 0.7rem 1rem;
+    color: var(--gris-oscuro);
+    background: var(--gris-claro);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.item-sub:hover {
+    background: var(--azul-claro);
+    color: var(--azul-profundo);
+    transform: translateX(3px);
+}
+
+.expandible-container {
+    grid-column: span 1;
+    margin-bottom: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 100%;
+    align-self: start;
+}
+
+.expandible-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    background: var(--gris-claro);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.expandible-header:hover {
+    background: var(--azul-claro);
+    border-left-color: var(--azul-profundo);
+}
+
+.expandible-flecha {
+    font-size: 0.8rem;
+    color: var(--azul-profundo);
+    width: 16px;
+    text-align: center;
+}
+
+.expandible-texto {
+    flex: 1;
+    color: var(--gris-oscuro);
+}
+
+.expandible-contenido {
+    display: none;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.expandible-container.expandido .expandible-contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.expandible-item {
+    padding: 0.5rem 1rem;
+    color: var(--gris-oscuro);
+    background: var(--blanco);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    border-left: 2px solid var(--azul-claro);
+    margin-bottom: 0.2rem;
+}
+
+.expandible-item:hover {
+    background: var(--azul-claro);
+    color: var(--azul-profundo);
+    padding-left: 1.5rem;
 }
 
 /* === AJUSTE PARA HEADER FIJO === */
 main {
-    margin-top: 80px;
-    min-height: calc(100vh - 80px - 300px);
+    margin-top: 70px;
+    min-height: calc(100vh - 70px - 300px);
 }
 
-/* === SECCIÓN DE CONTACTO WHATSAPP === */
+/* === TÍTULO DE PÁGINA (el que está en style) === */
+.titulo-pagina {
+    text-align: center;
+    padding: 2rem 0 1rem 0;
+}
+
+.titulo-pagina h1 {
+    font-size: 3.5rem;
+    color: var(--azul-profundo);
+    margin-bottom: 0.5rem;
+    font-family: var(--fuente-titulos);
+    font-weight: 400;
+}
+
+.titulo-pagina p {
+    font-size: 1.2rem;
+    color: var(--gris-oscuro);
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: var(--fuente-cuerpo);
+}
+
+/* === SECCIÓN DE CONTACTO WHATSAPP (original) === */
 .contacto {
     background: linear-gradient(135deg, #25D366, #128C7E);
     max-width: 900px;
@@ -192,24 +401,31 @@ main {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* === SECCIÓN DE SUCURSALES CON MAPAS === */
+/* === SECCIÓN DE SUCURSALES === */
 .sucursales {
-    padding: 2rem 0 4rem 0;
+    padding: 4rem 0;
     background-color: var(--blanco);
 }
 
 .sucursales h2 {
     text-align: center;
-    display: block;
-    margin-bottom: 2.5rem;
-}
-
-.sucursales h2:after {
-    content: '';
-    position: absolute;
+    font-size: 2.5rem;
+    color: var(--azul-profundo);
+    font-family: var(--fuente-titulos);
+    font-weight: 400;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.sucursales h2::after {
+    content: '';
+    position: absolute;
     bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 70px;
     height: 3px;
     background-color: var(--azul-profundo);
@@ -218,8 +434,8 @@ main {
 .grid_sucursales {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 2.5rem;
-    margin-top: 1rem;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .targeta_sucursal-con-mapa {
@@ -230,6 +446,7 @@ main {
     border: 1px solid var(--gris-claro);
     transition: all 0.3s ease;
     padding: 1.5rem;
+    height: fit-content;
 }
 
 .targeta_sucursal-con-mapa:hover {
@@ -240,27 +457,31 @@ main {
 
 .targeta_sucursal-con-mapa h3 {
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     color: var(--azul-profundo);
     font-family: var(--fuente-titulos);
+    font-weight: 400;
 }
 
 .targeta_sucursal-con-mapa .direccion {
     color: var(--gris-oscuro);
+    font-size: 0.95rem;
     margin-bottom: 1.5rem;
-    font-weight: 500;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
     border-bottom: 2px solid var(--azul-claro);
+    line-height: 1.5;
 }
 
-/* Contenedor responsive para el mapa */
+/* Contenedor del mapa */
 .mapa-contenedor {
     position: relative;
-    padding-bottom: 56.25%;
+    width: 100%;
+    padding-bottom: 56.25%; /* Relación 16:9 */
     height: 0;
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--gris-claro); /* Fondo mientras carga */
 }
 
 .mapa-contenedor iframe {
@@ -270,11 +491,65 @@ main {
     width: 100%;
     height: 100%;
     border: 0;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .mapa-contenedor:hover iframe {
     transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .grid_sucursales {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sucursales {
+        padding: 3rem 0;
+    }
+    
+    .sucursales h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .grid_sucursales {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+    
+    .targeta_sucursal-con-mapa {
+        padding: 1.25rem;
+    }
+    
+    .targeta_sucursal-con-mapa h3 {
+        font-size: 1.3rem;
+    }
+    
+    .mapa-contenedor {
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sucursales h2 {
+        font-size: 1.8rem;
+    }
+    
+    .targeta_sucursal-con-mapa {
+        padding: 1rem;
+    }
+    
+    .targeta_sucursal-con-mapa h3 {
+        font-size: 1.2rem;
+    }
+    
+    .targeta_sucursal-con-mapa .direccion {
+        font-size: 0.85rem;
+    }
 }
 
 /* === FOOTER === */
@@ -335,7 +610,6 @@ footer a:hover {
     padding: 0;
 }
 
-/* Redes sociales en footer */
 .link_social ul {
     display: flex;
     gap: 1rem;
@@ -363,7 +637,31 @@ footer a:hover {
     color: #666;
 }
 
+/* === SCROLL PERSONALIZADO === */
+.mega-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mega-menu::-webkit-scrollbar-track {
+    background: var(--gris-claro);
+}
+
+.mega-menu::-webkit-scrollbar-thumb {
+    background: var(--azul-profundo);
+    border-radius: 3px;
+}
+
 /* === RESPONSIVE === */
+@media (max-width: 992px) {
+    .grid-subcategorias {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .grid_sucursales {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .menu_navegacion .contenedor {
         flex-direction: column;
@@ -374,6 +672,19 @@ footer a:hover {
         flex-wrap: wrap;
         justify-content: center;
         gap: 1.5rem;
+    }
+    
+    .mega-menu {
+        flex-direction: column;
+        top: 120px;
+        padding: 1rem;
+    }
+    
+    .categorias {
+        border-right: none;
+        border-bottom: 1px solid var(--gris-claro);
+        padding-right: 0;
+        padding-bottom: 1rem;
     }
     
     .contacto {
@@ -411,6 +722,15 @@ footer a:hover {
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
     }
+    
+    .titulo-pagina h1 {
+        font-size: 2.5rem;
+    }
+    
+    .titulo-pagina p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -436,7 +756,15 @@ footer a:hover {
         font-size: 0.9rem;
     }
     
+    .grid-subcategorias {
+        grid-template-columns: 1fr;
+    }
+    
     .espacio_footer {
         grid-template-columns: 1fr;
+    }
+    
+    .titulo-pagina h1 {
+        font-size: 2rem;
     }
 }
