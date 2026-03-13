@@ -63,17 +63,22 @@ h1, h2, h3, h4 {
 .logo a {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
     text-decoration: none;
     color: var(--blanco);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-family: var(--fuente-titulos);
 }
 
-.logo img {
+.logo a img {
+    width: 50px;  /* Cambia esto al tamaño que quieras */
+    height: 50px; /* Cambia esto al tamaño que quieras */
     transition: transform 0.3s ease;
-    width: 40px;
-    height: auto;
+    background-color: white;
+    border-radius: 50%;
+    padding: 2px; /* Aumenta esto para círculo más grande */
+    object-fit: contain;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.148);
 }
 
 .logo a:hover img {
