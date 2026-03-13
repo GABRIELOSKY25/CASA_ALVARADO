@@ -1,0 +1,64 @@
+/* === HEADER Y NAVEGACIÓN === */
+.menu_navegacion {
+    background-color: var(--azul-profundo);
+    box-shadow: 0 4px 15px rgba(0, 59, 111, 0.3);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu_navegacion .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--blanco);
+    font-size: 1.8rem;
+    font-family: var(--fuente-titulos);
+}
+
+.logo a img {
+    width: 50px;  /* Cambia esto al tamaño que quieras */
+    height: 50px; /* Cambia esto al tamaño que quieras */
+    transition: transform 0.3s ease;
+    background-color: white;
+    border-radius: 50%;
+    padding: 2px; /* Aumenta esto para círculo más grande */
+    object-fit: contain;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.148);
+}
+
+.logo a:hover img {
+    transform: scale(1.05);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--blanco);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+    border-bottom-color: var(--blanco);
+}

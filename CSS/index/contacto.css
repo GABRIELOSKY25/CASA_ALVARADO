@@ -1,0 +1,78 @@
+/* === SECCIÓN DE CONTACTO === */
+.contacto-seccion {
+    padding: 4rem 0 2rem 0;
+    background: linear-gradient(135deg, var(--blanco) 0%, var(--azul-claro) 100%);
+}
+
+.contacto-titulo-principal {
+    text-align: center;
+    font-family: var(--fuente-titulos);
+    font-size: 3rem;
+    color: var(--azul-profundo);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+.contacto-subtitulo {
+    text-align: center;
+    font-family: var(--fuente-cuerpo);
+    font-size: 1.2rem;
+    color: var(--gris-oscuro);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contacto-divisor {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--azul-profundo), transparent);
+    margin: 2rem auto;
+}
+
+.contacto-titulo-secundario {
+    text-align: center;
+    font-family: var(--fuente-titulos);
+    font-size: 2rem;
+    color: var(--azul-profundo);
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.contacto-descripcion {
+    text-align: center;
+    font-family: var(--fuente-cuerpo);
+    font-size: 1.1rem;
+    color: var(--gris-oscuro);
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+.btn-whatsapp {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: var(--blanco);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+    text-align: center;
+}
+
+.btn-whatsapp:hover {
+    background: transparent;
+    color: #25D366;
+    border-color: #25D366;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+}

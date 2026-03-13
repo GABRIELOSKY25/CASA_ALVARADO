@@ -1,0 +1,42 @@
+/* === VARIABLES GLOBALES === */
+:root {
+    --azul-profundo: #003B6F;
+    --azul-claro: #e6f0fa;
+    --negro: #1a1a1a;
+    --gris-oscuro: #4a4a4a;
+    --gris-claro: #f0f4f8;
+    --blanco: #ffffff;
+    --fuente-titulos: 'Prata', serif;
+    --fuente-cuerpo: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-cuerpo);
+    color: var(--gris-oscuro);
+    line-height: 1.6;
+    background-color: var(--blanco);
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--fuente-titulos);
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--negro);
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}

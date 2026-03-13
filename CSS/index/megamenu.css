@@ -1,0 +1,212 @@
+/* === MEGA MENÚ === */
+.mega-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--blanco);
+    box-shadow: 0 10px 30px rgba(0, 59, 111, 0.2);
+    z-index: 999;
+    padding: 2rem;
+    border-top: 3px solid var(--azul-profundo);
+    display: flex;
+    gap: 2rem;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.mega-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid var(--blanco);
+    filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.05));
+}
+
+/* Columna de categorías */
+.categorias {
+    flex: 1.2;
+    border-right: 1px solid var(--gris-claro);
+    padding-right: 2rem;
+}
+
+.categorias h3 {
+    font-family: var(--fuente-titulos);
+    color: var(--azul-profundo);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--azul-claro);
+}
+
+.cat {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: var(--gris-oscuro);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    margin-bottom: 0.3rem;
+}
+
+.cat:hover {
+    background-color: var(--azul-claro);
+    color: var(--azul-profundo);
+    border-left-color: var(--azul-profundo);
+    padding-left: 1.3rem;
+}
+
+.cat.activo {
+    background-color: var(--azul-claro);
+    color: var(--azul-profundo);
+    border-left-color: var(--azul-profundo);
+    border-left-width: 4px;
+    padding-left: 1.3rem;
+    font-weight: 600;
+}
+
+/* Columna de subcategorías */
+.subcategorias {
+    flex: 3;
+    background: var(--blanco);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.subcategorias h2 {
+    font-size: 1.5rem;
+    color: var(--azul-profundo);
+    margin-bottom: 1.5rem;
+    font-family: var(--fuente-titulos);
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--azul-claro);
+}
+
+.grid-subcategorias {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    align-items: start;
+}
+
+/* Items simples */
+.item-sub.simple {
+    padding: 0.7rem 1rem;
+    color: var(--gris-oscuro);
+    background: var(--gris-claro);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    align-self: start;
+    height: fit-content;
+}
+
+.item-sub.simple:hover {
+    background: var(--azul-claro);
+    color: var(--azul-profundo);
+    transform: translateX(3px);
+}
+
+/* Elementos expandibles */
+.expandible-container {
+    grid-column: span 1;
+    margin-bottom: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 100%;
+    align-self: start;
+}
+
+.expandible-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    background: var(--gris-claro);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.expandible-header:hover {
+    background: var(--azul-claro);
+    border-left-color: var(--azul-profundo);
+}
+
+.expandible-flecha {
+    font-size: 0.8rem;
+    color: var(--azul-profundo);
+    width: 16px;
+    text-align: center;
+}
+
+.expandible-texto {
+    flex: 1;
+    color: var(--gris-oscuro);
+}
+
+.expandible-contenido {
+    display: none;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.expandible-container.expandido .expandible-contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.expandible-item {
+    padding: 0.5rem 1rem;
+    color: var(--gris-oscuro);
+    background: var(--blanco);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    border-left: 2px solid var(--azul-claro);
+    margin-bottom: 0.2rem;
+}
+
+.expandible-item:hover {
+    background: var(--azul-claro);
+    color: var(--azul-profundo);
+    padding-left: 1.5rem;
+}
+
+/* Scroll personalizado para mega menú */
+.mega-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mega-menu::-webkit-scrollbar-track {
+    background: var(--gris-claro);
+}
+
+.mega-menu::-webkit-scrollbar-thumb {
+    background: var(--azul-profundo);
+    border-radius: 3px;
+}

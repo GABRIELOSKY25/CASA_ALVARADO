@@ -1,0 +1,83 @@
+/* === PRODUCTOS DESTACADOS === */
+.productos {
+    padding: 4rem 0;
+    background-color: var(--azul-claro);
+}
+
+.grid_productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.targeta_producto {
+    background-color: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 59, 111, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid var(--gris-claro);
+    padding-bottom: 1.5rem;
+}
+
+.targeta_producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
+    border-color: var(--azul-profundo);
+}
+
+.targeta_producto img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.targeta_producto:hover img {
+    transform: scale(1.02);
+}
+
+.targeta_producto h3 {
+    font-size: 1.3rem;
+    margin: 1.5rem 1rem 0.5rem 1rem;
+    color: var(--negro);
+    font-family: var(--fuente-cuerpo);
+    font-weight: 600;
+}
+
+.rating {
+    margin: 0 1rem 0.5rem 1rem;
+    color: var(--azul-profundo);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.precio {
+    margin: 0 1rem 1.5rem 1rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--negro);
+}
+
+.boton_producto {
+    display: inline-block;
+    margin-left: 1rem;
+    padding: 0.6rem 1.5rem;
+    background-color: transparent;
+    color: var(--azul-profundo);
+    text-decoration: none;
+    border: 2px solid var(--azul-profundo);
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.boton_producto:hover {
+    background-color: var(--azul-profundo);
+    color: var(--blanco);
+    border-color: var(--azul-profundo);
+}

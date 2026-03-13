@@ -1,0 +1,67 @@
+/* === SUCURSALES CON MAPAS === */
+.sucursales {
+    background-color: var(--blanco);
+    padding: 4rem 0;
+}
+
+.grid_sucursales {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.targeta_sucursal-con-mapa {
+    background-color: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 59, 111, 0.08);
+    border: 1px solid var(--gris-claro);
+    transition: all 0.3s ease;
+    padding: 1.5rem;
+}
+
+.targeta_sucursal-con-mapa:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
+    border-color: var(--azul-profundo);
+}
+
+.targeta_sucursal-con-mapa h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--azul-profundo);
+    font-family: var(--fuente-titulos);
+}
+
+.targeta_sucursal-con-mapa .direccion {
+    color: var(--gris-oscuro);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--azul-claro);
+}
+
+.mapa-contenedor {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mapa-contenedor iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    transition: all 0.3s ease;
+}
+
+.mapa-contenedor:hover iframe {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 59, 111, 0.2);
+}

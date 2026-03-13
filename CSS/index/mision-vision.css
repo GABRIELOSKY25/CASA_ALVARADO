@@ -1,0 +1,19 @@
+/* === MISIÓN Y VISIÓN === */
+.mision-vision {
+    background-color: var(--azul-claro);
+    border-top: 1px solid var(--gris-claro);
+    border-bottom: 1px solid var(--gris-claro);
+    padding: 3rem 0;
+}
+
+.mision-vision .contenedor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.mision p, .vision p {
+    color: var(--gris-oscuro);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}

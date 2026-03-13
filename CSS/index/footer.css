@@ -1,0 +1,80 @@
+/* === FOOTER === */
+footer {
+    background-color: var(--negro);
+    color: #aaa;
+    padding: 3rem 0 1rem 0;
+    font-size: 0.95rem;
+    border-top: 4px solid var(--azul-profundo);
+}
+
+footer .contenedor {
+    padding: 1rem 0;
+}
+
+footer h3, footer h4 {
+    color: var(--blanco);
+    font-family: var(--fuente-cuerpo);
+}
+
+footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--fuente-titulos);
+}
+
+footer h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--blanco);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+footer p, footer li, footer a {
+    color: #aaa;
+    text-decoration: none;
+    list-style: none;
+    line-height: 2;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--blanco);
+}
+
+.espacio_footer {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 3rem;
+    margin-bottom: 2rem;
+}
+
+.seccion_footer ul {
+    padding: 0;
+}
+
+.link_social ul {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.link_social ul li a img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(0.7);
+    transition: filter 0.3s ease;
+}
+
+.link_social ul li a:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.derechos {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+}
