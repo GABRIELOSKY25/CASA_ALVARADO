@@ -13,6 +13,31 @@
     justify-items: center;
 }
 
+.productos h2 {
+    text-align: center;
+    display: block;
+    margin-bottom: 3rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--azul-profundo), #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.productos h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--azul-profundo), transparent);
+    border-radius: 2px;
+}
+
 .targeta_producto {
     background-color: var(--blanco);
     border-radius: 12px;

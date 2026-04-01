@@ -1,11 +1,22 @@
 // Botón para abrir/cerrar el mega menú
-const btn = document.getElementById("btnProductos")
-const menu = document.getElementById("megaMenu")
+document.addEventListener("componentesCargados", () => {
+    const btn = document.getElementById("btnProductos");
+    const menu = document.getElementById("megaMenu");
 
-btn.addEventListener("click", (e)=>{
-    e.preventDefault()
-    menu.classList.toggle("hidden")
-})
+    if (btn && menu) {
+        // Abrir/Cerrar al clickear el botón
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            menu.classList.toggle("hidden");
+        });
+
+        // NUEVO: Cerrar al hacer clic fuera (Movido desde include.js)
+        document.addEventListener("click", (e) => {
+            if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                menu.classList.add("hidden");
+            }
+        });
+    }
 
 // Datos de categorías y subcategorías (COMPLETO según la imagen)
 const datos = {
@@ -164,3 +175,4 @@ categorias.forEach(cat => {
 
 // Seleccionar la primera categoría por defecto
 mostrarSubcategorias(categorias[0])
+})
