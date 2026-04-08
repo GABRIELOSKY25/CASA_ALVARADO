@@ -53,16 +53,82 @@
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
+/* 1. Modifica el track: eliminamos la animación */
 .carrusel-track {
     display: flex;
     width: max-content;
-    animation: scroll 25s linear infinite;
+    user-select: none;
+    -webkit-user-drag: none;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Movimiento suave al pulsar */
 }
 
-.carrusel-track:hover {
-    animation-play-state: paused;
+.carrusel-item img {
+    /* Evita que la imagen se intente "arrastrar" sola en móviles */
+    pointer-events: none;
 }
 
+.carrusel-item.activo {
+    border: 2px solid #3b82f6; /* El azul de tu diseño */
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    transform: scale(1.05);
+    background: white;
+}
+/* 2. Estilo para los botones (añádelo a tu CSS) */
+.controles-carrusel {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 2rem;
+}
+
+.btn-carrusel {
+    background: var(--azul-profundo, #003b6f);
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-carrusel:hover {
+    background: #3b82f6;
+    transform: scale(1.1);
+}
+/* Contenedor de los botones */
+.controles-carrusel {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px; /* Espacio respecto a los logos */
+    position: relative;
+    z-index: 10; /* Asegura que estén por encima de fondos decorativos */
+}
+
+/* Estilo de los botones */
+.btn-carrusel {
+    background: #003b6f; /* Azul profundo como tu título */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 59, 111, 0.2);
+}
+
+.btn-carrusel:hover {
+    background: #3b82f6; /* Azul más brillante al pasar el ratón */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-carrusel:active {
+    transform: translateY(0);
+}
 @keyframes scroll {
     0%   { transform: translateX(0); }
     100% { transform: translateX(calc(-280px * 6)); }

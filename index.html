@@ -55,51 +55,34 @@
         <section class="marcas">
         <div class="contenedor">
             <h2 id="marcas">Marcas que Trabajamos</h2>
-            <div class="carrusel-contenedor">
-            <div class="carrusel-track">
-
-                <!-- GRUPO 1 (Original) -->
-                <div class="carrusel-item">
+           <div class="carrusel-contenedor">
+            <div class="carrusel-track" id="track">
+                <div class="carrusel-item" data-nombre="Sensey Electronics">
                 <img src="https://sensey.com.mx/images/SSy1.png" alt="Sensey">
                 </div>
-                <div class="carrusel-item">
+                <div class="carrusel-item" data-nombre="Shure">
                 <img src="https://images.squarespace-cdn.com/content/v1/5ada405ff8370a9cc016afd7/1525291057145-SU4FODTVHMA8W1VN7G4E/logo_shure.png" alt="Shure">
                 </div>
-                <div class="carrusel-item">
+                <div class="carrusel-item" data-nombre="Alien Pro">
                 <img src="https://cdn.cyberpuerta.mx/storage/brands/LogoAlienPro.png" alt="Alien Pro">
                 </div>
-                <div class="carrusel-item">
+                <div class="carrusel-item" data-nombre="Fender">
                 <img src="https://audiomusic.mx/wp-content/uploads/2022/10/PhotoRoom-20221014_183321-574x96.png" alt="Fender">
                 </div>
-                <div class="carrusel-item">
+                <div class="carrusel-item" data-nombre="Yamaha">
                 <img src="https://www.pngmart.com/files/23/Yamaha-Logo-PNG-HD.png" alt="Yamaha">
                 </div>
-                <div class="carrusel-item">
+                <div class="carrusel-item" data-nombre="Bose">
                 <img src="https://1000logos.net/wp-content/uploads/2021/05/Bose-logo.png" alt="Bose">
-                </div>
-
-                <!-- GRUPO 2 (Duplicado - ESENCIAL para efecto infinito) -->
-                <div class="carrusel-item">
-                <img src="https://sensey.com.mx/images/SSy1.png" alt="Sensey">
-                </div>
-                <div class="carrusel-item">
-                <img src="https://images.squarespace-cdn.com/content/v1/5ada405ff8370a9cc016afd7/1525291057145-SU4FODTVHMA8W1VN7G4E/logo_shure.png" alt="Shure">
-                </div>
-                <div class="carrusel-item">
-                <img src="https://cdn.cyberpuerta.mx/storage/brands/LogoAlienPro.png" alt="Alien Pro">
-                </div>
-                <div class="carrusel-item">
-                <img src="https://audiomusic.mx/wp-content/uploads/2022/10/PhotoRoom-20221014_183321-574x96.png" alt="Fender">
-                </div>
-                <div class="carrusel-item">
-                <img src="https://www.pngmart.com/files/23/Yamaha-Logo-PNG-HD.png" alt="Yamaha">
-                </div>
-                <div class="carrusel-item">
-                <img src="https://1000logos.net/wp-content/uploads/2021/05/Bose-logo.png" alt="Bose">
-                </div>
+                    </div>
             </div>
+                <div class="controles-carrusel">
+                <button class="btn-carrusel btn-prev" onclick="moverCarrusel(-1)" aria-label="Anterior">
+                    &#10094; </button>
+                <button class="btn-carrusel btn-next" onclick="moverCarrusel(1)" aria-label="Siguiente">
+                    &#10095; </button>
             </div>
-        </div>
+                </div>
         </section>
         <!-- Sección de Productos Destacados -->
         <section class="productos">
@@ -171,5 +154,7 @@
     <!-- JavaScript para el carrusel de marcas -->
     <script src="/JS/include.js"></script>
     <script src="/JS/app.js"></script>
+    <script src="/JS/carusel.js"></script>
+    <script src="/JS/fitrar.js"></script>
 </body>
 </html>
