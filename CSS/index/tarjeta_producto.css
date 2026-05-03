@@ -1,5 +1,6 @@
 /* === PRODUCTOS DESTACADOS === */
 .productos {
+    flex: 1;
     padding: 4rem;
     background-color: var(--azul-claro);
     text-align: center;
@@ -7,9 +8,9 @@
 
 .grid_productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     justify-items: center;
 }
 
@@ -101,4 +102,48 @@
     background-color: var(--azul-profundo);
     color: var(--blanco);
     border-color: var(--azul-profundo);
+}
+/* =========================
+    RATING ESTRELLAS
+========================= */
+
+.rating{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.rating input{
+    display: none;
+}
+
+.rating label{
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Hover */
+.rating label:hover,
+.rating label:hover ~ label{
+    color: gold;
+}
+
+/* Seleccionadas */
+.rating input:checked ~ label{
+    color: gold;
+} 
+.catalogo{
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* FILTROS */
+
+.filtros{
+    width: 250px;
+    min-width: 250px;
 }

@@ -1,7 +1,6 @@
-/* === CARRUSEL DE MARCAS === */
 .marcas {
     background: linear-gradient(135deg, var(--blanco) 0%, #f8fbff 100%);
-    padding: 4rem 0;
+    padding: 3rem 0 0.5rem 0;
     overflow: hidden;
     position: relative;
 }
@@ -53,7 +52,6 @@
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
-/* 1. Modifica el track: eliminamos la animación */
 .carrusel-track {
     display: flex;
     width: max-content;
@@ -63,12 +61,12 @@
 }
 
 .carrusel-item img {
-    /* Evita que la imagen se intente "arrastrar" sola en móviles */
+    /* Evita que la imagen se intente "arrastrar" sola */
     pointer-events: none;
 }
 
 .carrusel-item.activo {
-    border: 2px solid #3b82f6; /* El azul de tu diseño */
+    border: 2px solid #3b82f6; 
     box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
     transform: scale(1.05);
     background: white;
