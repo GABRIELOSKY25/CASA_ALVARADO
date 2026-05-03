@@ -1,7 +1,6 @@
 /* === PRODUCTOS DESTACADOS === */
-.productos {
+.tarjeta_productos {
     flex: 1;
-    padding: 4rem;
     background-color: var(--azul-claro);
     text-align: center;
 }
@@ -9,8 +8,8 @@
 .grid_productos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 1rem;
+    gap: 1rem;
+    margin-top: 3rem;
     justify-items: center;
 }
 
@@ -28,6 +27,31 @@
 }
 
 .productos h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--azul-profundo), transparent);
+    border-radius: 2px;
+}
+
+.productos h3 {
+    text-align: center;
+    display: block;
+    margin-bottom: 2rem;
+    font-size: clamp(1rem, 4vw, 2rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--azul-profundo), #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.productos h3::after {
     content: '';
     position: absolute;
     bottom: -10px;
