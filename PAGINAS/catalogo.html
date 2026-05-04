@@ -1,121 +1,396 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <link rel = "stylesheet" href = "../CSS/index/main.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo</title>
+    <title>Catálogo - Instrumentos Musicales</title>
+    <link rel="stylesheet" href="../CSS/index/main.css">
 </head>
 <body>
     <div id="header"></div>
-        <main>
+    
+    <main>
+        <!-- CARRUSEL DE MARCAS -->
         <section class="marcas">
-        <div class="contenedor">
-            <div class="carrusel-contenedor">
-            <div class="carrusel-track" id="track">
-                <div class="carrusel-item" data-nombre="Sensey Electronics">
-                <img src="https://sensey.com.mx/images/SSy1.png" alt="Sensey">
-                </div>
-                <div class="carrusel-item" data-nombre="Shure">
-                <img src="https://images.squarespace-cdn.com/content/v1/5ada405ff8370a9cc016afd7/1525291057145-SU4FODTVHMA8W1VN7G4E/logo_shure.png" alt="Shure">
-                </div>
-                <div class="carrusel-item" data-nombre="Alien Pro">
-                <img src="https://cdn.cyberpuerta.mx/storage/brands/LogoAlienPro.png" alt="Alien Pro">
-                </div>
-                <div class="carrusel-item" data-nombre="Fender">
-                <img src="https://audiomusic.mx/wp-content/uploads/2022/10/PhotoRoom-20221014_183321-574x96.png" alt="Fender">
-                </div>
-                <div class="carrusel-item" data-nombre="Yamaha">
-                <img src="https://www.pngmart.com/files/23/Yamaha-Logo-PNG-HD.png" alt="Yamaha">
-                </div>
-                <div class="carrusel-item" data-nombre="Bose">
-                <img src="https://1000logos.net/wp-content/uploads/2021/05/Bose-logo.png" alt="Bose">
+            <div class="contenedor">
+                <div class="carrusel-contenedor">
+                    <div class="carrusel-track" id="track">
+                        <div class="carrusel-item" data-nombre="Sensey Electronics">
+                            <img src="https://sensey.com.mx/images/SSy1.png" alt="Sensey">
+                        </div>
+                        <div class="carrusel-item" data-nombre="Shure">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5ada405ff8370a9cc016afd7/1525291057145-SU4FODTVHMA8W1VN7G4E/logo_shure.png" alt="Shure">
+                        </div>
+                        <div class="carrusel-item" data-nombre="Alien Pro">
+                            <img src="https://cdn.cyberpuerta.mx/storage/brands/LogoAlienPro.png" alt="Alien Pro">
+                        </div>
+                        <div class="carrusel-item" data-nombre="Fender">
+                            <img src="https://audiomusic.mx/wp-content/uploads/2022/10/PhotoRoom-20221014_183321-574x96.png" alt="Fender">
+                        </div>
+                        <div class="carrusel-item" data-nombre="Yamaha">
+                            <img src="https://www.pngmart.com/files/23/Yamaha-Logo-PNG-HD.png" alt="Yamaha">
+                        </div>
+                        <div class="carrusel-item" data-nombre="Bose">
+                            <img src="https://1000logos.net/wp-content/uploads/2021/05/Bose-logo.png" alt="Bose">
+                        </div>
                     </div>
-            </div>
-                <div class="controles-carrusel">
-                <button class="btn-carrusel btn-prev" onclick="moverCarrusel(-1)" aria-label="Anterior">
-                    &#10094; </button>
-                <button class="btn-carrusel btn-next" onclick="moverCarrusel(1)" aria-label="Siguiente">
-                    &#10095; </button>
-            </div>
+                    <div class="controles-carrusel">
+                        <button class="btn-carrusel btn-prev" onclick="moverCarrusel(-1)" aria-label="Anterior">&#10094;</button>
+                        <button class="btn-carrusel btn-next" onclick="moverCarrusel(1)" aria-label="Siguiente">&#10095;</button>
+                    </div>
+                </div>
             </div>
         </section>
-        <!-- FILTROS -->
+
+        <!-- CATÁLOGO CON FILTROS -->
         <section class="catalogo">
-
-            <!-- FILTROS -->
+            <!-- FILTROS LATERAL CON DESPLEGABLES -->
             <aside class="filtros">
-
                 <h2>Filtros</h2>
 
+                <!-- FILTRO MARCA (DESPLEGABLE) -->
                 <div class="grupo_filtro">
-
-                    <h3>Marca</h3>
-
-                    <label class="opcion_filtro">
-                        <input type="checkbox">
-                        Yamaha
-                    </label>
-
-                    <label class="opcion_filtro">
-                        <input type="checkbox">
-                        Fender
-                    </label>
-
-                    <label class="opcion_filtro">
-                        <input type="checkbox">
-                        Shure
-                    </label>
-
+                    <div class="filtro-header" onclick="toggleFiltro(this)">
+                        <h3>Marca</h3>
+                        <span class="flecha">▼</span>
+                    </div>
+                    <div class="filtro-contenido">
+                        <label class="opcion_filtro">
+                            <input type="checkbox" value="Yamaha" class="filtro-marca">
+                            Yamaha
+                            <span class="contador">(2)</span>
+                        </label>
+                        <label class="opcion_filtro">
+                            <input type="checkbox" value="Fender" class="filtro-marca">
+                            Fender
+                            <span class="contador">(1)</span>
+                        </label>
+                        <label class="opcion_filtro">
+                            <input type="checkbox" value="Shure" class="filtro-marca">
+                            Shure
+                            <span class="contador">(2)</span>
+                        </label>
+                        <label class="opcion_filtro">
+                            <input type="checkbox" value="Bose" class="filtro-marca">
+                            Bose
+                            <span class="contador">(1)</span>
+                        </label>
+                        <label class="opcion_filtro">
+                            <input type="checkbox" value="Sensey" class="filtro-marca">
+                            Sensey
+                            <span class="contador">(1)</span>
+                        </label>
+                    </div>
                 </div>
 
+                <!-- FILTRO CATEGORÍA (DESPLEGABLE) -->
+                <div class="grupo_filtro">
+                    <div class="filtro-header" onclick="toggleFiltro(this)">
+                        <h3>Categoría</h3>
+                        <span class="flecha">▼</span>
+                    </div>
+                    <div class="filtro-contenido">
+                        <label class="opcion_filtro">
+                            <input type="checkbox" value="Guitarra" class="filtro-categoria">
+                            Guitarras
+                            <span class="contador">(2)</span>
+                        </label>
+                        <label class="opcion_filtro">
+                            <input type="checkbox" value="Bateria" class="filtro-categoria">
+                            Baterías
+                            <span class="contador">(2)</span>
+                        </label>
+                        <label class="opcion_filtro">
+                            <input type="checkbox" value="Microfono" class="filtro-categoria">
+                            Micrófonos
+                            <span class="contador">(3)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- FILTRO PRECIO (DESPLEGABLE - EJEMPLO ADICIONAL) -->
+                <div class="grupo_filtro">
+                    <div class="filtro-header" onclick="toggleFiltro(this)">
+                        <h3>Precio</h3>
+                        <span class="flecha">▼</span>
+                    </div>
+                    <div class="filtro-contenido">
+                        <label class="opcion_filtro">
+                            <input type="checkbox" value="0-5000" class="filtro-precio">
+                            $0 - $5,000
+                            <span class="contador">(3)</span>
+                        </label>
+                        <label class="opcion_filtro">
+                            <input type="checkbox" value="5000-10000" class="filtro-precio">
+                            $5,000 - $10,000
+                            <span class="contador">(2)</span>
+                        </label>
+                        <label class="opcion_filtro">
+                            <input type="checkbox" value="10000+" class="filtro-precio">
+                            $10,000+
+                            <span class="contador">(2)</span>
+                        </label>
+                    </div>
+                </div>
             </aside>
 
             <!-- PRODUCTOS -->
             <section class="tarjeta_productos">
-
                 <div class="contenedor">
-
-                    <div class="grid_productos">
-
-                        <div class="targeta_producto">
-                            <img src="https://images.unsplash.com/photo-1550985616-10810253b84d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
-                            <h3>Guitarra Eléctrica Profesional</h3>
+                    <div class="grid_productos" id="grid-productos">
+                        <!-- Producto 1 - Yamaha Guitarra -->
+                        <div class="targeta_producto" data-marca="Yamaha" data-categoria="Guitarra" data-precio="5000-10000">
+                            <img src="https://images.unsplash.com/photo-1550985616-10810253b84d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Guitarra Yamaha">
+                            <h3>Guitarra Eléctrica Yamaha</h3>
+                            <p class="marca-producto">Yamaha</p>
+                            <p class="precio-producto">$7,999</p>
                             <div class="rating">⭐⭐⭐⭐⭐</div>
                             <a href="#" class="boton_producto">Ver más</a>
                         </div>
 
-                        <div class="targeta_producto">
-                            <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
-                            <h3>Batería Acústica Premium</h3>
+                        <!-- Producto 2 - Yamaha Batería -->
+                        <div class="targeta_producto" data-marca="Yamaha" data-categoria="Bateria" data-precio="10000+">
+                            <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Batería Yamaha">
+                            <h3>Batería Acústica Yamaha</h3>
+                            <p class="marca-producto">Yamaha</p>
+                            <p class="precio-producto">$15,999</p>
                             <div class="rating">⭐⭐⭐⭐⭐</div>
                             <a href="#" class="boton_producto">Ver más</a>
                         </div>
-                        <div class="targeta_producto">
-                        <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Batería Acústica">
-                        <h3>Batería Acústica Premium</h3>
-                        <div class="rating">⭐⭐⭐⭐⭐</div>
-                        <a href="#" class="boton_producto">Ver más</a>
-                    </div>
-                    <div class="targeta_producto">
-                        <img src="https://images.unsplash.com/photo-1598565117806-54d3a4f60c5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Micrófono de Condensador">
-                        <h3>Micrófono de Condensador</h3>
-                        <div class="rating">⭐⭐⭐⭐</div>
-                        <a href="#" class="boton_producto">Ver más</a>
-                    </div>
 
-                    </div>
+                        <!-- Producto 3 - Fender Guitarra -->
+                        <div class="targeta_producto" data-marca="Fender" data-categoria="Guitarra" data-precio="10000+">
+                            <img src="https://images.unsplash.com/photo-1564186763535-6e3eab0b9550?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Guitarra Fender">
+                            <h3>Guitarra Stratocaster Fender</h3>
+                            <p class="marca-producto">Fender</p>
+                            <p class="precio-producto">$22,999</p>
+                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <a href="#" class="boton_producto">Ver más</a>
+                        </div>
 
+                        <!-- Producto 4 - Shure Micrófono -->
+                        <div class="targeta_producto" data-marca="Shure" data-categoria="Microfono" data-precio="0-5000">
+                            <img src="https://images.unsplash.com/photo-1598565117806-54d3a4f60c5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Micrófono Shure">
+                            <h3>Micrófono Shure SM58</h3>
+                            <p class="marca-producto">Shure</p>
+                            <p class="precio-producto">$2,499</p>
+                            <div class="rating">⭐⭐⭐⭐</div>
+                            <a href="#" class="boton_producto">Ver más</a>
+                        </div>
+
+                        <!-- Producto 5 - Shure Micrófono Condensador -->
+                        <div class="targeta_producto" data-marca="Shure" data-categoria="Microfono" data-precio="5000-10000">
+                            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Micrófono Shure">
+                            <h3>Micrófono de Condensador Shure</h3>
+                            <p class="marca-producto">Shure</p>
+                            <p class="precio-producto">$6,499</p>
+                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <a href="#" class="boton_producto">Ver más</a>
+                        </div>
+
+                        <!-- Producto 6 - Bose Parlante -->
+                        <div class="targeta_producto" data-marca="Bose" data-categoria="Microfono" data-precio="10000+">
+                            <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bose Speaker">
+                            <h3>Sistema de Sonido Bose</h3>
+                            <p class="marca-producto">Bose</p>
+                            <p class="precio-producto">$12,999</p>
+                            <div class="rating">⭐⭐⭐⭐</div>
+                            <a href="#" class="boton_producto">Ver más</a>
+                        </div>
+
+                        <!-- Producto 7 - Sensey Batería -->
+                        <div class="targeta_producto" data-marca="Sensey" data-categoria="Bateria" data-precio="0-5000">
+                            <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Batería Sensey">
+                            <h3>Batería Electrónica Sensey</h3>
+                            <p class="marca-producto">Sensey</p>
+                            <p class="precio-producto">$4,299</p>
+                            <div class="rating">⭐⭐⭐⭐</div>
+                            <a href="#" class="boton_producto">Ver más</a>
+                        </div>
+                    </div>
                 </div>
-
             </section>
-
         </section>
-        </main>
+    </main>
+
     <div id="footer"></div>
+
     <script src="../JS/include.js"></script>
-    <script src="../JS/app.js"></script>
-    <script src="/JS/carusel.js"></script>
-    <script src="/JS/fitrar.js"></script>
+    <script>
+        // ========== FUNCIÓN CARRUSEL ==========
+        let currentIndex = 0;
+        const track = document.getElementById('track');
+        const items = document.querySelectorAll('.carrusel-item');
+        let itemsPerView = getItemsPerView();
+
+        function getItemsPerView() {
+            if (window.innerWidth >= 1024) return 4;
+            if (window.innerWidth >= 768) return 3;
+            return 2;
+        }
+
+        function updateCarrusel() {
+            if (!track) return;
+            const itemWidth = items[0]?.offsetWidth + 32;
+            const desplazamiento = currentIndex * itemWidth;
+            track.style.transform = `translateX(-${desplazamiento}px)`;
+        }
+
+        window.moverCarrusel = function(direction) {
+            const maxIndex = Math.max(0, items.length - itemsPerView);
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex > maxIndex) currentIndex = maxIndex;
+            updateCarrusel();
+        };
+
+        window.addEventListener('resize', () => {
+            itemsPerView = getItemsPerView();
+            currentIndex = 0;
+            updateCarrusel();
+        });
+
+        setTimeout(updateCarrusel, 100);
+
+        // ========== FILTROS DESPLEGABLES (ACORDEÓN) ==========
+        function toggleFiltro(header) {
+            const grupo = header.parentElement;
+            const contenido = grupo.querySelector('.filtro-contenido');
+            const flecha = header.querySelector('.flecha');
+            
+            // Cerrar otros filtros (opcional - descomentar si quieres que solo uno se abra a la vez)
+            // document.querySelectorAll('.grupo_filtro').forEach(g => {
+            //     if (g !== grupo) {
+            //         g.querySelector('.filtro-contenido').style.maxHeight = null;
+            //         g.querySelector('.flecha').style.transform = 'rotate(0deg)';
+            //     }
+            // });
+            
+            // Alternar el actual
+            if (contenido.style.maxHeight) {
+                contenido.style.maxHeight = null;
+                flecha.style.transform = 'rotate(0deg)';
+            } else {
+                contenido.style.maxHeight = contenido.scrollHeight + "px";
+                flecha.style.transform = 'rotate(180deg)';
+            }
+        }
+        
+        // Inicializar todos los filtros cerrados
+        document.querySelectorAll('.filtro-contenido').forEach(contenido => {
+            contenido.style.maxHeight = null;
+        });
+
+        // ========== FILTROS FUNCIONALES ==========
+        const checkboxesMarca = document.querySelectorAll('.filtro-marca');
+        const checkboxesCategoria = document.querySelectorAll('.filtro-categoria');
+        const checkboxesPrecio = document.querySelectorAll('.filtro-precio');
+        const productos = document.querySelectorAll('.targeta_producto');
+
+        function filtrarProductos() {
+            const marcasSeleccionadas = Array.from(checkboxesMarca)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+            
+            const categoriasSeleccionadas = Array.from(checkboxesCategoria)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+
+            const preciosSeleccionados = Array.from(checkboxesPrecio)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+
+            let productosVisibles = 0;
+
+            productos.forEach(producto => {
+                const marcaProducto = producto.getAttribute('data-marca');
+                const categoriaProducto = producto.getAttribute('data-categoria');
+                const precioProducto = producto.getAttribute('data-precio');
+                
+                let mostrarPorMarca = marcasSeleccionadas.length === 0 || marcasSeleccionadas.includes(marcaProducto);
+                let mostrarPorCategoria = categoriasSeleccionadas.length === 0 || categoriasSeleccionadas.includes(categoriaProducto);
+                let mostrarPorPrecio = preciosSeleccionados.length === 0 || preciosSeleccionados.includes(precioProducto);
+                
+                if (mostrarPorMarca && mostrarPorCategoria && mostrarPorPrecio) {
+                    producto.style.display = 'block';
+                    productosVisibles++;
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+
+            // Actualizar contadores
+            actualizarContadores();
+            
+            // Mostrar mensaje si no hay productos
+            const grid = document.getElementById('grid-productos');
+            let mensajeVacio = document.querySelector('.mensaje-vacio');
+            
+            if (productosVisibles === 0) {
+                if (!mensajeVacio) {
+                    mensajeVacio = document.createElement('div');
+                    mensajeVacio.className = 'mensaje-vacio';
+                    mensajeVacio.style.textAlign = 'center';
+                    mensajeVacio.style.padding = '3rem';
+                    mensajeVacio.style.fontSize = '1.2rem';
+                    mensajeVacio.style.color = '#999';
+                    mensajeVacio.innerHTML = '⚠️ No hay productos con los filtros seleccionados';
+                    grid.appendChild(mensajeVacio);
+                }
+            } else {
+                if (mensajeVacio) mensajeVacio.remove();
+            }
+        }
+
+        function actualizarContadores() {
+            // Contar productos visibles por marca
+            const marcas = ['Yamaha', 'Fender', 'Shure', 'Bose', 'Sensey'];
+            marcas.forEach(marca => {
+                const contador = Array.from(productos).filter(p => 
+                    p.getAttribute('data-marca') === marca && p.style.display !== 'none'
+                ).length;
+                
+                const label = Array.from(checkboxesMarca).find(cb => cb.value === marca)?.closest('.opcion_filtro');
+                const spanContador = label?.querySelector('.contador');
+                if (spanContador) spanContador.textContent = `(${contador})`;
+            });
+            
+            // Contar productos visibles por categoría
+            const categorias = ['Guitarra', 'Bateria', 'Microfono'];
+            categorias.forEach(categoria => {
+                const contador = Array.from(productos).filter(p => 
+                    p.getAttribute('data-categoria') === categoria && p.style.display !== 'none'
+                ).length;
+                
+                const label = Array.from(checkboxesCategoria).find(cb => cb.value === categoria)?.closest('.opcion_filtro');
+                const spanContador = label?.querySelector('.contador');
+                if (spanContador) spanContador.textContent = `(${contador})`;
+            });
+
+            // Contar productos visibles por precio
+            const rangos = ['0-5000', '5000-10000', '10000+'];
+            rangos.forEach(rango => {
+                const contador = Array.from(productos).filter(p => 
+                    p.getAttribute('data-precio') === rango && p.style.display !== 'none'
+                ).length;
+                
+                const label = Array.from(checkboxesPrecio).find(cb => cb.value === rango)?.closest('.opcion_filtro');
+                const spanContador = label?.querySelector('.contador');
+                if (spanContador) spanContador.textContent = `(${contador})`;
+            });
+        }
+
+        // Event listeners para filtros
+        checkboxesMarca.forEach(cb => cb.addEventListener('change', filtrarProductos));
+        checkboxesCategoria.forEach(cb => cb.addEventListener('change', filtrarProductos));
+        checkboxesPrecio.forEach(cb => cb.addEventListener('change', filtrarProductos));
+
+        // Inicializar
+        setTimeout(() => {
+            filtrarProductos();
+        }, 100);
+    </script>
+    <script src="../JS/carusel.js"></script>
+    <script src="../JS/fitrar.js"></script>
 </body>
 </html>

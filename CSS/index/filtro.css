@@ -1,40 +1,203 @@
-.filtros{
-    width: 250px;
-    padding: 20px;
+/* ========== FILTROS LATERAL ========== */
+.filtros {
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.filtros h2{
-    margin-bottom: 25px;
+.filtros h2 {
     font-size: 1.5rem;
-    color: #222;
+    margin-bottom: 1.5rem;
+    color: #333;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e94560;
 }
 
-.grupo_filtro{
-    margin-bottom: 30px;
+/* ========== GRUPO DE FILTRO (DESPLEGABLE) ========== */
+.grupo_filtro {
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.grupo_filtro h3{
-    margin-bottom: 15px;
+/* Header del filtro (clickeable) */
+.filtro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.filtro-header:hover {
+    background: #e9ecef;
+}
+
+.filtro-header h3 {
     font-size: 1rem;
-    color: #444;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
 }
 
-/* OPCIONES */
+.flecha {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    color: #666;
+}
 
-.opcion_filtro{
+/* Contenido del filtro (opciones) */
+.filtro-contenido {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: white;
+}
+
+/* Opciones individuales */
+.opcion_filtro {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
+    padding: 0.75rem 1rem;
     cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 0.9rem;
     color: #555;
-    font-size: 15px;
+    border-top: 1px solid #f0f0f0;
 }
 
-/* CHECKBOX */
+.opcion_filtro:hover {
+    background: #f8f9fa;
+}
 
-.opcion_filtro input[type="checkbox"]{
-    width: 16px;
-    height: 16px;
+.opcion_filtro input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
     cursor: pointer;
+    accent-color: #e94560;
+}
+
+.opcion_filtro .contador {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* ========== CONTENEDOR PRINCIPAL ========== */
+.catalogo {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 2rem;
+}
+
+/* ========== GRID DE PRODUCTOS ========== */
+.tarjeta_productos {
+    flex: 1;
+}
+
+.grid_productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Tarjetas de producto */
+.targeta_producto {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.targeta_producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.targeta_producto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.targeta_producto h3 {
+    font-size: 1rem;
+    padding: 0.75rem 1rem 0.25rem;
+    color: #333;
+}
+
+.marca-producto {
+    font-size: 0.8rem;
+    color: #e94560;
+    padding: 0 1rem;
+    font-weight: 500;
+}
+
+.precio-producto {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #2d3748;
+    padding: 0.25rem 1rem;
+}
+
+.rating {
+    padding: 0.25rem 1rem;
+    font-size: 0.8rem;
+    color: #ffc107;
+}
+
+.boton_producto {
+    display: block;
+    margin: 1rem;
+    padding: 0.6rem;
+    text-align: center;
+    background: #16213e;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.boton_producto:hover {
+    background: #e94560;
+}
+
+/* Mensaje cuando no hay productos */
+.mensaje-vacio {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: #999;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .catalogo {
+        flex-direction: column;
+    }
+    
+    .filtros {
+        width: 100%;
+        position: static;
+        margin-bottom: 1.5rem;
+    }
+    
+    .grid_productos {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1rem;
+    }
 }

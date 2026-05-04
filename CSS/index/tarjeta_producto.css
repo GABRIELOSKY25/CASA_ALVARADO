@@ -7,10 +7,9 @@
 
 .grid_productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
     margin-top: 3rem;
-    justify-items: center;
 }
 
 .productos h2 {
@@ -38,31 +37,7 @@
     border-radius: 2px;
 }
 
-.productos h3 {
-    text-align: center;
-    display: block;
-    margin-bottom: 2rem;
-    font-size: clamp(1rem, 4vw, 2rem);
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--azul-profundo), #3b82f6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    position: relative;
-}
-
-.productos h3::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--azul-profundo), transparent);
-    border-radius: 2px;
-}
-
+/* ========== TARJETAS - OCUPAN TODO EL ESPACIO ========== */
 .targeta_producto {
     background-color: var(--blanco);
     border-radius: 12px;
@@ -71,7 +46,9 @@
     transition: all 0.3s ease;
     border: 1px solid var(--gris-claro);
     padding-bottom: 1.5rem;
-    
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .targeta_producto:hover {
@@ -82,9 +59,10 @@
 
 .targeta_producto img {
     width: 100%;
-    height: 250px;
+    height: 220px;
     object-fit: cover;
     transition: transform 0.5s ease;
+    flex-shrink: 0;
 }
 
 .targeta_producto:hover img {
@@ -92,23 +70,80 @@
 }
 
 .targeta_producto h3 {
-    font-size: 1.3rem;
-    margin: 1.5rem 1rem 0.5rem 1rem;
+    font-size: 1.1rem;
+    margin: 1rem 1rem 0.5rem 1rem;
     color: var(--negro);
     font-family: var(--fuente-cuerpo);
     font-weight: 600;
+    min-height: 3rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.rating {
-    margin: 0 1rem 0.5rem 1rem;
+/* Marca del producto */
+.marca-producto {
+    font-size: 0.85rem;
     color: var(--azul-profundo);
-    font-size: 1.1rem;
-    letter-spacing: 2px;
+    margin: 0 1rem 0.25rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+/* Precio del producto */
+.precio-producto {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2d3748;
+    margin: 0.25rem 1rem;
+    text-align: left;
+}
+
+/* =========================
+    RATING ESTRELLAS (SOLO SEGUNDO SISTEMA)
+========================= */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+    margin: 0.5rem 1rem;
+    flex-shrink: 0;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Hover - efecto de estrellas hacia la izquierda */
+.rating label:hover,
+.rating label:hover ~ label {
+    color: gold;
+}
+
+/* Seleccionadas - cuando el input está checked, todas las etiquetas siguientes (a la izquierda) se colorean */
+.rating input:checked ~ label {
+    color: gold;
+}
+
+/* Para mantener el orden visual correcto (estrella llena/ vacía) */
+.rating:not(:hover) input:checked ~ label,
+.rating:not(:hover) label:hover ~ label {
+    color: gold;
 }
 
 .boton_producto {
     display: inline-block;
-    margin-left: 1rem;
+    margin: 0.5rem 1rem 0;
     padding: 0.6rem 1.5rem;
     background-color: transparent;
     color: var(--azul-profundo);
@@ -120,6 +155,9 @@
     text-transform: uppercase;
     font-size: 0.8rem;
     letter-spacing: 0.5px;
+    text-align: center;
+    margin-top: auto;
+    cursor: pointer;
 }
 
 .boton_producto:hover {
@@ -127,47 +165,134 @@
     color: var(--blanco);
     border-color: var(--azul-profundo);
 }
-/* =========================
-    RATING ESTRELLAS
-========================= */
 
-.rating{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    gap: 5px;
-}
-
-.rating input{
-    display: none;
-}
-
-.rating label{
-    font-size: 2rem;
-    color: #ccc;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-/* Hover */
-.rating label:hover,
-.rating label:hover ~ label{
-    color: gold;
-}
-
-/* Seleccionadas */
-.rating input:checked ~ label{
-    color: gold;
-} 
-.catalogo{
+/* ========== CATÁLOGO CON FILTROS ========== */
+.catalogo {
     display: flex;
     gap: 40px;
     align-items: flex-start;
 }
 
-/* FILTROS */
+/* ========== FILTROS ========== */
+.filtros {
+    width: 280px;
+    min-width: 280px;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 20px;
+}
 
-.filtros{
-    width: 250px;
-    min-width: 250px;
+.filtros h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--azul-profundo);
+}
+
+/* GRUPO DE FILTRO DESPLEGABLE */
+.grupo_filtro {
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.filtro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.filtro-header:hover {
+    background: #e9ecef;
+}
+
+.filtro-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.flecha {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    color: #666;
+}
+
+.filtro-contenido {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: white;
+}
+
+.opcion_filtro {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 0.9rem;
+    color: #555;
+    border-top: 1px solid #f0f0f0;
+}
+
+.opcion_filtro:hover {
+    background: #f8f9fa;
+}
+
+.opcion_filtro input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    cursor: pointer;
+    accent-color: var(--azul-profundo);
+}
+
+.opcion_filtro .contador {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Mensaje cuando no hay productos */
+.mensaje-vacio {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: #999;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .catalogo {
+        flex-direction: column;
+    }
+    
+    .filtros {
+        width: 100%;
+        position: static;
+    }
+}
+
+/* Ajuste para pantallas muy pequeñas */
+@media (max-width: 640px) {
+    .grid_productos {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .targeta_producto img {
+        height: 200px;
+    }
 }
