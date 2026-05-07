@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../CSS/index/main.css">
+    <link rel="stylesheet" href="../CSS/producto-detalle.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <title id="titulo-producto">Producto - Casa Alvarado</title>
+</head>
+<body>
+    <!-- HEADER (mismo que tus otras páginas) -->
+    <div id="header"></div>
+
+    <main class="producto-main">
+        <div class="contenedor-producto">
+            <!-- Lado Izquierdo: Imagen -->
+            <div class="producto-imagen">
+                <img id="img-producto" src="" alt="Producto">
+            </div>
+
+            <!-- Lado Derecho: Detalles -->
+            <div class="producto-detalles">
+                <h1 id="nombre-producto">Nombre del Producto</h1>
+                <p class="marca" id="marca-producto">Marca</p>
+                <p class="precio" id="precio-producto">$0.00</p>
+                
+                <div class="descripcion">
+                    <h3>Descripción</h3>
+                    <p id="descripcion-producto">Descripción del producto...</p>
+                </div>
+
+                <!-- Calificación -->
+                <div class="calificacion">
+                    <div class="estrellas" id="estrellas-producto">
+                        <!-- Las estrellas se generan con JS -->
+                    </div>
+                    <span class="texto-calificacion" id="texto-calificacion">(0 reseñas)</span>
+                </div>
+
+                <!-- Botón WhatsApp -->
+                <a href="#" id="btn-whatsapp" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                    <img src="https://th.bing.com/th/id/R.1dbed5efc2986f28cfe82c67274a7976?rik=jll0LYSaqOJ6jQ&pid=ImgRaw&r=0" alt="WhatsApp">
+                    <span>Pregunta por este producto</span>
+                </a>
+
+                <a href="catalogo.html" class="btn-volver">← Volver al catálogo</a>
+            </div>
+        </div>
+
+        <!-- Productos Similares -->
+        <section class="productos-similares">
+            <h2>Productos Similares</h2>
+            <div class="grid-similares" id="productos-similares">
+                <!-- Se generan dinámicamente -->
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
+
+    <script src="../JS/include.js"></script>
+    <script src="../JS/producto-detalle.js"></script>
+</body>
+</html>
