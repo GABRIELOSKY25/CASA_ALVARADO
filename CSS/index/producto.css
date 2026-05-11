@@ -17,13 +17,12 @@
 }
 
 /* =========================
-   PRODUCTO PRINCIPAL
+   producto PRINCIPAL
 ========================= */
 
 .producto_detalle {
     background: white;
-    /* Reducido de 80px a 40px para quitar aire innecesario */
-    padding: 40px; 
+    padding: 10px; 
     border-radius: 12px;
     display: flex;
     gap: 50px;
@@ -40,10 +39,12 @@
 
 .producto_imagen img {
     width: 100%;
-    max-width: 500px;
-    border: 1px solid #dcdcdc;
-    border-radius: 10px;
-    object-fit: cover;
+    height: 400px;
+    object-fit: contain; 
+    padding: 15px;
+    background-color: white;
+    transition: transform 0.5s ease;
+    flex-shrink: 0;
 }
 
 .producto_info {
@@ -56,6 +57,7 @@
 
 .producto_info h1 {
     font-size: 2rem;
+    font-weight: bold;
     color: #222;
 }
 
@@ -69,6 +71,10 @@
     line-height: 1.7;
 }
 
+.boton{
+    display: flex;
+    justify-content: center;
+}
 .btn{
     padding: 14px 24px;
     border: none;

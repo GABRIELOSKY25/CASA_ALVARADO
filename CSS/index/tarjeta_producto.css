@@ -1,21 +1,16 @@
-/* === PRODUCTOS DESTACADOS === */
-.tarjeta_productos {
-    flex: 1;
-    background-color: var(--azul-claro);
-    text-align: center;
-}
-
 .grid_productos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 2rem;
+    justify-content: center; 
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.productos h2 {
+.tarjeta_productos h2 {
     text-align: center;
     display: block;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 700;
     background: linear-gradient(135deg, var(--azul-profundo), #3b82f6);
@@ -25,7 +20,7 @@
     position: relative;
 }
 
-.productos h2::after {
+.tarjeta_productos h2::after {
     content: '';
     position: absolute;
     bottom: -10px;
@@ -38,7 +33,7 @@
 }
 
 /* ========== TARJETAS - OCUPAN TODO EL ESPACIO ========== */
-.targeta_producto {
+.tarjeta_producto {
     background-color: var(--blanco);
     border-radius: 12px;
     overflow: hidden;
@@ -51,36 +46,39 @@
     height: 100%;
 }
 
-.targeta_producto:hover {
+.tarjeta_producto:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
     border-color: var(--azul-profundo);
 }
 
-.targeta_producto img {
+.tarjeta_producto img {
     width: 100%;
     height: 220px;
-    object-fit: cover;
+    object-fit: contain; 
+    padding: 15px;
+    background-color: white;
     transition: transform 0.5s ease;
     flex-shrink: 0;
 }
 
-.targeta_producto:hover img {
+.tarjeta_producto:hover img {
     transform: scale(1.02);
 }
 
-.targeta_producto h3 {
-    font-size: 1.1rem;
+.tarjeta_producto h3 {
+    font-size: 1.3rem;
     margin: 1rem 1rem 0.5rem 1rem;
     color: var(--negro);
     font-family: var(--fuente-cuerpo);
     font-weight: 600;
     min-height: 3rem;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    text-align: center;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    
 }
 
 /* Marca del producto */
@@ -107,10 +105,16 @@
 .rating {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: flex-end;
-    gap: 5px;
-    margin: 0.5rem 1rem;
+    justify-content: flex-start;
+     font-size: 1.2rem;
     flex-shrink: 0;
+}
+
+.rating span {
+    margin-left: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
 }
 
 .rating input {
@@ -118,7 +122,7 @@
 }
 
 .rating label {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #ccc;
     cursor: pointer;
     transition: 0.2s;
@@ -292,7 +296,7 @@
         gap: 1rem;
     }
     
-    .targeta_producto img {
+    .tarjeta_producto img {
         height: 200px;
     }
 }

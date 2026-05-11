@@ -14,26 +14,7 @@
         <section class="marcas">
             <div class="contenedor">
                 <div class="carrusel-contenedor">
-                    <div class="carrusel-track" id="track">
-                        <div class="carrusel-item" data-nombre="Sensey Electronics">
-                            <img src="https://sensey.com.mx/images/SSy1.png" alt="Sensey">
-                        </div>
-                        <div class="carrusel-item" data-nombre="Shure">
-                            <img src="https://images.squarespace-cdn.com/content/v1/5ada405ff8370a9cc016afd7/1525291057145-SU4FODTVHMA8W1VN7G4E/logo_shure.png" alt="Shure">
-                        </div>
-                        <div class="carrusel-item" data-nombre="Alien Pro">
-                            <img src="https://cdn.cyberpuerta.mx/storage/brands/LogoAlienPro.png" alt="Alien Pro">
-                        </div>
-                        <div class="carrusel-item" data-nombre="Fender">
-                            <img src="https://audiomusic.mx/wp-content/uploads/2022/10/PhotoRoom-20221014_183321-574x96.png" alt="Fender">
-                        </div>
-                        <div class="carrusel-item" data-nombre="Yamaha">
-                            <img src="https://www.pngmart.com/files/23/Yamaha-Logo-PNG-HD.png" alt="Yamaha">
-                        </div>
-                        <div class="carrusel-item" data-nombre="Bose">
-                            <img src="https://1000logos.net/wp-content/uploads/2021/05/Bose-logo.png" alt="Bose">
-                        </div>
-                    </div>
+                    <div class="carrusel-track" id="track"></div>
                     <div class="controles-carrusel">
                         <button class="btn-carrusel btn-prev" onclick="moverCarrusel(-1)" aria-label="Anterior">&#10094;</button>
                         <button class="btn-carrusel btn-next" onclick="moverCarrusel(1)" aria-label="Siguiente">&#10095;</button>
@@ -44,169 +25,16 @@
 
         <!-- CATÁLOGO CON FILTROS -->
         <section class="catalogo">
-            <!-- FILTROS LATERAL CON DESPLEGABLES -->
-            <aside class="filtros">
+            <aside class="filtros" id="filtros-container">
                 <h2>Filtros</h2>
-
-                <!-- FILTRO MARCA (DESPLEGABLE) -->
-                <div class="grupo_filtro">
-                    <div class="filtro-header" onclick="toggleFiltro(this)">
-                        <h3>Marca</h3>
-                        <span class="flecha">▼</span>
-                    </div>
-                    <div class="filtro-contenido">
-                        <label class="opcion_filtro">
-                            <input type="checkbox" value="Yamaha" class="filtro-marca">
-                            Yamaha
-                            <span class="contador">(2)</span>
-                        </label>
-                        <label class="opcion_filtro">
-                            <input type="checkbox" value="Fender" class="filtro-marca">
-                            Fender
-                            <span class="contador">(1)</span>
-                        </label>
-                        <label class="opcion_filtro">
-                            <input type="checkbox" value="Shure" class="filtro-marca">
-                            Shure
-                            <span class="contador">(2)</span>
-                        </label>
-                        <label class="opcion_filtro">
-                            <input type="checkbox" value="Bose" class="filtro-marca">
-                            Bose
-                            <span class="contador">(1)</span>
-                        </label>
-                        <label class="opcion_filtro">
-                            <input type="checkbox" value="Sensey" class="filtro-marca">
-                            Sensey
-                            <span class="contador">(1)</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- FILTRO CATEGORÍA (DESPLEGABLE) -->
-                <div class="grupo_filtro">
-                    <div class="filtro-header" onclick="toggleFiltro(this)">
-                        <h3>Categoría</h3>
-                        <span class="flecha">▼</span>
-                    </div>
-                    <div class="filtro-contenido">
-                        <label class="opcion_filtro">
-                            <input type="checkbox" value="Guitarra" class="filtro-categoria">
-                            Guitarras
-                            <span class="contador">(2)</span>
-                        </label>
-                        <label class="opcion_filtro">
-                            <input type="checkbox" value="Bateria" class="filtro-categoria">
-                            Baterías
-                            <span class="contador">(2)</span>
-                        </label>
-                        <label class="opcion_filtro">
-                            <input type="checkbox" value="Microfono" class="filtro-categoria">
-                            Micrófonos
-                            <span class="contador">(3)</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- FILTRO PRECIO (DESPLEGABLE - EJEMPLO ADICIONAL) -->
-                <div class="grupo_filtro">
-                    <div class="filtro-header" onclick="toggleFiltro(this)">
-                        <h3>Precio</h3>
-                        <span class="flecha">▼</span>
-                    </div>
-                    <div class="filtro-contenido">
-                        <label class="opcion_filtro">
-                            <input type="checkbox" value="0-5000" class="filtro-precio">
-                            $0 - $5,000
-                            <span class="contador">(3)</span>
-                        </label>
-                        <label class="opcion_filtro">
-                            <input type="checkbox" value="5000-10000" class="filtro-precio">
-                            $5,000 - $10,000
-                            <span class="contador">(2)</span>
-                        </label>
-                        <label class="opcion_filtro">
-                            <input type="checkbox" value="10000+" class="filtro-precio">
-                            $10,000+
-                            <span class="contador">(2)</span>
-                        </label>
-                    </div>
-                </div>
+                <!-- Los filtros se cargarán dinámicamente aquí -->
+                <div id="filtros-loading">Cargando filtros...</div>
             </aside>
 
-            <!-- PRODUCTOS -->
             <section class="tarjeta_productos">
                 <div class="contenedor">
                     <div class="grid_productos" id="grid-productos">
-                        <!-- Producto 1 - Yamaha Guitarra -->
-                        <div class="targeta_producto" data-marca="Yamaha" data-categoria="Guitarra" data-precio="5000-10000">
-                            <img src="https://images.unsplash.com/photo-1550985616-10810253b84d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Guitarra Yamaha">
-                            <h3>Guitarra Eléctrica Yamaha</h3>
-                            <p class="marca-producto">Yamaha</p>
-                            <p class="precio-producto">$7,999</p>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <a href="#" class="boton_producto">Ver más</a>
-                        </div>
-
-                        <!-- Producto 2 - Yamaha Batería -->
-                        <div class="targeta_producto" data-marca="Yamaha" data-categoria="Bateria" data-precio="10000+">
-                            <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Batería Yamaha">
-                            <h3>Batería Acústica Yamaha</h3>
-                            <p class="marca-producto">Yamaha</p>
-                            <p class="precio-producto">$15,999</p>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <a href="#" class="boton_producto">Ver más</a>
-                        </div>
-
-                        <!-- Producto 3 - Fender Guitarra -->
-                        <div class="targeta_producto" data-marca="Fender" data-categoria="Guitarra" data-precio="10000+">
-                            <img src="https://images.unsplash.com/photo-1564186763535-6e3eab0b9550?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Guitarra Fender">
-                            <h3>Guitarra Stratocaster Fender</h3>
-                            <p class="marca-producto">Fender</p>
-                            <p class="precio-producto">$22,999</p>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <a href="#" class="boton_producto">Ver más</a>
-                        </div>
-
-                        <!-- Producto 4 - Shure Micrófono -->
-                        <div class="targeta_producto" data-marca="Shure" data-categoria="Microfono" data-precio="0-5000">
-                            <img src="https://images.unsplash.com/photo-1598565117806-54d3a4f60c5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Micrófono Shure">
-                            <h3>Micrófono Shure SM58</h3>
-                            <p class="marca-producto">Shure</p>
-                            <p class="precio-producto">$2,499</p>
-                            <div class="rating">⭐⭐⭐⭐</div>
-                            <a href="#" class="boton_producto">Ver más</a>
-                        </div>
-
-                        <!-- Producto 5 - Shure Micrófono Condensador -->
-                        <div class="targeta_producto" data-marca="Shure" data-categoria="Microfono" data-precio="5000-10000">
-                            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Micrófono Shure">
-                            <h3>Micrófono de Condensador Shure</h3>
-                            <p class="marca-producto">Shure</p>
-                            <p class="precio-producto">$6,499</p>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <a href="#" class="boton_producto">Ver más</a>
-                        </div>
-
-                        <!-- Producto 6 - Bose Parlante -->
-                        <div class="targeta_producto" data-marca="Bose" data-categoria="Microfono" data-precio="10000+">
-                            <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bose Speaker">
-                            <h3>Sistema de Sonido Bose</h3>
-                            <p class="marca-producto">Bose</p>
-                            <p class="precio-producto">$12,999</p>
-                            <div class="rating">⭐⭐⭐⭐</div>
-                            <a href="#" class="boton_producto">Ver más</a>
-                        </div>
-
-                        <!-- Producto 7 - Sensey Batería -->
-                        <div class="targeta_producto" data-marca="Sensey" data-categoria="Bateria" data-precio="0-5000">
-                            <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Batería Sensey">
-                            <h3>Batería Electrónica Sensey</h3>
-                            <p class="marca-producto">Sensey</p>
-                            <p class="precio-producto">$4,299</p>
-                            <div class="rating">⭐⭐⭐⭐</div>
-                            <a href="#" class="boton_producto">Ver más</a>
-                        </div>
+                        <div class="loading">Cargando productos...</div>
                     </div>
                 </div>
             </section>
@@ -217,11 +45,225 @@
 
     <script src="../JS/include.js"></script>
     <script>
-        // ========== FUNCIÓN CARRUSEL ==========
+        let productosData = [];
         let currentIndex = 0;
-        const track = document.getElementById('track');
-        const items = document.querySelectorAll('.carrusel-item');
-        let itemsPerView = getItemsPerView();
+        let itemsPerView = 4;
+
+        // ========== CARGAR FILTROS DESDE API ==========
+        async function cargarFiltros() {
+            try {
+                const response = await fetch('/backend/api/get_filtros.php');
+                const data = await response.json();
+                
+                if (data.success) {
+                    generarHTMLFiltros(data);
+                    await cargarProductos();
+                }
+            } catch (error) {
+                console.error('Error cargando filtros:', error);
+            }
+        }
+
+        function generarHTMLFiltros(data) {
+            const container = document.getElementById('filtros-container');
+            
+            let html = '<h2>Filtros</h2>';
+            
+            // Filtro Marcas
+            html += `
+                <div class="grupo_filtro">
+                    <div class="filtro-header" onclick="toggleFiltro(this)">
+                        <h3>Marca</h3>
+                        <span class="flecha">▼</span>
+                    </div>
+                    <div class="filtro-contenido">
+                        ${data.marcas.map(marca => `
+                            <label class="opcion_filtro">
+                                <input type="checkbox" value="${marca.nombre}" class="filtro-marca" onchange="aplicarFiltros()">
+                                ${marca.nombre}
+                                <span class="contador" id="contador-marca-${marca.id_Marca}">(0)</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Filtro Categorías
+            html += `
+                <div class="grupo_filtro">
+                    <div class="filtro-header" onclick="toggleFiltro(this)">
+                        <h3>Categoría</h3>
+                        <span class="flecha">▼</span>
+                    </div>
+                    <div class="filtro-contenido">
+                        ${data.categorias.map(cat => `
+                            <label class="opcion_filtro">
+                                <input type="checkbox" value="${cat.nombre}" class="filtro-categoria" onchange="aplicarFiltros()">
+                                ${cat.nombre}
+                                <span class="contador" id="contador-categoria-${cat.id_Categoria}">(0)</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Filtro Tipos
+            html += `
+                <div class="grupo_filtro">
+                    <div class="filtro-header" onclick="toggleFiltro(this)">
+                        <h3>Tipo</h3>
+                        <span class="flecha">▼</span>
+                    </div>
+                    <div class="filtro-contenido">
+                        ${data.tipos.map(tipo => `
+                            <label class="opcion_filtro">
+                                <input type="checkbox" value="${tipo.nombre}" class="filtro-tipo" onchange="aplicarFiltros()">
+                                ${tipo.nombre}
+                                <span class="contador" id="contador-tipo-${tipo.id_Tipo}">(0)</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Filtro Gamas
+            html += `
+                <div class="grupo_filtro">
+                    <div class="filtro-header" onclick="toggleFiltro(this)">
+                        <h3>Gama</h3>
+                        <span class="flecha">▼</span>
+                    </div>
+                    <div class="filtro-contenido">
+                        ${data.gamas.map(gamma => `
+                            <label class="opcion_filtro">
+                                <input type="checkbox" value="${gamma.nombre}" class="filtro-gamma" onchange="aplicarFiltros()">
+                                ${gamma.nombre}
+                                <span class="contador" id="contador-gamma-${gamma.id_Gamma}">(0)</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+            
+            // Inicializar filtros cerrados
+            document.querySelectorAll('.filtro-contenido').forEach(contenido => {
+                contenido.style.maxHeight = null;
+            });
+        }
+
+        // ========== CARGAR PRODUCTOS DESDE API ==========
+        async function cargarProductos(filtros = {}) {
+            try {
+                let url = '/backend/api/get_productos.php';
+                const params = new URLSearchParams();
+                
+                if (filtros.marcas?.length) params.append('marcas', filtros.marcas.join(','));
+                if (filtros.categorias?.length) params.append('categorias', filtros.categorias.join(','));
+                if (filtros.tipos?.length) params.append('tipos', filtros.tipos.join(','));
+                if (filtros.gamas?.length) params.append('gamas', filtros.gamas.join(','));
+                
+                if (params.toString()) url += '?' + params.toString();
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.success) {
+                    productosData = data.productos;
+                    actualizarContadores(data.contadores);
+                    renderizarProductos(data.productos);
+                }
+            } catch (error) {
+                console.error('Error cargando productos:', error);
+            }
+        }
+
+        function renderizarProductos(productos) {
+            const grid = document.getElementById('grid-productos');
+            
+            if (!productos.length) {
+                grid.innerHTML = '<div class="mensaje-vacio">⚠️ No hay productos con los filtros seleccionados</div>';
+                return;
+            }
+            
+            const estrellas = (calificacion) => {
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    stars += i <= calificacion ? '⭐' : '☆';
+                }
+                return stars;
+            };
+            
+            grid.innerHTML = productos.map(producto => `
+                <div class="targeta_producto" 
+                     data-marca="${producto.marca}"
+                     data-categoria="${producto.categoria}"
+                     data-tipo="${producto.tipo}"
+                     data-gamma="${producto.gamma}">
+                    <img src="${producto.imagen}" alt="${producto.modelo}" onerror="this.src='https://via.placeholder.com/300x220?text=Sin+imagen'">
+                    <h3>${producto.modelo}</h3>
+                    <p class="marca-producto">${producto.marca}</p>
+                    <p class="descripcion-corta">${producto.descripcion.substring(0, 80)}...</p>
+                    <div class="rating">${estrellas(producto.estrellas)}</div>
+                    <a href="producto.html?modelo=${encodeURIComponent(producto.modelo)}" class="boton_producto">Ver más</a>
+                </div>
+            `).join('');
+        }
+
+        function actualizarContadores(contadores) {
+            if (contadores.marcas) {
+                Object.entries(contadores.marcas).forEach(([marca, total]) => {
+                    const span = document.querySelector(`#contador-marca-${marca}`);
+                    if (span) span.textContent = `(${total})`;
+                });
+            }
+        }
+
+        // ========== APLICAR FILTROS ==========
+        function aplicarFiltros() {
+            const marcas = Array.from(document.querySelectorAll('.filtro-marca:checked')).map(cb => cb.value);
+            const categorias = Array.from(document.querySelectorAll('.filtro-categoria:checked')).map(cb => cb.value);
+            const tipos = Array.from(document.querySelectorAll('.filtro-tipo:checked')).map(cb => cb.value);
+            const gamas = Array.from(document.querySelectorAll('.filtro-gamma:checked')).map(cb => cb.value);
+            
+            cargarProductos({ marcas, categorias, tipos, gamas });
+        }
+
+        // ========== FILTROS DESPLEGABLES ==========
+        function toggleFiltro(header) {
+            const grupo = header.parentElement;
+            const contenido = grupo.querySelector('.filtro-contenido');
+            const flecha = header.querySelector('.flecha');
+            
+            if (contenido.style.maxHeight) {
+                contenido.style.maxHeight = null;
+                flecha.style.transform = 'rotate(0deg)';
+            } else {
+                contenido.style.maxHeight = contenido.scrollHeight + "px";
+                flecha.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // ========== CARRUSEL DE MARCAS ==========
+        async function cargarCarruselMarcas() {
+            try {
+                const response = await fetch('/backend/api/get_filtros.php');
+                const data = await response.json();
+                
+                const track = document.getElementById('track');
+                track.innerHTML = data.marcas.map(marca => `
+                    <div class="carrusel-item" data-nombre="${marca.nombre}">
+                        <img src="${marca.imagen || 'https://via.placeholder.com/180x80?text=' + marca.nombre}" alt="${marca.nombre}">
+                    </div>
+                `).join('');
+                
+                itemsPerView = getItemsPerView();
+                updateCarrusel();
+            } catch (error) {
+                console.error('Error cargando marcas:', error);
+            }
+        }
 
         function getItemsPerView() {
             if (window.innerWidth >= 1024) return 4;
@@ -230,13 +272,16 @@
         }
 
         function updateCarrusel() {
-            if (!track) return;
+            const track = document.getElementById('track');
+            const items = document.querySelectorAll('.carrusel-item');
+            if (!track || !items.length) return;
             const itemWidth = items[0]?.offsetWidth + 32;
             const desplazamiento = currentIndex * itemWidth;
             track.style.transform = `translateX(-${desplazamiento}px)`;
         }
 
         window.moverCarrusel = function(direction) {
+            const items = document.querySelectorAll('.carrusel-item');
             const maxIndex = Math.max(0, items.length - itemsPerView);
             currentIndex += direction;
             if (currentIndex < 0) currentIndex = 0;
@@ -250,147 +295,11 @@
             updateCarrusel();
         });
 
-        setTimeout(updateCarrusel, 100);
-
-        // ========== FILTROS DESPLEGABLES (ACORDEÓN) ==========
-        function toggleFiltro(header) {
-            const grupo = header.parentElement;
-            const contenido = grupo.querySelector('.filtro-contenido');
-            const flecha = header.querySelector('.flecha');
-            
-            // Cerrar otros filtros (opcional - descomentar si quieres que solo uno se abra a la vez)
-            // document.querySelectorAll('.grupo_filtro').forEach(g => {
-            //     if (g !== grupo) {
-            //         g.querySelector('.filtro-contenido').style.maxHeight = null;
-            //         g.querySelector('.flecha').style.transform = 'rotate(0deg)';
-            //     }
-            // });
-            
-            // Alternar el actual
-            if (contenido.style.maxHeight) {
-                contenido.style.maxHeight = null;
-                flecha.style.transform = 'rotate(0deg)';
-            } else {
-                contenido.style.maxHeight = contenido.scrollHeight + "px";
-                flecha.style.transform = 'rotate(180deg)';
-            }
-        }
-        
-        // Inicializar todos los filtros cerrados
-        document.querySelectorAll('.filtro-contenido').forEach(contenido => {
-            contenido.style.maxHeight = null;
+        // ========== INICIALIZACIÓN ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarCarruselMarcas();
+            cargarFiltros();
         });
-
-        // ========== FILTROS FUNCIONALES ==========
-        const checkboxesMarca = document.querySelectorAll('.filtro-marca');
-        const checkboxesCategoria = document.querySelectorAll('.filtro-categoria');
-        const checkboxesPrecio = document.querySelectorAll('.filtro-precio');
-        const productos = document.querySelectorAll('.targeta_producto');
-
-        function filtrarProductos() {
-            const marcasSeleccionadas = Array.from(checkboxesMarca)
-                .filter(cb => cb.checked)
-                .map(cb => cb.value);
-            
-            const categoriasSeleccionadas = Array.from(checkboxesCategoria)
-                .filter(cb => cb.checked)
-                .map(cb => cb.value);
-
-            const preciosSeleccionados = Array.from(checkboxesPrecio)
-                .filter(cb => cb.checked)
-                .map(cb => cb.value);
-
-            let productosVisibles = 0;
-
-            productos.forEach(producto => {
-                const marcaProducto = producto.getAttribute('data-marca');
-                const categoriaProducto = producto.getAttribute('data-categoria');
-                const precioProducto = producto.getAttribute('data-precio');
-                
-                let mostrarPorMarca = marcasSeleccionadas.length === 0 || marcasSeleccionadas.includes(marcaProducto);
-                let mostrarPorCategoria = categoriasSeleccionadas.length === 0 || categoriasSeleccionadas.includes(categoriaProducto);
-                let mostrarPorPrecio = preciosSeleccionados.length === 0 || preciosSeleccionados.includes(precioProducto);
-                
-                if (mostrarPorMarca && mostrarPorCategoria && mostrarPorPrecio) {
-                    producto.style.display = 'block';
-                    productosVisibles++;
-                } else {
-                    producto.style.display = 'none';
-                }
-            });
-
-            // Actualizar contadores
-            actualizarContadores();
-            
-            // Mostrar mensaje si no hay productos
-            const grid = document.getElementById('grid-productos');
-            let mensajeVacio = document.querySelector('.mensaje-vacio');
-            
-            if (productosVisibles === 0) {
-                if (!mensajeVacio) {
-                    mensajeVacio = document.createElement('div');
-                    mensajeVacio.className = 'mensaje-vacio';
-                    mensajeVacio.style.textAlign = 'center';
-                    mensajeVacio.style.padding = '3rem';
-                    mensajeVacio.style.fontSize = '1.2rem';
-                    mensajeVacio.style.color = '#999';
-                    mensajeVacio.innerHTML = '⚠️ No hay productos con los filtros seleccionados';
-                    grid.appendChild(mensajeVacio);
-                }
-            } else {
-                if (mensajeVacio) mensajeVacio.remove();
-            }
-        }
-
-        function actualizarContadores() {
-            // Contar productos visibles por marca
-            const marcas = ['Yamaha', 'Fender', 'Shure', 'Bose', 'Sensey'];
-            marcas.forEach(marca => {
-                const contador = Array.from(productos).filter(p => 
-                    p.getAttribute('data-marca') === marca && p.style.display !== 'none'
-                ).length;
-                
-                const label = Array.from(checkboxesMarca).find(cb => cb.value === marca)?.closest('.opcion_filtro');
-                const spanContador = label?.querySelector('.contador');
-                if (spanContador) spanContador.textContent = `(${contador})`;
-            });
-            
-            // Contar productos visibles por categoría
-            const categorias = ['Guitarra', 'Bateria', 'Microfono'];
-            categorias.forEach(categoria => {
-                const contador = Array.from(productos).filter(p => 
-                    p.getAttribute('data-categoria') === categoria && p.style.display !== 'none'
-                ).length;
-                
-                const label = Array.from(checkboxesCategoria).find(cb => cb.value === categoria)?.closest('.opcion_filtro');
-                const spanContador = label?.querySelector('.contador');
-                if (spanContador) spanContador.textContent = `(${contador})`;
-            });
-
-            // Contar productos visibles por precio
-            const rangos = ['0-5000', '5000-10000', '10000+'];
-            rangos.forEach(rango => {
-                const contador = Array.from(productos).filter(p => 
-                    p.getAttribute('data-precio') === rango && p.style.display !== 'none'
-                ).length;
-                
-                const label = Array.from(checkboxesPrecio).find(cb => cb.value === rango)?.closest('.opcion_filtro');
-                const spanContador = label?.querySelector('.contador');
-                if (spanContador) spanContador.textContent = `(${contador})`;
-            });
-        }
-
-        // Event listeners para filtros
-        checkboxesMarca.forEach(cb => cb.addEventListener('change', filtrarProductos));
-        checkboxesCategoria.forEach(cb => cb.addEventListener('change', filtrarProductos));
-        checkboxesPrecio.forEach(cb => cb.addEventListener('change', filtrarProductos));
-
-        // Inicializar
-        setTimeout(() => {
-            filtrarProductos();
-        }, 100);
     </script>
-    <script src="../JS/carusel.js"></script>
-    <script src="../JS/fitrar.js"></script>
 </body>
 </html>

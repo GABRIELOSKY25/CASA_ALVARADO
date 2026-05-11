@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto</title>
+
+    <link rel="stylesheet" href="../CSS/index/main.css">
+
+</head>
+
+<body>
+
+    <div id="header"></div> 
+    <main>
+        <section class="producto_body">
+        <!-- PRODUCTO PRINCIPAL -->
+        <section class="producto_main">   
+        <section class="producto_detalle">
+
+            <div class="producto_imagen">
+            <img id="producto-img" src="" alt="Producto">
+            </div>
+
+            <div class="producto_info">
+
+            <p class="marca" id="producto-marca"></p>
+
+            <h1 id="producto-modelo"></h1>
+
+
+            <div class="rating">
+
+                <span id="rating-num"></span>
+
+                <input type="radio" name="estrella" id="star5">
+                <label for="star5">★</label>
+
+                <input type="radio" name="estrella" id="star4">
+                <label for="star4">★</label>
+
+                <input type="radio" name="estrella" id="star3">
+                <label for="star3">★</label>
+
+                <input type="radio" name="estrella" id="star2">
+                <label for="star2">★</label>
+
+                <input type="radio" name="estrella" id="star1">
+                <label for="star1">★</label>
+
+            </div>
+
+            <p class="descripcion" id="producto-descripcion"></p>
+
+            <div class="boton">
+                <button class="btn btn_contacto">Contactar</button>
+            </div>
+
+            </div>
+
+        </section>
+        </section>
+
+        <!-- PRODUCTOS SIMILARES -->
+        <section class="tarjeta_productos">
+            <h2>Productos Similares</h2>
+            <div class="grid_productos" id="productos-similares"></div>
+        </section>
+        </section>
+    </main>
+    <div id="footer"></div>
+
+    <script src="../JS/include.js"></script>
+    <script src="../JS/app.js"></script>
+    <script src="../JS/producto.js"></script>
+    <script src="../JS/similares.js"></script>
+
+</body>
+</html>
