@@ -406,6 +406,93 @@ main {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* === SECCIÓN DE TARJETAS TELEFÓNICAS === */
+
+.telefonos-seccion {
+    background: linear-gradient(
+        135deg,
+        var(--blanco) 0%,
+        var(--azul-claro) 100%
+    );
+    padding-top: 2rem;
+}
+
+.telefonos-seccion .grid_productos {
+    max-width: 800px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.tarjeta-telefono {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.tarjeta-telefono::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 140px;
+    height: 140px;
+    background: rgba(0, 59, 111, 0.05);
+    border-radius: 50%;
+}
+
+.tarjeta-telefono img {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+    margin: 0 auto 1.5rem auto;
+    padding: 18px;
+    background: linear-gradient(
+        135deg,
+        var(--azul-profundo),
+        #1e5c96
+    );
+    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(0, 59, 111, 0.2);
+}
+
+.tarjeta-telefono h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.7rem;
+    color: var(--azul-profundo);
+    font-family: var(--fuente-titulos);
+}
+
+.numero-telefono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    margin-top: 1rem;
+}
+
+.numero-telefono i {
+    font-size: 1.2rem;
+    color: var(--azul-profundo);
+    background: var(--azul-claro);
+    padding: 12px;
+    border-radius: 50%;
+}
+
+.numero-telefono span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--negro);
+    letter-spacing: 1px;
+}
+
+.telefono-info {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #777;
+    font-weight: 500;
+}
+
 /* === SECCIÓN DE SUCURSALES === */
 .sucursales {
     padding: 4rem 0;

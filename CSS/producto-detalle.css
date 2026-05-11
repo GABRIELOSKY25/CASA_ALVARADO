@@ -1,0 +1,197 @@
+/* Main Content */
+.producto-main {
+    margin-top: 80px;
+    padding: 2rem;
+    min-height: calc(100vh - 80px - 300px);
+}
+
+.contenedor-producto {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    padding: 2rem;
+}
+
+/* Imagen del Producto */
+.producto-imagen {
+    background: var(--gris-claro);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 59, 111, 0.1);
+}
+
+.producto-imagen img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Detalles del Producto */
+.producto-detalles {
+    padding: 1rem;
+}
+
+.producto-detalles h1 {
+    font-family: var(--fuente-titulos);
+    font-size: 2.5rem;
+    color: var(--azul-profundo);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+.producto-detalles .marca {
+    color: var(--gris-oscuro);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.producto-detalles .precio {
+    font-size: 2.5rem;
+    color: var(--azul-profundo);
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.producto-detalles .descripcion {
+    margin-bottom: 2rem;
+}
+
+.descripcion h3 {
+    font-family: var(--fuente-titulos);
+    color: var(--azul-profundo);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.descripcion p {
+    line-height: 1.8;
+    color: var(--gris-oscuro);
+}
+
+/* Calificación */
+.calificacion {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--gris-claro);
+    border-radius: 12px;
+}
+
+.estrellas {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.estrella {
+    color: #FFD700;
+    font-size: 1.5rem;
+}
+
+.estrella.vacia {
+    color: #ccc;
+}
+
+.texto-calificacion {
+    color: var(--gris-oscuro);
+    font-size: 0.95rem;
+}
+
+/* Botón WhatsApp */
+.btn-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, var(--whatsapp), #128C7E);
+    color: var(--whatsapp);
+    padding: 1.2rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    border: 2px solid transparent;
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    background: transparent;
+    color: var(--whatsapp);
+    border-color: var(--whatsapp);
+}
+
+.btn-whatsapp img {
+    width: 30px;
+    height: 30px;
+}
+
+.btn-whatsapp:hover img {
+    filter: brightness(0) saturate(100%) invert(61%) sepia(72%) saturate(495%) hue-rotate(93deg);
+}
+
+.btn-volver {
+    display: inline-block;
+    color: var(--azul-profundo);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--azul-profundo);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+    background: var(--azul-profundo);
+    color: white;
+}
+
+/* Productos Similares */
+.productos-similares {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 2rem;
+}
+
+.productos-similares h2 {
+    font-family: var(--fuente-titulos);
+    font-size: 2rem;
+    color: var(--azul-profundo);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.grid-similares {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contenedor-producto {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .producto-detalles h1 {
+        font-size: 2rem;
+    }
+
+    .precio {
+        font-size: 2rem;
+    }
+
+    nav ul {
+        gap: 1.5rem;
+    }
+}
