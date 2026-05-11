@@ -41,10 +41,10 @@ CREATE TABLE Tipo (
 ) ENGINE=InnoDB;
 
 -- =========================================
--- TABLA GAMA
+-- TABLA GAMMA
 -- =========================================
-CREATE TABLE Gama (
-    id_gama INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Gamma (
+    id_gamma INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(45) NOT NULL
 ) ENGINE=InnoDB;
 
@@ -59,13 +59,13 @@ CREATE TABLE Producto (
     id_marca INT NOT NULL,
     id_sub_categoria INT NOT NULL,
     id_tipo INT NOT NULL,
-    id_gama INT NOT NULL,
+    id_gamma INT NOT NULL,
 
     CONSTRAINT fk_producto_categoria FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria),
     CONSTRAINT fk_producto_marca FOREIGN KEY (id_marca) REFERENCES Marca(id_marca),
     CONSTRAINT fk_producto_subcategoria FOREIGN KEY (id_sub_categoria) REFERENCES Sub_categoria(id_sub_categoria),
     CONSTRAINT fk_producto_tipo FOREIGN KEY (id_tipo) REFERENCES Tipo(id_tipo),
-    CONSTRAINT fk_producto_gama FOREIGN KEY (id_gama) REFERENCES Gama(id_gama)
+    CONSTRAINT fk_producto_gamma FOREIGN KEY (id_gamma) REFERENCES Gamma(id_gamma)
 ) ENGINE=InnoDB;
 
 -- =========================================
