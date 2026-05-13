@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from database import SessionLocal
-from models import Producto, Calificacion, Gamma  # Asegúrate de importar Gamma si lo usas
+from models import Producto, Calificacion, Gamma, Marca, Categoria, Tipo  # Agrega Marca, Categoria, Tipo
 from sqlalchemy import func
 from typing import Optional, List
 from pydantic import BaseModel
@@ -181,5 +181,37 @@ def obtener_opciones_filtros():
             "tipos": [t[0] for t in tipos],
             "gamas": [g[0] for g in gamas]
         }
+    finally:
+        db.close()
+
+@app.get("/productos/buscar/{termino}")
+def buscar_productos_por_modelo(termino: str):
+    """Buscar productos por modelo (coincidencia parcial)"""
+    db = SessionLocal()
+    try:
+        # Búsqueda que contiene el término (insensible a mayúsculas)
+        productos = db.query(Producto).filter(
+            Producto.modelo.like(f'%{termino}%')
+        ).all()
+        
+        resultado = []
+        for producto in productos:
+            promedio = db.query(func.avg(Calificacion.estrellas)).filter(
+                Calificacion.modelo == producto.modelo
+            ).scalar()
+            
+            resultado.append({
+                "modelo": producto.modelo,
+                "imagen": producto.imagen,
+                "descripcion": producto.descripcion,
+                "estrellas": int(promedio or 0),
+                "categoria": producto.categoria.nombre,
+                "marca": producto.marca.nombre,
+                "sub_categoria": producto.sub_categoria.nombre,
+                "tipo": producto.tipo.nombre,
+                "gamma": producto.gamma.nombre
+            })
+        
+        return resultado
     finally:
         db.close()

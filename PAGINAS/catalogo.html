@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo - Casa Alvarado</title>
     <link rel="stylesheet" href="../CSS/index/main.css">
+    <style>
+        .carrusel-item {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .carrusel-item.activo {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 8px #003b6f);
+        }
+        .carrusel-item.activo img {
+            border: 2px solid #003b6f;
+            border-radius: 8px;
+        }
+        #buscador-productos:focus {
+            border-color: #003b6f;
+            box-shadow: 0 0 5px rgba(0, 59, 111, 0.3);
+        }
+    </style>
 </head>
 <body>
     <div id="header"></div>
@@ -30,13 +48,29 @@
                 <div id="filtros-loading">Cargando filtros...</div>
             </aside>
 
-            <section class="tarjeta_productos">
-                <div class="contenedor">
-                    <div class="grid_productos" id="grid-productos">
-                        <div class="loading">Cargando productos...</div>
-                    </div>
+            <!-- BUSCADOR EN TIEMPO REAL -->
+            <div style="flex: 1;">
+                <div class="buscador-container" style="margin-bottom: 20px;">
+                    <input type="text" 
+                        id="buscador-productos" 
+                        placeholder="Buscar en el catálogo" 
+                        style="width: 100%; 
+                                padding: 12px 20px; 
+                                font-size: 16px; 
+                                border: 2px solid #e0e0e0; 
+                                border-radius: 8px; 
+                                outline: none;
+                                transition: all 0.3s ease;">
                 </div>
-            </section>
+
+                <section class="tarjeta_productos">
+                    <div class="contenedor">
+                        <div class="grid_productos" id="grid-productos">
+                            <div class="loading">Cargando productos...</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </section>
     </main>
 
@@ -49,24 +83,23 @@
         let currentIndex = 0;
         let itemsPerView = 4;
         let todasLasMarcas = [];
-        let productosCache = null;  // Cache para almacenar productos UNA sola vez
-        let filtrosGenerados = false;  // Bandera para generar filtros solo una vez
+        let productosCache = null;
+        let filtrosGenerados = false;
+        let timeoutBuscador = null;
 
-        // ========== INICIALIZACIÓN - SOLO UNA VEZ ==========
+        // ========== INICIALIZACIÓN ==========
         async function inicializar() {
-            // Cargar productos SOLO UNA VEZ
             if (!productosCache) {
                 await cargarProductosUnaVez();
             }
             
-            // Generar filtros SOLO UNA VEZ después de tener productos
             if (!filtrosGenerados && productosCache) {
                 await generarFiltrosDesdeProductos();
                 filtrosGenerados = true;
             }
         }
 
-        // Cargar productos UNA SOLA VEZ al inicio
+        // Cargar productos UNA SOLA VEZ
         async function cargarProductosUnaVez() {
             try {
                 const response = await fetch(`${API_BASE}/productos/todos`);
@@ -189,9 +222,10 @@
             });
         }
 
-        // Aplicar filtros usando el CACHE - NO HACE NUEVAS PETICIONES
         function aplicarFiltros() {
             if (!productosCache) return;
+            
+            document.querySelectorAll('.carrusel-item').forEach(i => i.classList.remove('activo'));
             
             const marcasSeleccionadas = Array.from(document.querySelectorAll('.filtro-marca:checked')).map(cb => cb.value);
             const categoriasSeleccionadas = Array.from(document.querySelectorAll('.filtro-categoria:checked')).map(cb => cb.value);
@@ -309,16 +343,6 @@
                 updateCarrusel();
             } catch (error) {
                 console.error('Error cargando marcas:', error);
-                if (todasLasMarcas.length) {
-                    const track = document.getElementById('track');
-                    track.innerHTML = todasLasMarcas.map(marca => `
-                        <div class="carrusel-item" data-nombre="${marca.nombre}">
-                            <img src="https://via.placeholder.com/180x80?text=${marca.nombre}" alt="${marca.nombre}">
-                        </div>
-                    `).join('');
-                    itemsPerView = getItemsPerView();
-                    updateCarrusel();
-                }
             }
         }
 
@@ -352,10 +376,83 @@
             updateCarrusel();
         });
 
-        // INICIALIZACIÓN - SOLO UNA VEZ AL CARGAR LA PÁGINA
+        // ========== FILTRO POR CARRUSEL ==========
+        function inicializarFiltroCarrusel() {
+            const trackParaFiltros = document.getElementById('track');
+            if (!trackParaFiltros) return;
+            
+            trackParaFiltros.addEventListener('click', (e) => {
+                const item = e.target.closest('.carrusel-item');
+                if (item) {
+                    const marcaSeleccionada = item.getAttribute('data-nombre');
+                    if (marcaSeleccionada) {
+                        document.querySelectorAll('.carrusel-item').forEach(i => i.classList.remove('activo'));
+                        item.classList.add('activo');
+                        
+                        const checkboxesMarcas = document.querySelectorAll('.filtro-marca');
+                        checkboxesMarcas.forEach(cb => {
+                            cb.checked = (cb.value === marcaSeleccionada);
+                        });
+                        
+                        aplicarFiltros();
+                    }
+                }
+            });
+        }
+
+        // ========== BUSCADOR EN TIEMPO REAL ==========
+        function inicializarBuscador() {
+            const buscador = document.getElementById('buscador-productos');
+            if (!buscador) return;
+            
+            buscador.addEventListener('input', function(e) {
+                const terminoBusqueda = e.target.value.trim();
+                
+                if (timeoutBuscador) {
+                    clearTimeout(timeoutBuscador);
+                }
+                
+                if (terminoBusqueda === '') {
+                    cargarProductosUnaVez();
+                    return;
+                }
+                
+                if (terminoBusqueda.length < 2) {
+                    return;
+                }
+                
+                const grid = document.getElementById('grid-productos');
+                grid.innerHTML = '<div class="loading">🔍 Buscando productos...</div>';
+                
+                timeoutBuscador = setTimeout(async () => {
+                    try {
+                        const response = await fetch(`${API_BASE}/productos/buscar/${encodeURIComponent(terminoBusqueda)}`);
+                        
+                        if (!response.ok) {
+                            throw new Error('Error en la búsqueda');
+                        }
+                        
+                        const productos = await response.json();
+                        renderizarProductos(productos);
+                        
+                        if (productos.length === 0) {
+                            grid.innerHTML = `<div class="mensaje-vacio">🔍 No se encontraron productos que coincidan con "${terminoBusqueda}"</div>`;
+                        }
+                        
+                    } catch (error) {
+                        console.error('Error en búsqueda:', error);
+                        grid.innerHTML = '<div class="error-mensaje">❌ Error al buscar productos</div>';
+                    }
+                }, 300);
+            });
+        }
+
+        // INICIALIZACIÓN
         document.addEventListener('DOMContentLoaded', () => {
             cargarCarruselMarcas();
-            inicializar();  // Solo carga productos UNA VEZ
+            inicializar();
+            inicializarBuscador();
+            inicializarFiltroCarrusel();
         });
     </script>
 </body>
