@@ -233,4 +233,4 @@ VALUES
 -- =========================================
 -- INSERTAR CALIFICACIÓN POR DEFECTO
 -- =========================================
-INSERT INTO `Calificacion` (`estrellas`, `fecha`, `modelo`) VALUES (0, CURDATE(), 'SV100');
+INSERT INTO `Calificacion` (`estrellas`, `fecha`, `modelo`) VALUES (5, CURDATE(), 'BETA-52A');
