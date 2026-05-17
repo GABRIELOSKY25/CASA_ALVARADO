@@ -1,13 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from database import SessionLocal
-from models import Producto, Calificacion, Gamma, Marca, Categoria, Tipo  # Agrega Marca, Categoria, Tipo
+from models import Producto, Calificacion, Gamma, Marca, Categoria, Tipo, Sub_categoria
 from sqlalchemy import func
 from typing import Optional, List
 from pydantic import BaseModel
 
 
-# Agrega estos modelos Pydantic para respuestas (después de los imports)
+# Modelos Pydantic para respuestas
 class ProductoResponse(BaseModel):
     modelo: str
     imagen: str
@@ -60,7 +60,6 @@ def obtener_producto(modelo: str):
             "imagen": producto.imagen,
             "descripcion": producto.descripcion,
             "estrellas": int(promedio or 0),
-
             "categoria": producto.categoria.nombre,
             "marca": producto.marca.nombre,
             "sub_categoria": producto.sub_categoria.nombre,
@@ -74,7 +73,6 @@ def obtener_producto(modelo: str):
 @app.get("/productos-similares/{modelo}")
 def productos_similares(modelo: str):
     db = SessionLocal()
-
     try:
         producto_actual = db.query(Producto).filter(
             Producto.modelo == modelo
@@ -103,7 +101,6 @@ def productos_similares(modelo: str):
         )
 
         resultado = []
-
         for producto, promedio in similares:
             resultado.append({
                 "modelo": producto.modelo,
@@ -171,13 +168,11 @@ def obtener_opciones_filtros():
     db = SessionLocal()
     try:
         marcas = db.query(Marca.nombre).distinct().all()
-        categorias = db.query(Categoria.nombre).distinct().all()
         tipos = db.query(Tipo.nombre).distinct().all()
         gamas = db.query(Gamma.nombre).distinct().all()
         
         return {
             "marcas": [m[0] for m in marcas],
-            "categorias": [c[0] for c in categorias],
             "tipos": [t[0] for t in tipos],
             "gamas": [g[0] for g in gamas]
         }
@@ -189,10 +184,59 @@ def buscar_productos_por_modelo(termino: str):
     """Buscar productos por modelo (coincidencia parcial)"""
     db = SessionLocal()
     try:
-        # Búsqueda que contiene el término (insensible a mayúsculas)
         productos = db.query(Producto).filter(
             Producto.modelo.like(f'%{termino}%')
         ).all()
+        
+        resultado = []
+        for producto in productos:
+            promedio = db.query(func.avg(Calificacion.estrellas)).filter(
+                Calificacion.modelo == producto.modelo
+            ).scalar()
+            
+            resultado.append({
+                "modelo": producto.modelo,
+                "imagen": producto.imagen,
+                "descripcion": producto.descripcion,
+                "estrellas": int(promedio or 0),
+                "categoria": producto.categoria.nombre,
+                "marca": producto.marca.nombre,
+                "sub_categoria": producto.sub_categoria.nombre,
+                "tipo": producto.tipo.nombre,
+                "gamma": producto.gamma.nombre
+            })
+        
+        return resultado
+    finally:
+        db.close()
+
+@app.get("/productos/filtrar")
+def filtrar_productos(
+    marcas: Optional[str] = None,
+    tipos: Optional[str] = None,
+    gamas: Optional[str] = None
+):
+    """Filtrar productos por marca, tipo y/o gama"""
+    db = SessionLocal()
+    try:
+        query = db.query(Producto)
+        
+        # Filtrar por marcas
+        if marcas:
+            lista_marcas = marcas.split(',')
+            query = query.join(Marca).filter(Marca.nombre.in_(lista_marcas))
+        
+        # Filtrar por tipos
+        if tipos:
+            lista_tipos = tipos.split(',')
+            query = query.join(Tipo).filter(Tipo.nombre.in_(lista_tipos))
+        
+        # Filtrar por gamas
+        if gamas:
+            lista_gamas = gamas.split(',')
+            query = query.join(Gamma).filter(Gamma.nombre.in_(lista_gamas))
+        
+        productos = query.all()
         
         resultado = []
         for producto in productos:
