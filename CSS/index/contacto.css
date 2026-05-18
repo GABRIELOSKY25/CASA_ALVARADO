@@ -75,3 +75,201 @@
     transform: translateY(-3px);
     box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
 }
+
+/* ========== SECCIÓN DE CONTACTO REDES SOCIALES ========== */
+.contacto-redes {
+    padding: 50px 0;
+    background: #ffffff;
+}
+
+.contacto-redes .contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.contacto-redes-titulo {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #003b6f;
+    margin-bottom: 40px;
+    font-family: 'Prata', serif;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.contacto-redes-titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #003b6f;
+    border-radius: 2px;
+}
+
+/* Grid de 3 columnas */
+.contacto-redes-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Tarjeta individual */
+.contacto-red-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px 25px;
+    text-align: center;
+    width: 250px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.contacto-red-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
+    border-color: #003b6f;
+}
+
+/* Icono */
+.contacto-red-icono {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.contacto-red-card.whatsapp .contacto-red-icono {
+    background: #25D366;
+}
+
+.contacto-red-card.instagram .contacto-red-icono {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+}
+
+.contacto-red-card.facebook .contacto-red-icono {
+    background: #1877f2;
+}
+
+.contacto-red-icono i {
+    font-size: 32px;
+    color: white;
+}
+
+.contacto-red-card:hover .contacto-red-icono {
+    transform: scale(1.1);
+}
+
+/* Información */
+.contacto-red-info h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #003b6f;
+    margin-bottom: 8px;
+    font-family: 'Prata', serif;
+}
+
+.contacto-red-info p {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+/* Botón */
+.contacto-red-btn {
+    display: inline-block;
+    padding: 6px 16px;
+    background: #f0f4f8;
+    border-radius: 50px;
+    color: #003b6f;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.contacto-red-card:hover .contacto-red-btn {
+    background: #003b6f;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contacto-redes {
+        padding: 40px 0;
+    }
+    
+    .contacto-redes-titulo {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+    
+    .contacto-redes-grid {
+        gap: 20px;
+    }
+    
+    .contacto-red-card {
+        width: 220px;
+        padding: 20px;
+    }
+    
+    .contacto-red-icono {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .contacto-red-icono i {
+        font-size: 26px;
+    }
+    
+    .contacto-red-info h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .contacto-redes-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contacto-red-card {
+        width: 100%;
+        max-width: 280px;
+        flex-direction: row;
+        text-align: left;
+        padding: 18px 20px;
+    }
+    
+    .contacto-red-icono {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .contacto-red-icono i {
+        font-size: 24px;
+    }
+    
+    .contacto-red-info h3 {
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
+    
+    .contacto-red-info p {
+        font-size: 0.7rem;
+        margin-bottom: 8px;
+    }
+}

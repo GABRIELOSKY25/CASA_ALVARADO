@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- SOLO UN ARCHIVO CSS -->
     <link rel="stylesheet" href="../CSS/contacto.css">
-    <link rel = "stylesheet" href = "../CSS/index/main.css">
+    <link rel="stylesheet" href="../CSS/index/main.css">
     <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,49 +35,104 @@
             </div>
         </section>
 
-        <!-- Sección de Contacto WhatsApp -->
-        <div class="contacto">
-            <div class="info">
-                <div class="icono">
-                    <img src="https://th.bing.com/th/id/R.1dbed5efc2986f28cfe82c67274a7976?rik=jll0LYSaqOJ6jQ&pid=ImgRaw&r=0" alt="WhatsApp">
-                </div>
-                <div class="contenido_contacto">
-                    <h2>Consulta con Nosotros</h2>
-                    <p>Nuestro equipo está para asesorarte y ayudarte a encontrar el producto indicado.</p>
+        <!-- SECCIÓN DE REDES SOCIALES Y WHATSAPP -->
+        <section class="contacto-redes">
+            <div class="contenedor">
+                <h2 class="contacto-redes-titulo">Conéctate con nosotros</h2>
+                <div class="contacto-redes-grid">
+                    
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/529671330637?text=Hola,%20vengo%20de%20la%20web%20de%20Casa%20Alvarado" target="_blank" class="contacto-red-card whatsapp">
+                        <div class="contacto-red-icono">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contacto-red-info">
+                            <h3>WhatsApp</h3>
+                            <p>Envíanos un mensaje</p>
+                            <span class="contacto-red-btn">Escribir →</span>
+                        </div>
+                    </a>
+
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/CasaAlvaradotuxtla" target="_blank" class="contacto-red-card facebook">
+                        <div class="contacto-red-icono">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div class="contacto-red-info">
+                            <h3>Facebook</h3>
+                            <p>/Casa Alvarado 1a sur y Casa Alvarado 2a Poniente</p>
+                            <span class="contacto-red-btn">Seguir →</span>
+                        </div>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/casaalvaradooficial/" target="_blank" class="contacto-red-card instagram">
+                        <div class="contacto-red-icono">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="contacto-red-info">
+                            <h3>Instagram</h3>
+                            <p>@CASAALVARADOOFICIAL</p>
+                            <span class="contacto-red-btn">Seguir →</span>
+                        </div>
+                    </a>
                 </div>
             </div>
-            <a href="https://wa.me/529671330637?text=Hola,%20vengo%20de%20la%20web%20de%20Casa%20Alvarado" target="_blank" class="btn-whatsapp">
-                Abrir WhatsApp
-            </a>
-        </div>
-        <section class="productos telefonos-seccion">
-            <div class="contenedor">
-                <h2 id="productos">Numeros telefónicos</h2>
-                <div class="grid_productos">
-                    <div class="targeta_producto tarjeta-telefono">
-                        <img src="https://i.pinimg.com/originals/76/d8/cd/76d8cd3db748dd37242b7c38c3e010ee.jpg">
-                        <h2>Casa Alvarado 1</h2>
-                        <div class="numero-telefono">
-                            <i class="fa-solid fa-phone-volume"></i>
-                            <span>961 154 3145</span>
-                        </div>
-                        <p class="telefono-info">
-                            Únicamente llamadas
-                        </p>
-                    </div>
-                    <div class="targeta_producto tarjeta-telefono">
-                        <img src="https://i.pinimg.com/originals/76/d8/cd/76d8cd3db748dd37242b7c38c3e010ee.jpg">
-                        <h2>Casa Alvarado 2</h2>
-                        <div class="numero-telefono">
-                            <i class="fa-solid fa-phone-volume"></i>
-                            <span>961 317 3280</span>
-                        </div>
-                        <p class="telefono-info">
-                            Únicamente llamadas
-                        </p>
-                    </div>
         </section>
 
+        <!-- SECCIÓN DE NÚMEROS TELEFÓNICOS CON IMÁGENES DE LOCALES -->
+        <section class="telefonos-seccion">
+            <div class="contenedor">
+                <h2 class="telefonos-titulo">Números telefónicos</h2>
+                <div class="telefonos-grid">
+                    <!-- Tarjeta 1 - Casa Alvarado 1 -->
+                    <div class="telefono-card">
+                        <div class="telefono-card-imagen">
+                            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHwOSBmxGyVegVjWf6XKK7ybnRH8wdHjGEmqe5_DBXki8domn5yPbfY0K1ly8r6k50BiKWtxjNW_xoz2SWWyrN1yK--MyHQ2tPhOQvK4DeQyy6VQu04jrsQ4WSp2ra6n_fW0qQdIQ=w408-h306-k-no" alt="Local Casa Alvarado 1">
+                        </div>
+                        <div class="telefono-card-icono">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3 class="telefono-card-titulo">Casa Alvarado 1</h3>
+                        <div class="telefono-card-numero">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>961 154 3145</span>
+                        </div>
+                        <p class="telefono-card-nota">
+                            <i class="fas fa-info-circle"></i>
+                            Únicamente llamadas
+                        </p>
+                        <a href="tel:9611543145" class="telefono-card-btn">
+                            <i class="fas fa-phone"></i>
+                            Llamar ahora
+                        </a>
+                    </div>
+
+                    <!-- Tarjeta 2 - Casa Alvarado 2 (con misma imagen de referencia) -->
+                    <div class="telefono-card">
+                        <div class="telefono-card-imagen">
+                            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGJgk3_-Sc0jF10NfZtVvDw6MwA-6ziuYCb1jEAvhMIrdpCdScyx3RXL62PmFGDTBsYUGktS-eWpecZTL4qxjv8obtg4v6hYkko6nffaVNPkwk_Rn5tiF1jTeupCPS5Tly2O0b8_g=w408-h306-k-no" alt="Local Casa Alvarado 2">
+                        </div>
+                        <div class="telefono-card-icono">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3 class="telefono-card-titulo">Casa Alvarado 2</h3>
+                        <div class="telefono-card-numero">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>961 317 3280</span>
+                        </div>
+                        <p class="telefono-card-nota">
+                            <i class="fas fa-info-circle"></i>
+                            Únicamente llamadas
+                        </p>
+                        <a href="tel:9613173280" class="telefono-card-btn">
+                            <i class="fas fa-phone"></i>
+                            Llamar ahora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Sección de Sucursales con Mapas -->
         <section class="sucursales">
@@ -87,30 +142,24 @@
                     <!-- Sucursal 1 con mapa -->
                     <div class="targeta_sucursal-con-mapa">
                         <h3>Casa Alvarado 1</h3>
-                        <p class="direccion">Av 1a. Sur Pte 366-B, El Calvario, Tuxtla Gutierrez</p>
-                        
-                        <!-- Contenedor del mapa responsive -->
+                        <p class="direccion">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Av 1a. Sur Pte 366-B, El Calvario, Tuxtla Gutierrez
+                        </p>
                         <div class="mapa-contenedor">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2769.7706212649805!2d-93.1205506960814!3d16.753331689805115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f35f50c95d%3A0xd3feb8ec12cd3a65!2sCasa%20Alvarado!5e0!3m2!1ses-419!2smx!4v1773350084881!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                                    title="Casa Alvarado" 
-                                    allowfullscreen="" 
-                                    loading="lazy">
-                            </iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2769.7706212649805!2d-93.1205506960814!3d16.753331689805115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f35f50c95d%3A0xd3feb8ec12cd3a65!2sCasa%20Alvarado!5e0!3m2!1ses-419!2smx!4v1773350084881!5m2!1ses-419!2smx" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
 
                     <!-- Sucursal 2 con mapa -->
                     <div class="targeta_sucursal-con-mapa">
                         <h3>Casa Alvarado 2</h3>
-                        <p class="direccion">Calle Segunda Pte. Sur 450-Planta Baja, Centro, Tuxtla Gutierrez</p>
-                        
-                        <!-- Contenedor del mapa responsive -->
+                        <p class="direccion">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Calle Segunda Pte. Sur 450-Planta Baja, Centro, Tuxtla Gutierrez
+                        </p>
                         <div class="mapa-contenedor">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2701.4929873837586!2d-93.119742262067!3d16.75237851545194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f4db285061%3A0x153bbda57341c650!2sCasa%20Alvarado%202!5e0!3m2!1ses-419!2smx!4v1773350158010!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                                    title="Casa Alvarado 2" 
-                                    allowfullscreen="" 
-                                    loading="lazy">
-                            </iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2701.4929873837586!2d-93.119742262067!3d16.75237851545194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f4db285061%3A0x153bbda57341c650!2sCasa%20Alvarado%202!5e0!3m2!1ses-419!2smx!4v1773350158010!5m2!1ses-419!2smx" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>
