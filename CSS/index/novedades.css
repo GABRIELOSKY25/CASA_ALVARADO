@@ -1,0 +1,71 @@
+/* ========== SECCIÓN DE NOVEDADES ========== */
+.Novedades {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.Novedades h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #003b6f;
+    margin-bottom: 2rem;
+    font-family: 'Prata', serif;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.Novedades h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #003b6f;
+    border-radius: 2px;
+}
+
+/* Contenedor de productos novedad */
+#productos-novedad {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .Novedades {
+        padding: 40px 0;
+    }
+    
+    .Novedades h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    #productos-novedad {
+        gap: 1rem;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Novedades {
+        padding: 30px 0;
+    }
+    
+    .Novedades h2 {
+        font-size: 1.3rem;
+    }
+    
+    #productos-novedad {
+        grid-template-columns: 1fr;
+    }
+}
