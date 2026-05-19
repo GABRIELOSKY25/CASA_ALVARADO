@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, Date
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, Date, Enum
 from sqlalchemy.orm import relationship
 from database import Base
 
@@ -23,6 +23,11 @@ class Marca(Base):
     nombre = Column(String(45), nullable=False)
     imagen = Column(Text)
 
+    prioridad = Column(
+        Enum('1', '2', '3'),
+        nullable=False,
+        default='3'
+    )
 
 # =========================
 # CATEGORIA
@@ -63,6 +68,11 @@ class Producto(Base):
     modelo = Column(String(45), primary_key=True)
     imagen = Column(Text, nullable=False)
     descripcion = Column(Text, nullable=False)
+    novedad = Column(
+    Enum('Si', 'No'),
+    nullable=False,
+    default='No'
+)
 
     # 🔑 FOREIGN KEYS
     id_marca = Column(Integer, ForeignKey("Marca.id_marca"), nullable=False)

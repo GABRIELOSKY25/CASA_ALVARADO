@@ -42,15 +42,21 @@ def inicio():
 @app.get("/producto/{modelo}")
 def obtener_producto(modelo: str):
     db = SessionLocal()
+
     try:
         producto = db.query(Producto).filter(
             Producto.modelo == modelo
         ).first()
 
         if not producto:
-            raise HTTPException(status_code=404, detail="Producto no encontrado")
+            raise HTTPException(
+                status_code=404,
+                detail="Producto no encontrado"
+            )
 
-        promedio = db.query(func.avg(Calificacion.estrellas)).filter(
+        promedio = db.query(
+            func.avg(Calificacion.estrellas)
+        ).filter(
             Calificacion.modelo == modelo
         ).scalar()
 
@@ -64,6 +70,75 @@ def obtener_producto(modelo: str):
             "tipo": producto.tipo.nombre,
             "gamma": producto.gamma.nombre
         }
+
+    finally:
+        db.close()
+        
+@app.get("/productos/novedades")
+def obtener_productos_novedad():
+    db = SessionLocal()
+
+    try:
+        productos = db.query(Producto).filter(
+            Producto.novedad == 'Si'
+        ).all()
+
+        resultado = []
+
+        for producto in productos:
+            promedio = db.query(
+                func.avg(Calificacion.estrellas)
+            ).filter(
+                Calificacion.modelo == producto.modelo
+            ).scalar()
+
+            resultado.append({
+                "modelo": producto.modelo,
+                "imagen": producto.imagen,
+                "descripcion": producto.descripcion,
+                "estrellas": int(promedio or 0),
+                "marca": producto.marca.nombre,
+                "categoria": producto.categoria.nombre,
+                "tipo": producto.tipo.nombre,
+                "gamma": producto.gamma.nombre
+            })
+
+        return resultado
+
+    finally:
+        db.close()
+        
+@app.get("/productos/todos", response_model=List[ProductoResponse])
+def obtener_todos_productos():
+    db = SessionLocal()
+
+    try:
+        productos = (
+            db.query(Producto)
+            .join(Marca)
+            .order_by(Marca.prioridad.asc())
+            .all()
+        )
+
+        resultado = []
+
+        for producto in productos:
+            promedio = db.query(func.avg(Calificacion.estrellas)).filter(
+                Calificacion.modelo == producto.modelo
+            ).scalar()
+
+            resultado.append({
+                "modelo": producto.modelo,
+                "imagen": producto.imagen,
+                "descripcion": producto.descripcion,
+                "estrellas": int(promedio or 0),
+                "marca": producto.marca.nombre,
+                "categoria": producto.categoria.nombre,
+                "tipo": producto.tipo.nombre,
+                "gamma": producto.gamma.nombre
+            })
+
+        return resultado
 
     finally:
         db.close()

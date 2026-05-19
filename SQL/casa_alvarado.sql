@@ -185,8 +185,8 @@ INSERT INTO Categoria (nombre, id_familia) VALUES
 -- Insertar datos en Marca
 INSERT INTO Marca (nombre, imagen, prioridad) VALUES
 ('SHURE', 'https://example.com/shure.png', '1'),
-('SUPERBRIGHT', 'https://example.com/superbright.png', '2'),
-('KRIEG', 'https://example.com/krieg.png', '2'),
+('SUPERBRIGHT', 'https://example.com/superbright.png', '3'),
+('KRIEG', 'https://example.com/krieg.png', '3'),
 ('ROMMS', 'https://example.com/romms.png', '3'),
 ('RADOX', 'https://example.com/radox.png', '3'),
 ('XSS J&B', 'https://example.com/xss.png', '3'),
@@ -322,3 +322,17 @@ INSERT INTO Producto (modelo, imagen, descripcion, novedad, id_marca, id_Tipo, i
 ('SDMP15', 'https://http2.mlstatic.com/D_NQ_NP_2X_651506-MLU76248543099_052024-F.webp', 'Micrófono Dinámico Stagg Sdmp15 Con Cable Negro', 'No', 13, 1, 1, 1),
 ('490-351', 'https://example.com/490-351.jpg', 'RADOX 490-351 Micrófono de Diadema con Plug 3.5mm Mono, Repuesto', 'No', 5, 4, 1, 1),
 ('490-352', 'https://example.com/490-352.jpg', 'RADOX 490-352 Micrófono de Diadema con Jack Mini XLR Canon, Repuesto', 'No', 5, 4, 1, 1);
+
+INSERT INTO Marca (nombre, imagen) VALUES
+('superbright', 'https://media.licdn.com/dms/image/v2/C4E0BAQEvm2HIxgnWvw/company-logo_200_200/company-logo_200_200/0/1630647494969/superbrightvr_logo?e=2147483647&v=beta&t=_OcFBTPVAxoZJb0i7-p7VuIhRzTarIwmhdYxvHTfQwo'),
+('ROMMS', 'https://cdn.shopify.com/s/files/1/1610/5893/collections/romms.jpg?v=1723913840'),
+('radox', 'https://tse4.mm.bing.net/th/id/OIP.xKmLget9_c5szIEaasEkrAAAAA?cb=thfvnextfalcon&rs=1&pid=ImgDetMain&o=7&rm=3'),
+('AKG', 'https://logos-marcas.com/wp-content/uploads/2020/03/AKG-Emblema.jpg'),
+('sondtrack', 'https://cdn.cyberpuerta.mx/storage/brands/SOUNDTRACK.png'),
+('xxs j&b', 'https://static.vecteezy.com/system/resources/previews/009/125/369/non_2x/jyb-logo-jyb-letter-jyb-letter-logo-design-initials-jyb-logo-linked-with-circle-and-uppercase-monogram-logo-jyb-typography-for-technology-business-and-real-estate-brand-vector.jpg'),
+('KAPTON', 'https://kapton-pa.com/wp-content/uploads/2024/05/LOGOTIPO-KAPTON.png'),
+('TAIKA', 'https://cdn.shopify.com/s/files/1/1610/5893/collections/taika_logo.png?v=1602780992'),
+('krack', 'https://http2.mlstatic.com/D_NQ_NP_876362-MLA75268035467_032024-F.jpg'),
+('lennon', 'https://http2.mlstatic.com/D_NQ_NP_685043-MLA79346174970_092024-O.webp'),
+('KRIEG', 'https://testedinidaho.com/wp-content/uploads/2017/08/krieg-logo-1.png'),
+('STAGG', 'https://m.media-amazon.com/images/S/stores-image-uploads-na-prod/a/AmazonStores/ATVPDKIKX0DER/ae6813d4f6e492ae97bf6fc70284288a.w3000.h861.png');

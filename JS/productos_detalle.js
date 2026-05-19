@@ -12,65 +12,97 @@ const modeloProducto = urlParams.get('modelo');
 async function cargarProducto() {
     if (!modeloProducto) {
         console.error('No se especificó modelo de producto');
+
         window.location.href = 'catalogo.html';
         return;
     }
 
     try {
-        const response = await fetch(`${API_BASE}/producto/${modeloProducto}`);
-        
+        const response = await fetch(
+            `${API_BASE}/producto/${encodeURIComponent(modeloProducto)}`
+        );
+
         if (!response.ok) {
             throw new Error('Producto no encontrado');
         }
-        
+
         const producto = await response.json();
 
-        // Actualizar título de la página
-        document.title = `${producto.modelo} - Casa Alvarado`;
+        console.log('Producto cargado:', producto);
 
-        // Actualizar imagen
-        const imgElement = document.getElementById('producto-img');
+        // ========= TÍTULO =========
+        document.title =
+            `${producto.modelo} - Casa Alvarado`;
+
+        // ========= IMAGEN =========
+        const imgElement =
+            document.getElementById('producto-img');
+
         if (imgElement) {
             imgElement.src = producto.imagen;
-            imgElement.alt = producto.modelo;
+
+            imgElement.alt =
+                producto.modelo;
+
+            imgElement.onerror = () => {
+                imgElement.src =
+                    'https://via.placeholder.com/300x220?text=Sin+imagen';
+            };
         }
 
-        // Actualizar marca (ambos elementos)
-        const marcaElements = document.querySelectorAll('#producto-marca');
-        marcaElements.forEach(el => {
-            el.textContent = producto.marca;
-        });
+        // ========= MARCA =========
+        document.querySelectorAll('#producto-marca')
+            .forEach(el => {
+                el.textContent = producto.marca || '';
+            });
 
-        // Actualizar modelo
-        const modeloElement = document.getElementById('producto-modelo');
+        // ========= MODELO =========
+        const modeloElement =
+            document.getElementById('producto-modelo');
+
         if (modeloElement) {
-            modeloElement.textContent = producto.modelo;
+            modeloElement.textContent =
+                producto.modelo || '';
         }
 
-        // Actualizar descripción
-        const descripcionElement = document.getElementById('producto-descripcion');
+        // ========= DESCRIPCIÓN =========
+        const descripcionElement =
+            document.getElementById('producto-descripcion');
+
         if (descripcionElement) {
-            descripcionElement.textContent = producto.descripcion;
+            descripcionElement.textContent =
+                producto.descripcion || '';
         }
 
-        // Actualizar número de calificación
-        const ratingNumElement = document.getElementById('rating-num');
+        // ========= CALIFICACIÓN =========
+        const estrellas =
+            Number(producto.estrellas || 0);
+
+        const ratingNumElement =
+            document.getElementById('rating-num');
+
         if (ratingNumElement) {
-            ratingNumElement.textContent = `${producto.estrellas || 0} / 5`;
+            ratingNumElement.textContent =
+                `${estrellas} / 5`;
         }
 
-        // Generar estrellas visuales
-        generarEstrellasVisuales(producto.estrellas || 0);
+        generarEstrellasVisuales(estrellas);
 
-        // Configurar botón de WhatsApp
+        // ========= WHATSAPP =========
         configurarWhatsApp(producto);
 
-        // Cargar productos similares
-        cargarProductosSimilares(modeloProducto);
+        // ========= PRODUCTOS SIMILARES =========
+        await cargarProductosSimilares(producto.modelo);
 
     } catch (error) {
-        console.error('Error cargando producto:', error);
-        mostrarError('No se pudo cargar el producto. Verifica que el servidor FastAPI esté corriendo.');
+        console.error(
+            'Error cargando producto:',
+            error
+        );
+
+        mostrarError(
+            'No se pudo cargar el producto.'
+        );
     }
 }
 
