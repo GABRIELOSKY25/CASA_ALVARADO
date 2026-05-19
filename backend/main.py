@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from database import SessionLocal
-from models import Producto, Calificacion, Gamma, Marca, Categoria, Tipo, Sub_categoria
+from models import Producto, Calificacion, Gamma, Marca, Categoria, Tipo
 from sqlalchemy import func
 from typing import Optional, List
 from pydantic import BaseModel
@@ -13,9 +13,8 @@ class ProductoResponse(BaseModel):
     imagen: str
     descripcion: str
     estrellas: int
-    categoria: str
     marca: str
-    sub_categoria: str
+    categoria: str
     tipo: str
     gamma: str
 
@@ -60,9 +59,8 @@ def obtener_producto(modelo: str):
             "imagen": producto.imagen,
             "descripcion": producto.descripcion,
             "estrellas": int(promedio or 0),
-            "categoria": producto.categoria.nombre,
             "marca": producto.marca.nombre,
-            "sub_categoria": producto.sub_categoria.nombre,
+            "categoria": producto.categoria.nombre,
             "tipo": producto.tipo.nombre,
             "gamma": producto.gamma.nombre
         }
@@ -134,9 +132,8 @@ def obtener_todos_productos():
                 "imagen": producto.imagen,
                 "descripcion": producto.descripcion,
                 "estrellas": int(promedio or 0),
-                "categoria": producto.categoria.nombre,
                 "marca": producto.marca.nombre,
-                "sub_categoria": producto.sub_categoria.nombre,
+                "categoria": producto.categoria.nombre,
                 "tipo": producto.tipo.nombre,
                 "gamma": producto.gamma.nombre
             })
@@ -199,9 +196,8 @@ def buscar_productos_por_modelo(termino: str):
                 "imagen": producto.imagen,
                 "descripcion": producto.descripcion,
                 "estrellas": int(promedio or 0),
-                "categoria": producto.categoria.nombre,
                 "marca": producto.marca.nombre,
-                "sub_categoria": producto.sub_categoria.nombre,
+                "categoria": producto.categoria.nombre,
                 "tipo": producto.tipo.nombre,
                 "gamma": producto.gamma.nombre
             })
@@ -249,9 +245,8 @@ def filtrar_productos(
                 "imagen": producto.imagen,
                 "descripcion": producto.descripcion,
                 "estrellas": int(promedio or 0),
-                "categoria": producto.categoria.nombre,
                 "marca": producto.marca.nombre,
-                "sub_categoria": producto.sub_categoria.nombre,
+                "categoria": producto.categoria.nombre,
                 "tipo": producto.tipo.nombre,
                 "gamma": producto.gamma.nombre
             })

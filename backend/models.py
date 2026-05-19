@@ -4,12 +4,12 @@ from database import Base
 
 
 # =========================
-# CATEGORIA
+# FAMILIA
 # =========================
-class Categoria(Base):
-    __tablename__ = "Categoria"
+class Familia(Base):
+    __tablename__ = "Familia"
 
-    id_categoria = Column(Integer, primary_key=True, autoincrement=True)
+    id_familia = Column(Integer, primary_key=True, autoincrement=True)
     nombre = Column(String(45), nullable=False)
 
 
@@ -25,12 +25,12 @@ class Marca(Base):
 
 
 # =========================
-# SUB CATEGORIA
+# CATEGORIA
 # =========================
-class Sub_categoria(Base):
-    __tablename__ = "Sub_categoria"
+class Categoria(Base):
+    __tablename__ = "Categoria"
 
-    id_sub_categoria = Column(Integer, primary_key=True, autoincrement=True)
+    id_categoria = Column(Integer, primary_key=True, autoincrement=True)
     nombre = Column(String(45), nullable=False)
 
 
@@ -65,16 +65,14 @@ class Producto(Base):
     descripcion = Column(Text, nullable=False)
 
     # 🔑 FOREIGN KEYS
-    id_categoria = Column(Integer, ForeignKey("Categoria.id_categoria"), nullable=False)
     id_marca = Column(Integer, ForeignKey("Marca.id_marca"), nullable=False)
-    id_sub_categoria = Column(Integer, ForeignKey("Sub_categoria.id_sub_categoria"), nullable=False)
+    id_categoria = Column(Integer, ForeignKey("Categoria.id_categoria"), nullable=False)
     id_tipo = Column(Integer, ForeignKey("Tipo.id_tipo"), nullable=False)
     id_gamma = Column(Integer, ForeignKey("Gamma.id_gamma"), nullable=False)
 
     # 🔥 RELACIONES (esto reemplaza los IDs en respuestas)
-    categoria = relationship("Categoria")
     marca = relationship("Marca")
-    sub_categoria = relationship("Sub_categoria")
+    categoria = relationship("Categoria")
     tipo = relationship("Tipo")
     gamma = relationship("Gamma")
 
