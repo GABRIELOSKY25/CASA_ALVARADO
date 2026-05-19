@@ -84,7 +84,12 @@ async function generarFiltrosDesdeProductos() {
 function generarHTMLFiltros(marcas, tipos, gamas) {
     const container = document.getElementById('filtros-container');
 
-    let html = '<h2>Filtros</h2>';
+    let html = `
+        <div class="filtros-logo">
+            <img src="../Logo.png" alt="Casa Alvarado Logo">
+        </div>
+        <h2>Filtros</h2>
+    `;
 
     // Filtro Marcas
     html += `

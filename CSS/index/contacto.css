@@ -1,105 +1,28 @@
-.contacto-seccion {
-    padding: 4rem 0 2rem 0;
-    background: linear-gradient(135deg, var(--blanco) 0%, var(--azul-claro) 100%);
+/* ========== SECCIÓN DE CONTACTO ========== */
+.contacto {
+    padding: 120px 0 60px 0;
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+    min-height: auto;   
 }
 
-.contacto-titulo-principal {
-    text-align: center;
-    font-family: var(--fuente-titulos);
-    font-size: 3rem;
-    color: var(--azul-profundo);
-    margin-bottom: 0.5rem;
-    font-weight: 400;
-}
-
-.contacto-subtitulo {
-    text-align: center;
-    font-family: var(--fuente-cuerpo);
-    font-size: 1.2rem;
-    color: var(--gris-oscuro);
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.contacto-divisor {
-    width: 100px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--azul-profundo), transparent);
-    margin: 2rem auto;
-}
-
-.contacto-titulo-secundario {
-    text-align: center;
-    font-family: var(--fuente-titulos);
-    font-size: 2rem;
-    color: var(--azul-profundo);
-    margin-bottom: 1rem;
-    font-weight: 400;
-}
-
-.contacto-descripcion {
-    text-align: center;
-    font-family: var(--fuente-cuerpo);
-    font-size: 1.1rem;
-    color: var(--gris-oscuro);
-    margin-bottom: 2.5rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.5;
-}
-
-.btn-whatsapp {
-    display: block;
-    width: fit-content;
-    margin: 0 auto;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    color: var(--blanco);
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-    text-align: center;
-}
-
-.btn-whatsapp:hover {
-    background: transparent;
-    color: #25D366;
-    border-color: #25D366;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
-}
-
-/* ========== SECCIÓN DE CONTACTO REDES SOCIALES ========== */
-.contacto-redes {
-    padding: 50px 0;
-    background: #ffffff;
-}
-
-.contacto-redes .contenedor {
+.contacto .contenedor {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
-.contacto-redes-titulo {
+.contacto-titulo {
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
     color: #003b6f;
     margin-bottom: 40px;
     font-family: 'Prata', serif;
     position: relative;
     padding-bottom: 15px;
-}
+    }
 
-.contacto-redes-titulo::after {
+.contacto-titulo::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -111,165 +34,205 @@
     border-radius: 2px;
 }
 
-/* Grid de 3 columnas */
-.contacto-redes-grid {
+.contacto-subtitulo {
+    text-align: center;
+    color: #64748b;
+    font-size: 1rem;
+    margin-bottom: 50px;
+}
+
+.contacto-contenido {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 60px;
     flex-wrap: wrap;
 }
 
-/* Tarjeta individual */
-.contacto-red-card {
+/* Logo en círculo */
+.contacto-logo {
+    flex: 0 0 auto;
+    width: 280px;
+    height: 280px;
     background: white;
-    border-radius: 16px;
-    padding: 30px 25px;
-    text-align: center;
-    width: 250px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e0e0e0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.contacto-red-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
-    border-color: #003b6f;
-}
-
-/* Icono */
-.contacto-red-icono {
-    width: 70px;
-    height: 70px;
+    backdrop-filter: blur(10px);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 4px solid rgba(0, 59, 111, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
-.contacto-red-card.whatsapp .contacto-red-icono {
+.contacto-logo:hover {
+    transform: scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 59, 111, 0.2);
+    border-color: #003b6f;
+}
+
+.contacto-logo img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+/* Lista de contactos */
+.contacto-lista {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Items de contacto */
+.contacto-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    padding: 18px 25px;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.contacto-item:hover {
+    transform: translateX(10px);
+    border-color: #003b6f;
+    box-shadow: 0 10px 25px rgba(0, 59, 111, 0.1);
+}
+
+/* Iconos */
+.contacto-item-icono {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.contacto-item:nth-child(1) .contacto-item-icono {
     background: #25D366;
 }
 
-.contacto-red-card.instagram .contacto-red-icono {
-    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-}
-
-.contacto-red-card.facebook .contacto-red-icono {
+.contacto-item:nth-child(2) .contacto-item-icono {
     background: #1877f2;
 }
 
-.contacto-red-icono i {
-    font-size: 32px;
-    color: white;
+.contacto-item:nth-child(3) .contacto-item-icono {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
 }
 
-.contacto-red-card:hover .contacto-red-icono {
-    transform: scale(1.1);
+.contacto-item-icono i {
+    font-size: 28px;
+    color: white;
 }
 
 /* Información */
-.contacto-red-info h3 {
-    font-size: 1.3rem;
+.contacto-item-info {
+    flex: 1;
+}
+
+.contacto-item-info h3 {
+    font-size: 1.2rem;
     font-weight: 600;
     color: #003b6f;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     font-family: 'Prata', serif;
 }
 
-.contacto-red-info p {
+.contacto-item-info p {
     font-size: 0.8rem;
-    color: #666;
-    margin-bottom: 12px;
+    color: #64748b;
+    margin: 0;
 }
 
-/* Botón */
-.contacto-red-btn {
-    display: inline-block;
-    padding: 6px 16px;
-    background: #f0f4f8;
-    border-radius: 50px;
+/* Flecha */
+.contacto-item-flecha {
+    font-size: 1.2rem;
     color: #003b6f;
-    font-size: 0.75rem;
-    font-weight: 500;
+    opacity: 0.5;
     transition: all 0.3s ease;
 }
 
-.contacto-red-card:hover .contacto-red-btn {
-    background: #003b6f;
-    color: white;
+.contacto-item:hover .contacto-item-flecha {
+    opacity: 1;
+    transform: translateX(5px);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .contacto-redes {
-        padding: 40px 0;
+    .contacto {
+        padding: 100px 0 40px 0;
     }
     
-    .contacto-redes-titulo {
+    .contacto-titulo {
         font-size: 1.5rem;
-        margin-bottom: 30px;
     }
     
-    .contacto-redes-grid {
-        gap: 20px;
+    .contacto-contenido {
+        flex-direction: column;
+        gap: 40px;
     }
     
-    .contacto-red-card {
-        width: 220px;
-        padding: 20px;
+    .contacto-logo {
+        width: 200px;
+        height: 200px;
     }
     
-    .contacto-red-icono {
-        width: 55px;
-        height: 55px;
+    .contacto-lista {
+        min-width: 260px;
+        width: 100%;
     }
     
-    .contacto-red-icono i {
-        font-size: 26px;
+    .contacto-item {
+        padding: 15px 20px;
     }
     
-    .contacto-red-info h3 {
-        font-size: 1.1rem;
+    .contacto-item-icono {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .contacto-item-icono i {
+        font-size: 22px;
+    }
+    
+    .contacto-item-info h3 {
+        font-size: 1rem;
+    }
+    
+    .contacto-item-info p {
+        font-size: 0.7rem;
     }
 }
 
-@media (max-width: 600px) {
-    .contacto-redes-grid {
-        flex-direction: column;
-        align-items: center;
+@media (max-width: 480px) {
+    .contacto {
+        padding: 90px 0 30px 0;
     }
     
-    .contacto-red-card {
-        width: 100%;
-        max-width: 280px;
-        flex-direction: row;
-        text-align: left;
-        padding: 18px 20px;
+    .contacto-logo {
+        width: 160px;
+        height: 160px;
     }
     
-    .contacto-red-icono {
-        width: 50px;
-        height: 50px;
+    .contacto-item {
+        padding: 12px 15px;
     }
     
-    .contacto-red-icono i {
-        font-size: 24px;
+    .contacto-item-icono {
+        width: 40px;
+        height: 40px;
     }
     
-    .contacto-red-info h3 {
-        font-size: 1rem;
-        margin-bottom: 4px;
-    }
-    
-    .contacto-red-info p {
-        font-size: 0.7rem;
-        margin-bottom: 8px;
+    .contacto-item-icono i {
+        font-size: 20px;
     }
 }

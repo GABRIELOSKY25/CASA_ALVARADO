@@ -1,3 +1,5 @@
+drop database if exists Casa_Alvarado;
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;

@@ -27,60 +27,61 @@
     </div>
 
     <main>
-        <!-- TÍTULO DE LA PÁGINA CONTACTO (CENTRADO) -->
-        <section class="titulo-pagina">
+        <!-- SECCIÓN DE CONTACTO -->
+        <section class="contacto">
             <div class="contenedor">
-                <h1>Contacto</h1>
-                <p>Estamos aquí para ayudarte a encontrar el instrumento perfecto</p>
-            </div>
-        </section>
+                <h1 class="contacto-titulo">Redes Sociales</h1>
+                <p class="contacto-subtitulo">Estamos aquí para ayudarte a encontrar el instrumento perfecto</p>
+                
+                <div class="contacto-contenido">
+                    <!-- Lado Izquierdo: Logo -->
+                    <div class="contacto-logo">
+                        <img src="../Logo.png" alt="Casa Alvarado Logo">
+                    </div>
 
-        <!-- SECCIÓN DE REDES SOCIALES Y WHATSAPP -->
-        <section class="contacto-redes">
-            <div class="contenedor">
-                <h2 class="contacto-redes-titulo">Conéctate con nosotros</h2>
-                <div class="contacto-redes-grid">
-                    
-                    <!-- WhatsApp -->
-                    <a href="https://wa.me/529671330637?text=Hola,%20vengo%20de%20la%20web%20de%20Casa%20Alvarado" target="_blank" class="contacto-red-card whatsapp">
-                        <div class="contacto-red-icono">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="contacto-red-info">
-                            <h3>WhatsApp</h3>
-                            <p>Envíanos un mensaje</p>
-                            <span class="contacto-red-btn">Escribir →</span>
-                        </div>
-                    </a>
+                    <!-- Lado Derecho: Lista de redes sociales -->
+                    <div class="contacto-lista">
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/529671330637?text=Hola,%20vengo%20de%20la%20web%20de%20Casa%20Alvarado" target="_blank" class="contacto-item">
+                            <div class="contacto-item-icono">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contacto-item-info">
+                                <h3>WhatsApp</h3>
+                                <p>Envíanos un mensaje</p>
+                            </div>
+                            <span class="contacto-item-flecha">→</span>
+                        </a>
 
-                    <!-- Facebook -->
-                    <a href="https://www.facebook.com/CasaAlvaradotuxtla" target="_blank" class="contacto-red-card facebook">
-                        <div class="contacto-red-icono">
-                            <i class="fab fa-facebook-f"></i>
-                        </div>
-                        <div class="contacto-red-info">
-                            <h3>Facebook</h3>
-                            <p>/Casa Alvarado 1a sur y Casa Alvarado 2a Poniente</p>
-                            <span class="contacto-red-btn">Seguir →</span>
-                        </div>
-                    </a>
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/CasaAlvaradotuxtla" target="_blank" class="contacto-item">
+                            <div class="contacto-item-icono">
+                                <i class="fab fa-facebook-f"></i>
+                            </div>
+                            <div class="contacto-item-info">
+                                <h3>Facebook</h3>
+                                <p>/Casa Alvarado 1a sur y Casa Alvarado 2a Poniente</p>
+                            </div>
+                            <span class="contacto-item-flecha">→</span>
+                        </a>
 
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com/casaalvaradooficial/" target="_blank" class="contacto-red-card instagram">
-                        <div class="contacto-red-icono">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <div class="contacto-red-info">
-                            <h3>Instagram</h3>
-                            <p>@CASAALVARADOOFICIAL</p>
-                            <span class="contacto-red-btn">Seguir →</span>
-                        </div>
-                    </a>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/casaalvaradooficial/" target="_blank" class="contacto-item">
+                            <div class="contacto-item-icono">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div class="contacto-item-info">
+                                <h3>Instagram</h3>
+                                <p>@CASAALVARADOOFICIAL</p>
+                            </div>
+                            <span class="contacto-item-flecha">→</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN DE NÚMEROS TELEFÓNICOS CON IMÁGENES DE LOCALES -->
+        <!-- SECCIÓN DE NÚMEROS TELEFÓNICOS -->
         <section class="telefonos-seccion">
             <div class="contenedor">
                 <h2 class="telefonos-titulo">Números telefónicos</h2>
@@ -98,17 +99,19 @@
                             <i class="fas fa-phone-alt"></i>
                             <span>961 154 3145</span>
                         </div>
-                        <p class="telefono-card-nota">
-                            <i class="fas fa-info-circle"></i>
-                            Únicamente llamadas
-                        </p>
-                        <a href="tel:9611543145" class="telefono-card-btn">
-                            <i class="fas fa-phone"></i>
-                            Llamar ahora
-                        </a>
+                        <div class="telefono-card-botones">
+                            <a href="tel:9611543145" class="telefono-card-btn llamar">
+                                <i class="fas fa-phone"></i>
+                                Llamar
+                            </a>
+                            <a href="https://wa.me/529671330637?text=Hola,%20vengo%20de%20la%20web%20de%20Casa%20Alvarado%20y%20me%20interesa%20información%20sobre%20Casa%20Alvarado%201" target="_blank" class="telefono-card-btn whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </a>
+                        </div>
                     </div>
 
-                    <!-- Tarjeta 2 - Casa Alvarado 2 (con misma imagen de referencia) -->
+                    <!-- Tarjeta 2 - Casa Alvarado 2 -->
                     <div class="telefono-card">
                         <div class="telefono-card-imagen">
                             <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGJgk3_-Sc0jF10NfZtVvDw6MwA-6ziuYCb1jEAvhMIrdpCdScyx3RXL62PmFGDTBsYUGktS-eWpecZTL4qxjv8obtg4v6hYkko6nffaVNPkwk_Rn5tiF1jTeupCPS5Tly2O0b8_g=w408-h306-k-no" alt="Local Casa Alvarado 2">
@@ -121,14 +124,16 @@
                             <i class="fas fa-phone-alt"></i>
                             <span>961 317 3280</span>
                         </div>
-                        <p class="telefono-card-nota">
-                            <i class="fas fa-info-circle"></i>
-                            Únicamente llamadas
-                        </p>
-                        <a href="tel:9613173280" class="telefono-card-btn">
-                            <i class="fas fa-phone"></i>
-                            Llamar ahora
-                        </a>
+                        <div class="telefono-card-botones">
+                            <a href="tel:9613173280" class="telefono-card-btn llamar">
+                                <i class="fas fa-phone"></i>
+                                Llamar
+                            </a>
+                            <a href="https://wa.me/529671330637?text=Hola,%20vengo%20de%20la%20web%20de%20Casa%20Alvarado%20y%20me%20interesa%20información%20sobre%20Casa%20Alvarado%202" target="_blank" class="telefono-card-btn whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

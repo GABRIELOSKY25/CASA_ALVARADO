@@ -8,25 +8,59 @@
     position: sticky;
     top: 20px;
     box-shadow: 0 5px 20px rgba(0, 59, 111, 0.08);
-    border: 1px solid var(--gris-claro);
+    border: 1px solid #e0e0e0;
+}
+
+/* Logo en filtros */
+.filtros-logo {
+    flex: 0 0 auto;
+    width: 180px;
+    height: 180px;
+    background: white;
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(0, 59, 111, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin: 0 auto 1rem auto;
+}
+
+.filtros-logo:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
+    border-color: #003b6f;
+}
+
+.filtros-logo img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
 }
 
 .filtros h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--azul-profundo);
-    padding-bottom: 0.8rem;
-    border-bottom: 3px solid var(--azul-profundo);
-    font-family: var(--fuente-titulos);
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    color: #003b6f;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #003b6f;
+    font-family: 'Prata', serif;
+    text-align: center;
 }
 
 /* ========== GRUPO DE FILTRO (DESPLEGABLE) ========== */
 .grupo_filtro {
     margin-bottom: 1rem;
-    border: 1px solid var(--gris-claro);
+    border: 1px solid #e0e0e0;
     border-radius: 10px;
     overflow: hidden;
     background: white;
+}
+
+.grupo_filtro:hover {
+    border-color: #003b6f;
 }
 
 /* Header del filtro (clickeable) */
@@ -34,7 +68,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 0.8rem 1rem;
     background: #f8fafc;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -45,9 +79,9 @@
 }
 
 .filtro-header h3 {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: var(--azul-profundo);
+    color: #003b6f;
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -56,7 +90,7 @@
 .flecha {
     font-size: 0.7rem;
     transition: transform 0.3s ease;
-    color: var(--azul-profundo);
+    color: #003b6f;
 }
 
 /* Contenido del filtro (opciones) */
@@ -67,17 +101,16 @@
     background: white;
 }
 
-/* Scroll para el contenido de filtros */
 .filtro-contenido::-webkit-scrollbar {
     width: 4px;
 }
 
 .filtro-contenido::-webkit-scrollbar-track {
-    background: var(--gris-claro);
+    background: #f0f0f0;
 }
 
 .filtro-contenido::-webkit-scrollbar-thumb {
-    background: var(--azul-profundo);
+    background: #003b6f;
     border-radius: 4px;
 }
 
@@ -85,7 +118,7 @@
 .opcion_filtro {
     display: flex;
     align-items: center;
-    padding: 0.7rem 1rem;
+    padding: 0.6rem 1rem;
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 0.85rem;
@@ -102,7 +135,7 @@
     height: 16px;
     margin-right: 10px;
     cursor: pointer;
-    accent-color: var(--azul-profundo);
+    accent-color: #003b6f;
 }
 
 .opcion_filtro .contador {
@@ -112,27 +145,6 @@
     background: #f0f0f0;
     padding: 2px 6px;
     border-radius: 20px;
-}
-
-/* ========== CONTENEDOR PRINCIPAL ========== */
-.catalogo {
-    max-width: 1400px;
-    margin: 2rem auto;
-    padding: 0 20px;
-    display: flex;
-    gap: 2rem;
-    width: 100%;
-    box-sizing: border-box;
-    overflow-x: hidden;
-}
-
-/* Contenedor del buscador + productos */
-.catalogo > div:last-child,
-.catalogo > div {
-    flex: 1;
-    min-width: 0; /* Importantísimo: evita que el flex se desborde */
-    width: 100%;
-    overflow-x: hidden;
 }
 
 /* ========== BUSCADOR ========== */
@@ -145,182 +157,62 @@
     width: 100%;
     padding: 12px 20px;
     font-size: 15px;
-    border: 2px solid var(--gris-claro);
+    border: 2px solid #e0e0e0;
     border-radius: 50px;
     outline: none;
     transition: all 0.3s ease;
-    font-family: var(--fuente-cuerpo);
+    font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
 }
 
-/* ========== GRID DE PRODUCTOS ========== */
-.grid_productos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
-    box-sizing: border-box;
+#buscador-productos:focus {
+    border-color: #003b6f;
+    box-shadow: 0 0 0 3px rgba(0, 59, 111, 0.1);
 }
 
-/* Tarjetas de producto */
-.tarjeta_producto {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 59, 111, 0.08);
-    transition: all 0.3s ease;
-    border: 1px solid var(--gris-claro);
+/* ========== CONTENEDOR PRINCIPAL ========== */
+.catalogo {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 20px;
     display: flex;
-    flex-direction: column;
+    gap: 2rem;
     width: 100%;
     box-sizing: border-box;
-    height: 100%;
 }
 
-.tarjeta_producto:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
-    border-color: var(--azul-profundo);
-}
-
-.tarjeta_producto img {
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
-    padding: 15px;
-    background: #fafafa;
-    box-sizing: border-box;
-}
-
-.tarjeta_producto h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0.5rem 1rem 0.25rem;
-    color: #222;
+/* Mensaje cuando no hay filtros */
+#filtros-loading {
     text-align: center;
-    line-height: 1.3;
-    min-height: 2.6rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.marca-producto {
-    font-size: 0.7rem;
-    color: var(--azul-profundo);
-    margin: 0 1rem 0.5rem;
-    font-weight: 500;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* ========== RATING ========== */
-.rating {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin: 0.25rem 1rem 0.5rem;
-    min-height: 32px;
-}
-
-.rating-number {
-    color: #666;
-    font-size: 0.85rem;
-    font-weight: 600;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    border-radius: 20px;
-}
-
-.rating-stars {
-    display: inline-flex;
-    gap: 3px;
-    font-size: 1rem;
-    letter-spacing: 1px;
-}
-
-/* Estrellas individuales dentro de rating-stars */
-.rating-stars span {
-    display: inline-block;
-}
-
-/* Botón ver más */
-.boton_producto {
-    display: block;
-    margin: 0.5rem 1rem 1rem;
-    padding: 0.6rem;
-    text-align: center;
-    background: transparent;
-    color: var(--azul-profundo);
-    text-decoration: none;
-    border-radius: 50px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 2px solid var(--azul-profundo);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    margin-top: auto;
-}
-
-.boton_producto:hover {
-    background: var(--azul-profundo);
-    color: white;
-}
-
-/* Mensaje cuando no hay productos */
-.mensaje-vacio {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 3rem;
-    font-size: 1rem;
+    padding: 1rem;
     color: #888;
-    background: #fafafa;
-    border-radius: 12px;
+    font-size: 0.9rem;
 }
 
-.loading {
-    text-align: center;
-    padding: 3rem;
-    font-size: 1rem;
-    color: var(--azul-profundo);
-    grid-column: 1 / -1;
-}
-
-/* ========== RESPONSIVE ========== */
+/* Responsive */
 @media (max-width: 768px) {
-    .grid_productos {
-        gap: 1rem;
+    .catalogo {
+        flex-direction: column;
+        gap: 1.5rem;
     }
     
-    .tarjeta_producto img {
-        height: 180px;
+    .filtros {
+        width: 100%;
+        position: static;
     }
     
-    .tarjeta_producto h3 {
-        font-size: 0.9rem;
-        min-height: 2.4rem;
-    }
-    
-    .rating-number {
-        font-size: 0.75rem;
-    }
-    
-    .rating-stars {
-        font-size: 0.85rem;
+    .filtros-logo img {
+        width: 60px;
+        height: 60px;
     }
 }
 
 @media (max-width: 480px) {
-    .grid_productos {
-        grid-template-columns: 1fr;
+    .filtros {
+        padding: 1rem;
     }
     
-    .tarjeta_producto img {
-        height: 200px;
+    .filtros h2 {
+        font-size: 1.1rem;
     }
 }
