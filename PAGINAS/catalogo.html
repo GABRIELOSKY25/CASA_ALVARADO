@@ -89,28 +89,32 @@
 
         // ========== INICIALIZACIÓN ==========
         async function inicializar() {
-            if (!productosCache) {
-                await cargarProductosUnaVez();
-            }
+    // Siempre cargar productos al inicio
+            await cargarProductosUnaVez();
             
-            if (!filtrosGenerados && productosCache) {
+            // Generar filtros después de tener productos
+            if (!filtrosGenerados && productosCache && productosCache.length) {
                 await generarFiltrosDesdeProductos();
                 filtrosGenerados = true;
             }
         }
 
-        // Cargar productos UNA SOLA VEZ
+        // Cargar productos desde la API
         async function cargarProductosUnaVez() {
+            console.log('Intentando conectar a:', API_BASE);
             try {
                 const response = await fetch(`${API_BASE}/productos/todos`);
-                if (!response.ok) throw new Error('Error al cargar productos');
-                productosCache = await response.json();
-                window.todosLosProductos = productosCache;
-                renderizarProductos(productosCache);
-                return productosCache;
+                console.log('Respuesta status:', response.status);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const productos = await response.json();
+                console.log('Productos cargados:', productos.length);
+                productosCache = productos;
+                renderizarProductos(productos);
+                actualizarContadores(productos);
+                return productos;
             } catch (error) {
-                console.error('Error cargando productos:', error);
-                document.getElementById('grid-productos').innerHTML = '<div class="mensaje-vacio">❌ Error al cargar productos. ¿El servidor FastAPI está corriendo?</div>';
+                console.error('Error detallado:', error);
+                document.getElementById('grid-productos').innerHTML = `<div class="mensaje-vacio">❌ Error: ${error.message}<br>¿FastAPI está corriendo en ${API_BASE}?</div>`;
                 return [];
             }
         }
@@ -118,18 +122,18 @@
         async function generarFiltrosDesdeProductos() {
             try {
                 if (!productosCache || !productosCache.length) {
-                    document.getElementById('filtros-loading').innerHTML = '<div>No hay productos disponibles</div>';
+                    console.log('No hay productos para generar filtros');
                     return;
                 }
                 
+                // Solo Marca, Tipo y Gama
                 const marcas = [...new Set(productosCache.map(p => p.marca))].sort();
-                const categorias = [...new Set(productosCache.map(p => p.categoria))].sort();
                 const tipos = [...new Set(productosCache.map(p => p.tipo))].sort();
                 const gamas = [...new Set(productosCache.map(p => p.gamma))].sort();
                 
                 todasLasMarcas = marcas.map(nombre => ({ nombre, imagen: null }));
                 
-                generarHTMLFiltros(marcas, categorias, tipos, gamas);
+                generarHTMLFiltros(marcas, tipos, gamas);
                 actualizarContadores(productosCache);
                 
             } catch (error) {
@@ -138,11 +142,12 @@
             }
         }
 
-        function generarHTMLFiltros(marcas, categorias, tipos, gamas) {
+        function generarHTMLFiltros(marcas, tipos, gamas) {
             const container = document.getElementById('filtros-container');
             
             let html = '<h2>Filtros</h2>';
             
+            // Filtro Marcas
             html += `
                 <div class="grupo_filtro">
                     <div class="filtro-header" onclick="toggleFiltro(this)">
@@ -161,24 +166,7 @@
                 </div>
             `;
             
-            html += `
-                <div class="grupo_filtro">
-                    <div class="filtro-header" onclick="toggleFiltro(this)">
-                        <h3>Categoría</h3>
-                        <span class="flecha">▼</span>
-                    </div>
-                    <div class="filtro-contenido">
-                        ${categorias.map(cat => `
-                            <label class="opcion_filtro">
-                                <input type="checkbox" value="${cat.replace(/"/g, '&quot;')}" class="filtro-categoria" onchange="aplicarFiltros()">
-                                ${cat}
-                                <span class="contador" id="contador-categoria-${cat.replace(/ /g, '-')}">(0)</span>
-                            </label>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-            
+            // Filtro Tipos
             html += `
                 <div class="grupo_filtro">
                     <div class="filtro-header" onclick="toggleFiltro(this)">
@@ -197,6 +185,7 @@
                 </div>
             `;
             
+            // Filtro Gamas
             html += `
                 <div class="grupo_filtro">
                     <div class="filtro-header" onclick="toggleFiltro(this)">
@@ -228,17 +217,21 @@
             document.querySelectorAll('.carrusel-item').forEach(i => i.classList.remove('activo'));
             
             const marcasSeleccionadas = Array.from(document.querySelectorAll('.filtro-marca:checked')).map(cb => cb.value);
-            const categoriasSeleccionadas = Array.from(document.querySelectorAll('.filtro-categoria:checked')).map(cb => cb.value);
             const tiposSeleccionados = Array.from(document.querySelectorAll('.filtro-tipo:checked')).map(cb => cb.value);
             const gamasSeleccionadas = Array.from(document.querySelectorAll('.filtro-gamma:checked')).map(cb => cb.value);
             
+            // Si NO hay NINGÚN filtro seleccionado, mostrar TODOS los productos
+            if (marcasSeleccionadas.length === 0 && tiposSeleccionados.length === 0 && gamasSeleccionadas.length === 0) {
+                renderizarProductos(productosCache);
+                actualizarContadores(productosCache);
+                return;
+            }
+            
+            // Aplicar filtros
             let productosFiltrados = [...productosCache];
             
             if (marcasSeleccionadas.length) {
                 productosFiltrados = productosFiltrados.filter(p => marcasSeleccionadas.includes(p.marca));
-            }
-            if (categoriasSeleccionadas.length) {
-                productosFiltrados = productosFiltrados.filter(p => categoriasSeleccionadas.includes(p.categoria));
             }
             if (tiposSeleccionados.length) {
                 productosFiltrados = productosFiltrados.filter(p => tiposSeleccionados.includes(p.tipo));
@@ -253,31 +246,29 @@
 
         function actualizarContadores(productos) {
             const marcaCount = {};
-            const categoriaCount = {};
             const tipoCount = {};
             const gammaCount = {};
             
             productos.forEach(p => {
                 marcaCount[p.marca] = (marcaCount[p.marca] || 0) + 1;
-                categoriaCount[p.categoria] = (categoriaCount[p.categoria] || 0) + 1;
                 tipoCount[p.tipo] = (tipoCount[p.tipo] || 0) + 1;
                 gammaCount[p.gamma] = (gammaCount[p.gamma] || 0) + 1;
             });
             
             Object.entries(marcaCount).forEach(([nombre, total]) => {
-                const span = document.querySelector(`#contador-marca-${nombre.replace(/ /g, '-')}`);
-                if (span) span.textContent = `(${total})`;
-            });
-            Object.entries(categoriaCount).forEach(([nombre, total]) => {
-                const span = document.querySelector(`#contador-categoria-${nombre.replace(/ /g, '-')}`);
+                // Limpiar el ID para que sea válido (reemplazar caracteres especiales)
+                const idLimpio = nombre.replace(/[&/\\#,+()$~%.'":*?<>{}]/g, '-');
+                const span = document.querySelector(`#contador-marca-${idLimpio}`);
                 if (span) span.textContent = `(${total})`;
             });
             Object.entries(tipoCount).forEach(([nombre, total]) => {
-                const span = document.querySelector(`#contador-tipo-${nombre.replace(/ /g, '-')}`);
+                const idLimpio = nombre.replace(/[&/\\#,+()$~%.'":*?<>{}]/g, '-');
+                const span = document.querySelector(`#contador-tipo-${idLimpio}`);
                 if (span) span.textContent = `(${total})`;
             });
             Object.entries(gammaCount).forEach(([nombre, total]) => {
-                const span = document.querySelector(`#contador-gamma-${nombre.replace(/ /g, '-')}`);
+                const idLimpio = nombre.replace(/[&/\\#,+()$~%.'":*?<>{}]/g, '-');
+                const span = document.querySelector(`#contador-gamma-${idLimpio}`);
                 if (span) span.textContent = `(${total})`;
             });
         }
@@ -290,24 +281,32 @@
                 return;
             }
             
-            const estrellas = (calificacion) => {
+            const estrellasHTML = (calificacion) => {
+                const estrellas = Math.round(calificacion || 0);
                 let stars = '';
+                // Determinar el color según si hay calificación o no
+                const colorEstrella = estrellas > 0 ? '#ffc107' : '#ccc';
+                
                 for (let i = 1; i <= 5; i++) {
-                    stars += i <= calificacion ? '⭐' : '☆';
+                    const caracter = i <= estrellas ? '★' : '☆';
+                    stars += `<span style="color: ${colorEstrella};">${caracter}</span>`;
                 }
                 return stars;
             };
             
             grid.innerHTML = productos.map(producto => `
                 <div class="tarjeta_producto" 
-                     data-marca="${producto.marca}"
-                     data-categoria="${producto.categoria}"
-                     data-tipo="${producto.tipo}"
-                     data-gamma="${producto.gamma}">
+                    data-marca="${producto.marca}"
+                    data-categoria="${producto.categoria}"
+                    data-tipo="${producto.tipo}"
+                    data-gamma="${producto.gamma}">
                     <img src="${producto.imagen}" alt="${producto.modelo}" onerror="this.src='https://via.placeholder.com/300x220?text=Sin+imagen'">
                     <h3>${producto.modelo}</h3>
                     <p class="marca-producto">${producto.marca}</p>
-                    <div class="rating">${estrellas(producto.estrellas || 0)}</div>
+                    <div class="rating">
+                        <span class="rating-number">${producto.estrellas || 0}</span>
+                        <span class="rating-stars">${estrellasHTML(producto.estrellas)}</span>
+                    </div>
                     <a href="producto.html?modelo=${encodeURIComponent(producto.modelo)}" class="boton_producto">Ver más</a>
                 </div>
             `).join('');
@@ -394,6 +393,9 @@
                             cb.checked = (cb.value === marcaSeleccionada);
                         });
                         
+                        // Limpiar otros filtros
+                        document.querySelectorAll('.filtro-tipo, .filtro-gamma').forEach(cb => cb.checked = false);
+                        
                         aplicarFiltros();
                     }
                 }
@@ -413,7 +415,11 @@
                 }
                 
                 if (terminoBusqueda === '') {
-                    cargarProductosUnaVez();
+                    // Limpiar todos los filtros y mostrar todos los productos
+                    document.querySelectorAll('.filtro-marca, .filtro-tipo, .filtro-gamma').forEach(cb => cb.checked = false);
+                    document.querySelectorAll('.carrusel-item').forEach(i => i.classList.remove('activo'));
+                    renderizarProductos(productosCache);
+                    actualizarContadores(productosCache);
                     return;
                 }
                 
@@ -450,7 +456,7 @@
         // INICIALIZACIÓN
         document.addEventListener('DOMContentLoaded', () => {
             cargarCarruselMarcas();
-            inicializar();
+            inicializar();  // Esta función ahora carga los productos
             inicializarBuscador();
             inicializarFiltroCarrusel();
         });

@@ -3,72 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Producto</title>
+    <title>Producto - Casa Alvarado</title>
 
     <link rel="stylesheet" href="../CSS/index/main.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
 
     <div id="header"></div> 
+    
     <main>
         <section class="producto_body">
-        <!-- PRODUCTO PRINCIPAL -->
-        <section class="producto_main">   
-        <section class="producto_detalle">
+            <!-- PRODUCTO PRINCIPAL -->
+            <div class="producto_main">   
+                <div class="producto_detalle">
 
-            <div class="producto_imagen">
-            <img id="producto-img" src="" alt="Producto">
+                    <div class="producto_imagen">
+                        <img id="producto-img" src="" alt="Producto">
+                    </div>
+
+                    <div class="producto_info">
+                        <div class="producto_info_header">
+                            <p class="marca" id="producto-marca"></p>
+                            <h1 id="producto-modelo"></h1>
+                        </div>
+
+                        <div class="rating_container">
+                            <div class="rating_stars_display" id="rating-stars-display"></div>
+                            <span class="rating_num_display" id="rating-num"></span>
+                        </div>
+
+                        <div class="descripcion_container">
+                            <h3>Descripción del producto</h3>
+                            <p class="descripcion" id="producto-descripcion"></p>
+                        </div>
+
+                        <div class="botones_container">
+                            <button class="btn btn_contacto" id="btn-contactar">
+                                <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                            </button>
+                            <a href="catalogo.html" class="btn btn_volver">← Volver al catálogo</a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <div class="producto_info">
-
-            <p class="marca" id="producto-marca"></p>
-
-            <h1 id="producto-modelo"></h1>
-            <p class="marca">Marca: <span id="producto-marca"></span></p>
-
-
-            <div class="rating">
-
-                <span id="rating-num"></span>
-
-                <input type="radio" name="estrella" id="star5">
-                <label for="star5">★</label>
-
-                <input type="radio" name="estrella" id="star4">
-                <label for="star4">★</label>
-
-                <input type="radio" name="estrella" id="star3">
-                <label for="star3">★</label>
-
-                <input type="radio" name="estrella" id="star2">
-                <label for="star2">★</label>
-
-                <input type="radio" name="estrella" id="star1">
-                <label for="star1">★</label>
-
-            </div>
-
-            <p class="descripcion" id="producto-descripcion"></p>
-
-            <div class="boton">
-                <button class="btn btn_contacto">Contactar</button>
-            </div>
-
-            </div>
-
-        </section>
-        </section>
-
-        <!-- PRODUCTOS SIMILARES -->
-        <section class="tarjeta_productos">
-            <h2>Productos Similares</h2>
-            <div class="grid_productos" id="productos-similares"></div>
-        </section>
+            <!-- PRODUCTOS SIMILARES -->
+            <section class="tarjeta_productos">
+                <h2>Productos Similares</h2>
+                <div class="grid_productos" id="productos-similares">
+                    <div class="loading">Cargando productos similares...</div>
+                </div>
+            </section>
         </section>
     </main>
+
     <div id="footer"></div>
 
     <script src="../JS/include.js"></script>
