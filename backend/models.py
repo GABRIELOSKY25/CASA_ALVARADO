@@ -9,8 +9,18 @@ from database import Base
 class Familia(Base):
     __tablename__ = "Familia"
 
-    id_familia = Column(Integer, primary_key=True, autoincrement=True)
+    id_familia = Column(
+        Integer,
+        primary_key=True,
+        autoincrement=True
+    )
+
     nombre = Column(String(45), nullable=False)
+
+    categorias = relationship(
+        "Categoria",
+        back_populates="familia"
+    )
 
 
 # =========================
@@ -35,8 +45,18 @@ class Marca(Base):
 class Categoria(Base):
     __tablename__ = "Categoria"
 
-    id_categoria = Column(Integer, primary_key=True, autoincrement=True)
-    nombre = Column(String(45), nullable=False)
+    id_categoria = Column(Integer, primary_key=True)
+    nombre = Column(String(45))
+
+    id_familia = Column(
+        Integer,
+        ForeignKey("Familia.id_familia")
+    )
+
+    familia = relationship(
+        "Familia",
+        back_populates="categorias"
+    )
 
 
 # =========================

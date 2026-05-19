@@ -18,51 +18,38 @@ document.addEventListener("componentesCargados", () => {
         });
     }
 
-// Datos de categorías y subcategorías (COMPLETO según la imagen)
-const datos = {
-    Audio: [
-        "Bafles",
-        "Mezcladora",
-        "Bocina",
-        "Micrófonos"
-    ],
-    Instrumentos: [
-        "Cuerda",
-        "Guitarra",
-        "Bajos",
-        "Violines",
-        "Docerola"
-    ],
-    Percusion: {
-        Bateria: ["Infantil", "Junior", "Profesional"],
-        Congos: [],
-        Tarola: [],
-        Bongos: [],
-        Timbales: [],
-        Panderos: [],
-        Cencerro: []
-    },
-    Viento: {
-        Saxofón: ["Tenor", "Alto"],
-        Trompeta: [], // Vacío, se mostrará como item normal
-        Trombón: [],  // Vacío, se mostrará como item normal
-        Flauta: []    // Vacío, se mostrará como item normal
-    },
-    Teclado: [],
-    "Iluminación LED": [
-        "Par LED",
-        "Cabeza Robótica",
-        "Láser",
-        "Estrobo",
-        "Cámara de Humo"
-    ]
-}
 
 // Contenedores
 const contCat = document.getElementById("categorias")
 const titulo = document.getElementById("tituloCategoria")
 const grid = document.getElementById("gridSubcategorias")
 
+let datos = {}
+
+async function cargarMenuDesdeAPI() {
+
+    try {
+
+        const response = await fetch(
+            'http://127.0.0.1:8000/menu/categorias'
+        )
+
+        if (!response.ok) {
+            throw new Error('Error cargando menú')
+        }
+
+        datos = await response.json()
+
+        generarCategorias()
+
+    } catch(error) {
+
+        console.error(
+            'Error cargando menú:',
+            error
+        )
+    }
+}
 // Función para crear elemento expandible (SOLO para los que tienen items)
 function crearElementoExpandible(nombre, items) {
     const contenedor = document.createElement("div")
@@ -113,8 +100,8 @@ function crearItemSimple(nombre) {
     
     // Opcional: agregar funcionalidad de clic
     item.addEventListener("click", () => {
-        console.log(`Seleccionaste: ${nombre}`)
-        // Aquí puedes agregar lo que quieras que pase al hacer clic
+    window.location.href =
+        `/Paginas/catalogo.html?categoria=${encodeURIComponent(nombre)}`;
     })
     
     return item
@@ -160,19 +147,30 @@ function mostrarSubcategorias(cat){
 }
 
 // Generar categorías dinámicamente
-const categorias = Object.keys(datos)
-categorias.forEach(cat => {
-    const div = document.createElement("div")
-    div.textContent = cat
-    div.classList.add("cat")
+function generarCategorias() {
 
-    div.addEventListener("click", ()=>{
-        mostrarSubcategorias(cat)
+    contCat.innerHTML = ""
+
+    const categorias = Object.keys(datos)
+
+    categorias.forEach(cat => {
+
+        const div = document.createElement("div")
+
+        div.textContent = cat
+
+        div.classList.add("cat")
+
+        div.addEventListener("click", () => {
+            mostrarSubcategorias(cat)
+        })
+
+        contCat.appendChild(div)
     })
 
-    contCat.appendChild(div)
-})
-
-// Seleccionar la primera categoría por defecto
-mostrarSubcategorias(categorias[0])
+    if (categorias.length > 0) {
+        mostrarSubcategorias(categorias[0])
+    }
+}
+cargarMenuDesdeAPI()
 })

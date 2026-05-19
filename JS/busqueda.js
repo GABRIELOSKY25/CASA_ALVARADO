@@ -7,6 +7,11 @@ let productosCache = null;
 let filtrosGenerados = false;
 let timeoutBuscador = null;
 
+const urlParams = new URLSearchParams(window.location.search);
+
+const categoriaURL =
+    urlParams.get('categoria');
+    
 // ========== INICIALIZACIÓN ==========
 async function inicializar() {
     await cargarProductosUnaVez();
@@ -36,8 +41,23 @@ async function cargarProductosUnaVez() {
 
         productosCache = productos;
 
-        renderizarProductos(productos);
-        actualizarContadores(productos);
+// ========= FILTRO AUTOMÁTICO POR CATEGORÍA =========
+if (categoriaURL) {
+
+    const productosFiltrados =
+        productos.filter(
+            p => p.categoria === categoriaURL
+        );
+
+    renderizarProductos(productosFiltrados);
+    actualizarContadores(productosFiltrados);
+
+} else {
+
+    renderizarProductos(productos);
+    actualizarContadores(productos);
+
+}
 
         return productos;
 

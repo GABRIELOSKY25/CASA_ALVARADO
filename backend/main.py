@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from database import SessionLocal
-from models import Producto, Calificacion, Gamma, Marca, Categoria, Tipo
+from models import Producto, Calificacion, Gamma, Marca, Categoria, Tipo, Familia
 from sqlalchemy import func
 from typing import Optional, List
 from pydantic import BaseModel
@@ -39,6 +39,32 @@ app.add_middleware(
 def inicio():
     return {"mensaje": "Conectado a Casa Alvarado API"}
 
+@app.get("/menu/categorias")
+def obtener_menu():
+    db = SessionLocal()
+
+    try:
+
+        familias = db.query(Familia).all()
+
+        resultado = {}
+
+        for familia in familias:
+
+            categorias = db.query(Categoria).filter(
+                Categoria.id_familia == familia.id_familia
+            ).all()
+
+            resultado[familia.nombre] = [
+                categoria.nombre
+                for categoria in categorias
+            ]
+
+        return resultado
+
+    finally:
+        db.close()
+        
 @app.get("/producto/{modelo}")
 def obtener_producto(modelo: str):
     db = SessionLocal()
@@ -169,7 +195,7 @@ def productos_similares(modelo: str):
             )
             .group_by(Producto.modelo)
             .order_by(func.avg(Calificacion.estrellas).desc())
-            .limit(3)
+            .limit(4)
             .all()
         )
 

@@ -176,7 +176,13 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 USE Casa_Alvarado;
 
 -- Insertar datos en Familia
-INSERT INTO Familia (nombre) VALUES ('Audio');
+INSERT INTO Familia (nombre) 
+VALUES ('Audio'),
+('Instrumentos'),
+('Percusion'),
+('Viento'),
+('Teclado'),
+('Iluminación LED');
 
 -- Insertar datos en Categoria
 INSERT INTO Categoria (nombre, id_familia) VALUES 
@@ -336,3 +342,51 @@ INSERT INTO Marca (nombre, imagen) VALUES
 ('lennon', 'https://http2.mlstatic.com/D_NQ_NP_685043-MLA79346174970_092024-O.webp'),
 ('KRIEG', 'https://testedinidaho.com/wp-content/uploads/2017/08/krieg-logo-1.png'),
 ('STAGG', 'https://m.media-amazon.com/images/S/stores-image-uploads-na-prod/a/AmazonStores/ATVPDKIKX0DER/ae6813d4f6e492ae97bf6fc70284288a.w3000.h861.png');
+
+
+-- =========================
+-- INSERTAR CATEGORÍAS (con id_familia correspondiente)
+-- =========================
+
+-- Familia Audio (id_familia = 1)
+INSERT INTO Categoria (nombre, id_familia) VALUES
+('Bafles', 1),
+('Mezcladora', 1),
+('Bocina', 1);
+
+-- Familia Instrumentos (id_familia = 2)
+INSERT INTO Categoria (nombre, id_familia) VALUES
+('Cuerda', 2),
+('Guitarra', 2),
+('Bajos', 2),
+('Violines', 2),
+('Docerola', 2);
+
+-- Familia Percusion (id_familia = 3)
+INSERT INTO Categoria (nombre, id_familia) VALUES
+('Bateria', 3),
+('Congos', 3),
+('Tarola', 3),
+('Bongos', 3),
+('Timbales', 3),
+('Panderos', 3),
+('Cencerro', 3);
+
+-- Familia Viento (id_familia = 4)
+INSERT INTO Categoria (nombre, id_familia) VALUES
+('Saxofón', 4),
+('Trompeta', 4),
+('Trombón', 4),
+('Flauta', 4);
+
+-- Familia Teclado (id_familia = 5)
+INSERT INTO Categoria (nombre, id_familia) VALUES
+('Teclado', 5);
+
+-- Familia Iluminación LED (id_familia = 6)
+INSERT INTO Categoria (nombre, id_familia) VALUES
+('Par LED', 6),
+('Cabeza Robótica', 6),
+('Láser', 6),
+('Estrobo', 6),
+('Cámara de Humo', 6);
