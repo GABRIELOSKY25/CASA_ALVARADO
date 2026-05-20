@@ -30,7 +30,9 @@ class Marca(Base):
     __tablename__ = "Marca"
 
     id_marca = Column(Integer, primary_key=True, autoincrement=True)
+
     nombre = Column(String(45), nullable=False)
+
     imagen = Column(Text)
 
     prioridad = Column(
@@ -39,6 +41,14 @@ class Marca(Base):
         default='3'
     )
 
+    id_categoria = Column(
+        Integer,
+        ForeignKey("Categoria.id_categoria"),
+        nullable=False
+    )
+
+    categoria = relationship("Categoria")
+    
 # =========================
 # CATEGORIA
 # =========================
@@ -95,12 +105,10 @@ class Producto(Base):
 )
 
     id_marca = Column(Integer, ForeignKey("Marca.id_marca"), nullable=False)
-    id_categoria = Column(Integer, ForeignKey("Categoria.id_categoria"), nullable=False)
     id_tipo = Column(Integer, ForeignKey("Tipo.id_tipo"), nullable=False)
     id_gamma = Column(Integer, ForeignKey("Gamma.id_gamma"), nullable=False)
 
     marca = relationship("Marca")
-    categoria = relationship("Categoria")
     tipo = relationship("Tipo")
     gamma = relationship("Gamma")
 
@@ -118,18 +126,38 @@ class Producto(Base):
 class Calificacion(Base):
     __tablename__ = "Calificacion"
 
-    id_calificacion = Column(Integer, primary_key=True, autoincrement=True)
+    id_calificacion = Column(
+        Integer,
+        primary_key=True,
+        autoincrement=True
+    )
+
     estrellas = Column(Integer, nullable=False)
+
     fecha = Column(Date)
 
     modelo = Column(
         String(45),
-        ForeignKey("Producto.modelo", ondelete="CASCADE", onupdate="CASCADE"),
+        ForeignKey(
+            "Producto.modelo",
+            ondelete="CASCADE",
+            onupdate="CASCADE"
+        ),
         nullable=False
     )
 
-    # relación inversa
-    producto = relationship("Producto", back_populates="calificaciones")
+    correo = Column(
+        String(100),
+        ForeignKey("Usuario.correo"),
+        nullable=False
+    )
+
+    producto = relationship(
+        "Producto",
+        back_populates="calificaciones"
+    )
+
+    usuario = relationship("Usuario")
 
 # =========================
 # USUARIO

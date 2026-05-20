@@ -9,8 +9,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Producto</title>
-
-    <link rel="stylesheet" href="crud.css">
     <link rel="stylesheet" href="../CSS/index/main.css">
 </head>
 <body>
@@ -28,17 +26,21 @@
             <textarea id="descripcion"
             placeholder="Descripción"></textarea>
 
-            <input type="number" id="id_marca"
-            placeholder="ID Marca" required>
+            <select id="id_marca" required>
+            <option value="">Seleccione una marca</option>
+            </select>
 
-            <input type="number" id="id_categoria"
-            placeholder="ID Categoría" required>
+            <select id="id_categoria" required>
+            <option value="">Seleccione una categoria</option>
+            </select>
 
-            <input type="number" id="id_tipo"
-            placeholder="ID Tipo" required>
+            <select id="id_tipo" required>
+            <option value="">Seleccione un tipo</option>
+            </select>
 
-            <input type="number" id="id_gamma"
-            placeholder="ID Gamma" required>
+            <select id="id_gamma" required>
+            <option value="">Seleccione una gamma</option>
+            </select>
 
             <select id="novedad">
 
@@ -57,48 +59,8 @@
     </div>
 
 </section>
+<script src="../JS/add.js"></script>
 
-<script>
-
-const API_BASE = 'http://localhost:8000';
-
-document.getElementById('formAgregar')
-.addEventListener('submit', async(e)=>{
-
-    e.preventDefault();
-
-    const datos = {
-
-        modelo:modelo.value,
-        imagen:imagen.value,
-        descripcion:descripcion.value,
-        novedad:novedad.value,
-
-        id_marca:Number(id_marca.value),
-        id_categoria:Number(id_categoria.value),
-        id_tipo:Number(id_tipo.value),
-        id_gamma:Number(id_gamma.value)
-    };
-
-    const respuesta = await fetch(
-        `${API_BASE}/productos`,
-        {
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(datos)
-        }
-    );
-
-    const data = await respuesta.json();
-
-    alert(data.mensaje);
-
-    formAgregar.reset();
-});
-
-</script>
 
 </body>
 </html>

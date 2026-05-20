@@ -12,6 +12,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const categoriaURL =
     urlParams.get('categoria');
     
+const familiaURL =
+    urlParams.get('familia');
+
 // ========== INICIALIZACIÓN ==========
 async function inicializar() {
     await cargarProductosUnaVez();
@@ -42,22 +45,31 @@ async function cargarProductosUnaVez() {
         productosCache = productos;
 
 // ========= FILTRO AUTOMÁTICO POR CATEGORÍA =========
-if (categoriaURL) {
+// ========= FILTRO AUTOMÁTICO =========
+let productosFiltrados = [...productosCache];
 
-    const productosFiltrados =
-        productos.filter(
-            p => p.categoria === categoriaURL
-        );
-
-    renderizarProductos(productosFiltrados);
-    actualizarContadores(productosFiltrados);
-
-} else {
-
-    renderizarProductos(productos);
-    actualizarContadores(productos);
-
+// Filtrar por familia
+if (familiaURL) {
+    productosFiltrados = productosFiltrados.filter(
+        p => p.familia?.toLowerCase() === familiaURL.toLowerCase()
+    );
 }
+
+// Filtrar por categoría
+if (categoriaURL) {
+    productosFiltrados = productosFiltrados.filter(
+        p => p.categoria?.toLowerCase() === categoriaURL.toLowerCase()
+    );
+}
+
+// Si no encontró productos, mostrar todos
+if (productosFiltrados.length === 0) {
+    productosFiltrados = [...productosCache];
+}
+
+renderizarProductos(productosFiltrados);
+
+actualizarContadores(productosFiltrados);
 
         return productos;
 

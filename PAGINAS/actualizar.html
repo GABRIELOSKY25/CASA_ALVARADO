@@ -1,8 +1,3 @@
-<!-- ================================================= -->
-<!-- EDITAR PRODUCTO -->
-<!-- editar-producto.html -->
-<!-- ================================================= -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Producto</title>
 
-    <link rel="stylesheet" href="crud.css">
     <link rel="stylesheet" href="../CSS/index/main.css">
 </head>
 <body>
@@ -41,13 +35,14 @@
 
             <textarea id="descripcion"></textarea>
 
-            <input type="number" id="id_marca">
+            <select id="id_marca"></select>
 
-            <input type="number" id="id_categoria">
+<select id="id_categoria"></select>
 
-            <input type="number" id="id_tipo">
+<select id="id_tipo"></select>
 
-            <input type="number" id="id_gamma">
+<select id="id_gamma"></select>
+
 
             <select id="novedad">
 
@@ -67,72 +62,7 @@
 
 </section>
 
-<script>
-
-const API_BASE = 'http://localhost:8000';
-
-let modeloOriginal = '';
-
-async function buscarProducto(){
-
-    const modeloBuscar = buscarModelo.value;
-
-    const res = await fetch(
-        `${API_BASE}/productos/buscar/${modeloBuscar}`
-    );
-
-    const productos = await res.json();
-
-    if(productos.length === 0){
-
-        alert('Producto no encontrado');
-
-        return;
-    }
-
-    const producto = productos[0];
-
-    modeloOriginal = producto.modelo;
-
-    modelo.value = producto.modelo;
-    imagen.value = producto.imagen;
-    descripcion.value = producto.descripcion;
-}
-
-formEditar.addEventListener('submit', async(e)=>{
-
-    e.preventDefault();
-
-    const datos = {
-
-        modelo:modelo.value,
-        imagen:imagen.value,
-        descripcion:descripcion.value,
-        novedad:novedad.value,
-
-        id_marca:Number(id_marca.value),
-        id_categoria:Number(id_categoria.value),
-        id_tipo:Number(id_tipo.value),
-        id_gamma:Number(id_gamma.value)
-    };
-
-    const respuesta = await fetch(
-        `${API_BASE}/productos/${modeloOriginal}`,
-        {
-            method:'PUT',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(datos)
-        }
-    );
-
-    const data = await respuesta.json();
-
-    alert(data.mensaje);
-});
-
-</script>
+<script src="../JS/modificar.js"></script>
 
 </body>
 </html>

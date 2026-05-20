@@ -1,8 +1,3 @@
-<!-- ================================================= -->
-<!-- ELIMINAR PRODUCTO -->
-<!-- eliminar-producto.html -->
-<!-- ================================================= -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,34 +17,114 @@
         <h1>Eliminar Producto</h1>
 
         <input
-        type="text"
-        id="modeloEliminar"
-        placeholder="Modelo del producto">
+            type="text"
+            id="modeloEliminarInput"
+            placeholder="Modelo del producto">
 
-        <button onclick="eliminarProducto()">
-            Eliminar
-        </button>
+            <button onclick="buscarProducto()">
+                Buscar
+            </button>
 
-    </div>
+            <div id="resultado"></div>
 
-</section>
+                </div>
 
-<script>
+            </section>
+
+<script id="sq1r3v">
 
 const API_BASE = 'http://localhost:8000';
 
+let modeloEliminar = '';
+
+async function buscarProducto(){
+
+    const modelo = modeloEliminarInput.value;
+
+    const respuesta = await fetch(
+        `${API_BASE}/productos/buscar/${modelo}`
+    );
+
+    const productos = await respuesta.json();
+
+    const resultado = document.getElementById(
+        'resultado'
+    );
+
+    if(productos.length === 0){
+
+        resultado.innerHTML = `
+            <p>Producto no encontrado</p>
+        `;
+
+        return;
+    }
+
+    const producto = productos[0];
+
+    modeloEliminar = producto.modelo;
+
+    resultado.innerHTML = `
+
+        <table class="tabla-producto">
+
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Modelo</th>
+                    <th>Marca</th>
+                    <th>Tipo</th>
+                    <th>Gamma</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+
+                    <td>
+                        <img 
+                            src="${producto.imagen}"
+                            width="80"
+                        >
+                    </td>
+
+                    <td>
+                        ${producto.modelo}
+                    </td>
+
+                    <td>
+                        ${producto.marca}
+                    </td>
+
+                    <td>
+                        ${producto.tipo}
+                    </td>
+
+                    <td>
+                        ${producto.gamma}
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+
+        <button onclick="eliminarProducto()">
+            Confirmar Eliminación
+        </button>
+    `;
+}
+
 async function eliminarProducto(){
 
-    const modelo = modeloEliminar.value;
-
     const confirmar = confirm(
-        `¿Eliminar ${modelo}?`
+        `¿Eliminar ${modeloEliminar}?`
     );
 
     if(!confirmar) return;
 
     const respuesta = await fetch(
-        `${API_BASE}/productos/${modelo}`,
+        `${API_BASE}/productos/${modeloEliminar}`,
         {
             method:'DELETE'
         }
@@ -58,6 +133,8 @@ async function eliminarProducto(){
     const data = await respuesta.json();
 
     alert(data.mensaje);
+
+    location.reload();
 }
 
 </script>

@@ -33,6 +33,7 @@ class MarcaResponse(BaseModel):
     nombre: str
     imagen: Optional[str] = None
 
+
 class SignInRequest(BaseModel):
     nombre: str
     apellido: str
@@ -130,7 +131,7 @@ def obtener_producto(modelo: str):
             "descripcion": producto.descripcion,
             "estrellas": int(promedio or 0),
             "marca": producto.marca.nombre,
-            "categoria": producto.categoria.nombre,
+            "categoria": producto.marca.categoria.nombre,
             "tipo": producto.tipo.nombre,
             "gamma": producto.gamma.nombre
         }
@@ -162,7 +163,7 @@ def obtener_productos_novedad():
                 "descripcion": producto.descripcion,
                 "estrellas": int(promedio or 0),
                 "marca": producto.marca.nombre,
-                "categoria": producto.categoria.nombre,
+                "categoria": producto.marca.categoria.nombre,
                 "tipo": producto.tipo.nombre,
                 "gamma": producto.gamma.nombre
             })
@@ -197,7 +198,7 @@ def obtener_todos_productos():
                 "descripcion": producto.descripcion,
                 "estrellas": int(promedio or 0),
                 "marca": producto.marca.nombre,
-                "categoria": producto.categoria.nombre,
+                "categoria": producto.marca.categoria.nombre,
                 "tipo": producto.tipo.nombre,
                 "gamma": producto.gamma.nombre
             })
@@ -223,12 +224,13 @@ def productos_similares(modelo: str):
                 Producto,
                 func.avg(Calificacion.estrellas).label("promedio")
             )
+            .join(Marca)
             .outerjoin(
                 Calificacion,
                 Producto.modelo == Calificacion.modelo
             )
             .filter(
-                Producto.id_categoria == producto_actual.id_categoria,
+                Marca.id_categoria == producto_actual.marca.id_categoria,
                 Producto.modelo != modelo
             )
             .group_by(Producto.modelo)
@@ -244,7 +246,7 @@ def productos_similares(modelo: str):
                 "imagen": producto.imagen,
                 "descripcion": producto.descripcion,
                 "marca": producto.marca.nombre,
-                "categoria": producto.categoria.nombre,
+                "categoria": producto.marca.categoria.nombre,
                 "estrellas": round(promedio or 0, 1)
             })
 
@@ -253,33 +255,6 @@ def productos_similares(modelo: str):
     finally:
         db.close()
 
-@app.get("/productos/todos", response_model=List[ProductoResponse])
-def obtener_todos_productos():
-    """Obtener todos los productos con sus calificaciones promedio"""
-    db = SessionLocal()
-    try:
-        productos = db.query(Producto).all()
-        resultado = []
-        
-        for producto in productos:
-            promedio = db.query(func.avg(Calificacion.estrellas)).filter(
-                Calificacion.modelo == producto.modelo
-            ).scalar()
-            
-            resultado.append({
-                "modelo": producto.modelo,
-                "imagen": producto.imagen,
-                "descripcion": producto.descripcion,
-                "estrellas": int(promedio or 0),
-                "marca": producto.marca.nombre,
-                "categoria": producto.categoria.nombre,
-                "tipo": producto.tipo.nombre,
-                "gamma": producto.gamma.nombre
-            })
-        
-        return resultado
-    finally:
-        db.close()
 
 @app.get("/marcas/todas", response_model=List[MarcaResponse])
 def obtener_todas_marcas():
@@ -336,7 +311,7 @@ def buscar_productos_por_modelo(termino: str):
                 "descripcion": producto.descripcion,
                 "estrellas": int(promedio or 0),
                 "marca": producto.marca.nombre,
-                "categoria": producto.categoria.nombre,
+                "categoria": producto.marca.categoria.nombre,
                 "tipo": producto.tipo.nombre,
                 "gamma": producto.gamma.nombre
             })
@@ -385,7 +360,7 @@ def filtrar_productos(
                 "descripcion": producto.descripcion,
                 "estrellas": int(promedio or 0),
                 "marca": producto.marca.nombre,
-                "categoria": producto.categoria.nombre,
+                "categoria": producto.marca.categoria.nombre,
                 "tipo": producto.tipo.nombre,
                 "gamma": producto.gamma.nombre
             })
@@ -393,7 +368,6 @@ def filtrar_productos(
         return resultado
     finally:
         db.close()
-
 
 # RUTAS DEL LOGIN Y SIGN IN
 @app.post("/signin")

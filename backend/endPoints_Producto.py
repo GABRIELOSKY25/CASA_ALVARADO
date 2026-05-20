@@ -5,7 +5,8 @@ from models import (
     Marca,
     Tipo,
     Gamma,
-    Calificacion
+    Calificacion, 
+    Categoria
 )
 
 from sqlalchemy import func
@@ -72,7 +73,7 @@ def obtener_todos_productos():
                 "descripcion": producto.descripcion,
                 "estrellas": int(promedio or 0),
                 "marca": producto.marca.nombre,
-                "categoria": producto.categoria.nombre,
+                "categoria": producto.marca.categoria.nombre,
                 "tipo": producto.tipo.nombre,
                 "gamma": producto.gamma.nombre
             })
@@ -109,15 +110,20 @@ def buscar_producto(modelo: str):
             ).scalar()
 
             resultado.append({
-                "modelo": producto.modelo,
-                "imagen": producto.imagen,
-                "descripcion": producto.descripcion,
-                "estrellas": int(promedio or 0),
-                "marca": producto.marca.nombre,
-                "categoria": producto.categoria.nombre,
-                "tipo": producto.tipo.nombre,
-                "gamma": producto.gamma.nombre
-            })
+            "modelo": producto.modelo,
+            "imagen": producto.imagen,
+            "descripcion": producto.descripcion,
+
+            "id_marca": producto.id_marca,
+            "id_categoria": producto.marca.id_categoria,
+            "id_tipo": producto.id_tipo,
+            "id_gamma": producto.id_gamma,
+
+            "marca": producto.marca.nombre,
+            "categoria": producto.marca.categoria.nombre,
+            "tipo": producto.tipo.nombre,
+            "gamma": producto.gamma.nombre
+        })
 
         return resultado
 
@@ -156,7 +162,7 @@ def filtrar_por_marca(marca: str):
                 "descripcion": producto.descripcion,
                 "estrellas": int(promedio or 0),
                 "marca": producto.marca.nombre,
-                "categoria": producto.categoria.nombre,
+                "categoria": producto.marca.categoria.nombre,
                 "tipo": producto.tipo.nombre,
                 "gamma": producto.gamma.nombre
             })
@@ -198,7 +204,7 @@ def filtrar_por_tipo(tipo: str):
                 "descripcion": producto.descripcion,
                 "estrellas": int(promedio or 0),
                 "marca": producto.marca.nombre,
-                "categoria": producto.categoria.nombre,
+                "categoria": producto.marca.categoria.nombre,
                 "tipo": producto.tipo.nombre,
                 "gamma": producto.gamma.nombre
             })
@@ -240,7 +246,7 @@ def filtrar_por_gamma(gamma: str):
                 "descripcion": producto.descripcion,
                 "estrellas": int(promedio or 0),
                 "marca": producto.marca.nombre,
-                "categoria": producto.categoria.nombre,
+                "categoria": producto.marca.categoria.nombre,
                 "tipo": producto.tipo.nombre,
                 "gamma": producto.gamma.nombre
             })
@@ -368,3 +374,102 @@ def eliminar_producto(modelo: str):
 
     finally:
         db.close()
+        
+# =========================
+# OBTENER MARCAS
+# =========================
+
+@router.get("/marcas")
+def obtener_marcas():
+
+    db = SessionLocal()
+
+    try:
+
+        marcas = db.query(Marca).all()
+
+        return [
+            {
+                "id": marca.id_marca,
+                "nombre": marca.nombre
+            }
+            for marca in marcas
+        ]
+
+    finally:
+        db.close()
+
+
+# =========================
+# OBTENER CATEGORIAS
+# =========================
+
+@router.get("/categorias")
+def obtener_categorias():
+
+    db = SessionLocal()
+
+    try:
+
+        categorias = db.query(Categoria).all()
+
+        return [
+            {
+                "id": categoria.id_categoria,
+                "nombre": categoria.nombre
+            }
+            for categoria in categorias
+        ]
+
+    finally:
+        db.close()
+
+
+# =========================
+# OBTENER TIPOS
+# =========================
+
+@router.get("/tipos")
+def obtener_tipos():
+
+    db = SessionLocal()
+
+    try:
+
+        tipos = db.query(Tipo).all()
+
+        return [
+            {
+                "id": tipo.id_tipo,
+                "nombre": tipo.nombre
+            }
+            for tipo in tipos
+        ]
+
+    finally:
+        db.close()
+
+
+# =========================
+# OBTENER GAMMAS
+# =========================
+
+@router.get("/gammas")
+def obtener_gammas():
+
+    db = SessionLocal()
+
+    try:
+
+        gammas = db.query(Gamma).all()
+
+        return [
+            {
+                "id": gamma.id_gamma,
+                "nombre": gamma.nombre
+            }
+            for gamma in gammas
+        ]
+
+    finally:
+        db.close()        
