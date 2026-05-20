@@ -38,6 +38,20 @@
                             <span class="rating_num_display" id="rating-num"></span>
                         </div>
 
+                        <!-- Sección de calificación (solo visible si el usuario ha iniciado sesión) -->
+                        <div class="calificacion-usuario" id="calificacionUsuario" style="display: none;">
+                            <h3>Califica este producto</h3>
+                            <div class="estrellas-calificacion" id="estrellasCalificacion">
+                                <i class="far fa-star" data-valor="1"></i>
+                                <i class="far fa-star" data-valor="2"></i>
+                                <i class="far fa-star" data-valor="3"></i>
+                                <i class="far fa-star" data-valor="4"></i>
+                                <i class="far fa-star" data-valor="5"></i>
+                            </div>
+                            <button id="btnEnviarCalificacion" class="btn-calificar">Enviar calificación</button>
+                            <p id="mensajeCalificacion" class="mensaje-calificacion"></p>
+                        </div>
+
                         <div class="descripcion_container">
                             <h3>Descripción del producto</h3>
                             <p class="descripcion" id="producto-descripcion"></p>
@@ -70,6 +84,8 @@
     <script src="../JS/app.js"></script>
     <script src="../JS/producto.js"></script>
     <script src="../JS/productos_detalle.js"></script>
+    <script src="../JS/calificacion.js"></script>
 
 </body>
+</html>
 </html>

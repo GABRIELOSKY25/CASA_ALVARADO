@@ -284,3 +284,73 @@
         font-size: 1rem;
     }
 }
+
+/* ========== CALIFICACIÓN DE USUARIO ========== */
+.calificacion-usuario {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 16px;
+    margin: 15px 0;
+}
+
+.calificacion-usuario h3 {
+    font-size: 1.1rem;
+    color: #003b6f;
+    margin-bottom: 12px;
+    font-family: 'Prata', serif;
+}
+
+.estrellas-calificacion {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.estrellas-calificacion i {
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.estrellas-calificacion i:hover {
+    transform: scale(1.1);
+}
+
+.btn-calificar {
+    background: #003b6f;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-calificar:hover {
+    background: #1e4d8f;
+    transform: translateY(-2px);
+}
+
+.mensaje-calificacion {
+    margin-top: 12px;
+    font-size: 0.8rem;
+}
+
+.rating_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.rating_stars_display {
+    display: flex;
+    gap: 3px;
+}
+
+.rating_num_display {
+    color: #64748b;
+    font-size: 0.85rem;
+}

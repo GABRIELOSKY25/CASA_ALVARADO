@@ -126,37 +126,27 @@ class Producto(Base):
 class Calificacion(Base):
     __tablename__ = "Calificacion"
 
-    id_calificacion = Column(
-        Integer,
-        primary_key=True,
-        autoincrement=True
-    )
-
+    id_calificacion = Column(Integer, primary_key=True, autoincrement=True)
     estrellas = Column(Integer, nullable=False)
-
     fecha = Column(Date)
 
     modelo = Column(
         String(45),
-        ForeignKey(
-            "Producto.modelo",
-            ondelete="CASCADE",
-            onupdate="CASCADE"
-        ),
+        ForeignKey("Producto.modelo", ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False
     )
-
+    
+    # AGREGA ESTA LÍNEA - Campo correo
     correo = Column(
         String(100),
-        ForeignKey("Usuario.correo"),
+        ForeignKey("Usuario.correo", ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False
     )
 
-    producto = relationship(
-        "Producto",
-        back_populates="calificaciones"
-    )
-
+    # relación inversa con producto
+    producto = relationship("Producto", back_populates="calificaciones")
+    
+    # AGREGA ESTA RELACIÓN - relación con usuario
     usuario = relationship("Usuario")
 
 # =========================

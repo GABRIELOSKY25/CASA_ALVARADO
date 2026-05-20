@@ -14,8 +14,17 @@ from typing import Optional, List
 from pydantic import BaseModel
 from passlib.context import CryptContext
 
-# ENDPOINTS
+# ENDPOINTSs
 from endPoints_Producto import router as productos_router
+from datetime import date
+
+
+class CalificacionRequest(BaseModel):
+    modelo: str
+    correo: str
+    estrellas: int
+    fecha: date
+
 
 # Modelos Pydantic para respuestas
 class ProductoResponse(BaseModel):
@@ -442,5 +451,55 @@ def login(datos: LoginRequest):
             "correo": usuario.correo,
             "telefono": usuario.telefono
         }
+    finally:
+        db.close()
+
+# Endpoint para guardar calificación
+@app.post("/calificacion")
+def crear_calificacion(datos: CalificacionRequest):
+    db = SessionLocal()
+    try:
+        # Verificar si ya existe calificación
+        existe = db.query(Calificacion).filter(
+            Calificacion.modelo == datos.modelo,
+            Calificacion.correo == datos.correo
+        ).first()
+        
+        if existe:
+            # Actualizar
+            existe.estrellas = datos.estrellas
+            existe.fecha = datos.fecha
+            db.commit()
+        else:
+            # Crear nueva
+            nueva = Calificacion(
+                modelo=datos.modelo,
+                correo=datos.correo,
+                estrellas=datos.estrellas,
+                fecha=datos.fecha
+            )
+            db.add(nueva)
+            db.commit()
+        
+        # Calcular nuevo promedio
+        promedio = db.query(func.avg(Calificacion.estrellas)).filter(
+            Calificacion.modelo == datos.modelo
+        ).scalar()
+        
+        return {"mensaje": "Calificación guardada", "nuevoPromedio": int(promedio or 0)}
+    finally:
+        db.close()
+
+# Endpoint para obtener calificación de un usuario
+@app.get("/calificacion/usuario/{correo}/{modelo}")
+def obtener_calificacion_usuario(correo: str, modelo: str):
+    db = SessionLocal()
+    try:
+        calificacion = db.query(Calificacion).filter(
+            Calificacion.modelo == modelo,
+            Calificacion.correo == correo
+        ).first()
+        
+        return {"calificacion": calificacion.estrellas if calificacion else None}
     finally:
         db.close()
