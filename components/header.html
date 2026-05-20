@@ -1,18 +1,14 @@
 <header>
-        <!--Contenido-->
-        <div class = "menu_navegacion">
-            <div class = "contenedor">
-                <div class = "logo">
-                    <!--Ruta relativa-->
-                    <a href = "/index.html">
-                        <!--Ruta de imagen // src = ruta // alt = nombre // style = (width = ancho // height = alto)-->
-                        <!-- ESPACIO PARA TU LOGO: Reemplaza la URL de abajo con la ruta de tu logo -->
-                        <img src = "/Logo.png" alt = "Casa Alvarado Logo">
-                        <span>Casa Alvarado</span>
-                    </a>
-                </div>
+    <div class="menu_navegacion">
+        <div class="contenedor">
+            <div class="logo">
+                <a href="/index.html">
+                    <img src="/Logo.png" alt="Casa Alvarado Logo">
+                    <span>Casa Alvarado</span>
+                </a>
+            </div>
 
-                <nav>
+            <nav>
                 <div id="megaMenu" class="mega-menu hidden">
                     <div id="categorias" class="categorias"></div>
                     <div id="subcategorias" class="subcategorias">
@@ -20,16 +16,16 @@
                         <div id="gridcategorias" class="grid-subcategorias"></div>
                     </div>
                 </div>
-                    
-                    <!--Lista no ordenada-->
-                    <ul>
-                        <li><a href = "/index.html"> Inicio </a></li>
-                        <li><a href="#" id="btnProductos">Nuestros Productos</a></li>
-                        <li><a href = "/PAGINAS/contacto.html"> Contacto </a></li>
-                        <li><a href = "/PAGINAS/login.html">INICIAR SESION</a></li>
-                    </ul>
-                </nav>
-            </div>
+                
+                <ul>
+                    <li><a href="/index.html">Inicio</a></li>
+                    <li><a href="#" id="btnProductos">Nuestros Productos</a></li>
+                    <li><a href="/PAGINAS/contacto.html">Contacto</a></li>
+                    <li id="authNavItem">
+                        <a href="/PAGINAS/login.html" id="authLink">INICIAR SESION</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </header>
-    
+    </div>
+</header>

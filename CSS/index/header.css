@@ -28,12 +28,12 @@
 }
 
 .logo a img {
-    width: 50px;  /* Cambia esto al tamaño que quieras */
-    height: 50px; /* Cambia esto al tamaño que quieras */
+    width: 50px;
+    height: 50px;
     transition: transform 0.3s ease;
     background-color: white;
     border-radius: 50%;
-    padding: 2px; /* Aumenta esto para círculo más grande */
+    padding: 2px;
     object-fit: contain;
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.148);
 }
@@ -46,9 +46,11 @@ nav ul {
     display: flex;
     list-style: none;
     gap: 2.5rem;
+    align-items: center;
 }
 
-nav a {
+nav a,
+.auth-user {
     text-decoration: none;
     color: var(--blanco);
     font-weight: 500;
@@ -57,8 +59,119 @@ nav a {
     text-transform: uppercase;
     padding: 0.5rem 0;
     border-bottom: 2px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
-nav a:hover {
+nav a:hover,
+.auth-user:hover {
     border-bottom-color: var(--blanco);
+}
+
+.auth-user i {
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav ul {
+        gap: 1.5rem;
+    }
+    
+    .user-menu-modal {
+        top: 60px;
+        right: 10px;
+        left: 10px;
+    }
+    
+    .user-menu-content {
+        width: auto;
+    }
+}
+
+/* ========== MENÚ DE USUARIO ========== */
+.user-menu-modal {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 1001;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-menu-content {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 280px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.user-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: linear-gradient(135deg, #003b6f, #1e4d8f);
+    color: white;
+}
+
+.user-menu-header i {
+    font-size: 40px;
+}
+
+.user-menu-header h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.user-menu-header p {
+    margin: 4px 0 0;
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+.user-menu-options {
+    padding: 8px 0;
+}
+
+.user-menu-options a,
+.user-menu-options button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.user-menu-options a:hover,
+.user-menu-options button:hover {
+    background: #f0f7ff;
+    color: #003b6f;
+}
+
+.user-menu-options i {
+    width: 20px;
+    color: #003b6f;
 }
