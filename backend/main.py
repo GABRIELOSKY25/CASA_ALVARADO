@@ -438,9 +438,7 @@ def signin(datos: SignInRequest):
 @app.post("/login")
 def login(datos: LoginRequest):
     db = SessionLocal()
-
     try:
-
         usuario = db.query(Usuario).filter(
             Usuario.correo == datos.correo
         ).first()
@@ -451,7 +449,6 @@ def login(datos: LoginRequest):
                 detail="Correo o contraseña incorrectos"
             )
 
-        # VERIFICAR HASH
         password_correcta = verify_password(
             datos.contrasena,
             usuario.contrasena
@@ -463,14 +460,13 @@ def login(datos: LoginRequest):
                 detail="Correo o contraseña incorrectos"
             )
 
+        # Devuelve los campos que existen en tu tabla Usuario
         return {
             "mensaje": "Login exitoso",
-            "usuario": {
-                "correo": usuario.correo,
-                "nombre": usuario.nombre,
-                "apellido": usuario.apellido
-            }
+            "nombre": usuario.nombre,
+            "apellido": usuario.apellido,
+            "correo": usuario.correo,
+            "telefono": usuario.telefono
         }
-
     finally:
         db.close()

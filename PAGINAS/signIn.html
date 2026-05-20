@@ -2,37 +2,100 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome 6 Free -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../CSS/index/main.css">
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+    
+    <title>Registro - Casa Alvarado</title>
 </head>
+<!--Contenido de la Pagina-->
 <body>
+    <div id="header"></div>
+    <!--Contenido principal-->
+    <main>
+        <section class="auth-section">
+            <div class="auth-container">
+                <!-- Lado Izquierdo: Formulario -->
+                <div class="auth-form">
+                    <h2>Crear Cuenta</h2>
+                    <p class="auth-subtitle">Regístrate para acceder a ofertas exclusivas</p>
+                    
+                    <form id="registroForm">
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="registroNombre" placeholder="Nombre" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="registroApellido" placeholder="Apellido" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="registroCorreo" placeholder="Correo electrónico" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" id="registroTelefono" placeholder="Teléfono" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="registroContrasena" placeholder="Contraseña" required>
+                        </div>
+                        
+                        <button type="submit" class="btn-auth">Registrarse</button>
+                    </form>
+                    
+                    <p class="auth-link">
+                        ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
+                    </p>
+                </div>
 
-    <h1>Registrarse</h1>
+                <!-- Lado Derecho: Logo e Información -->
+                <div class="auth-info">
+                    <div class="auth-info-logo">
+                        <img src="../Logo.png" alt="Casa Alvarado">
+                    </div>
+                    <h3>Casa Alvarado</h3>
+                    <p>Tu tienda de confianza en instrumentos musicales desde hace más de 20 años.</p>
+                    
+                    <div class="auth-info-features">
+                        <div class="feature">
+                            <i class="fas fa-guitar"></i>
+                            <span>Revisa nuestros instrumentos</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Atención preferente vía WhatsApp</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Conoce nuestras novedades</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-music"></i>
+                            <span>Descubre tu instrumento ideal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <form id="signInForm">
-
-        <label>Nombre:</label>
-        <input type="text" id="nombre" required>
-        <br><br>
-
-        <label>Apellido:</label>
-        <input type="text" id="apellido" required>
-        <br><br>
-
-        <label>Correo:</label>
-        <input type="email" id="correo" required>
-        <br><br>
-
-        <label>Telefono:</label>
-        <input type="text" id="telefono" required>
-        <br><br>
-
-        <label>Contraseña:</label>
-        <input type="password" id="contrasena" required>
-        <br><br>
-
-        <button type="submit">Registrarse</button>
-
-    </form>
+    <!-- FOOTER -->
+    <div id="footer"></div>
+    
+    <script src="../JS/include.js"></script>
     <script src="../JS/Fetch.js"></script>
+    <script src="../JS/app.js"></script>
 </body>
 </html>
