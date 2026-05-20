@@ -1,0 +1,104 @@
+<!-- ================================================= -->
+<!-- AGREGAR PRODUCTO -->
+<!-- agregar-producto.html -->
+<!-- ================================================= -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto</title>
+
+    <link rel="stylesheet" href="crud.css">
+    <link rel="stylesheet" href="../CSS/index/main.css">
+</head>
+<body>
+
+<section class="crud">
+
+        <h1>Agregar Producto</h1>
+
+        <form id="formAgregar">
+
+            <input type="text" id="modelo" placeholder="Modelo" required>
+
+            <input type="text" id="imagen" placeholder="URL Imagen" required>
+
+            <textarea id="descripcion"
+            placeholder="Descripción"></textarea>
+
+            <input type="number" id="id_marca"
+            placeholder="ID Marca" required>
+
+            <input type="number" id="id_categoria"
+            placeholder="ID Categoría" required>
+
+            <input type="number" id="id_tipo"
+            placeholder="ID Tipo" required>
+
+            <input type="number" id="id_gamma"
+            placeholder="ID Gamma" required>
+
+            <select id="novedad">
+
+                <option value="Si">Novedad</option>
+
+                <option value="No">Normal</option>
+
+            </select>
+
+            <button type="submit">
+                Agregar Producto
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<script>
+
+const API_BASE = 'http://localhost:8000';
+
+document.getElementById('formAgregar')
+.addEventListener('submit', async(e)=>{
+
+    e.preventDefault();
+
+    const datos = {
+
+        modelo:modelo.value,
+        imagen:imagen.value,
+        descripcion:descripcion.value,
+        novedad:novedad.value,
+
+        id_marca:Number(id_marca.value),
+        id_categoria:Number(id_categoria.value),
+        id_tipo:Number(id_tipo.value),
+        id_gamma:Number(id_gamma.value)
+    };
+
+    const respuesta = await fetch(
+        `${API_BASE}/productos`,
+        {
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(datos)
+        }
+    );
+
+    const data = await respuesta.json();
+
+    alert(data.mensaje);
+
+    formAgregar.reset();
+});
+
+</script>
+
+</body>
+</html>

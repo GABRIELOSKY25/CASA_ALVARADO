@@ -94,13 +94,11 @@ class Producto(Base):
     default='No'
 )
 
-    # 🔑 FOREIGN KEYS
     id_marca = Column(Integer, ForeignKey("Marca.id_marca"), nullable=False)
     id_categoria = Column(Integer, ForeignKey("Categoria.id_categoria"), nullable=False)
     id_tipo = Column(Integer, ForeignKey("Tipo.id_tipo"), nullable=False)
     id_gamma = Column(Integer, ForeignKey("Gamma.id_gamma"), nullable=False)
 
-    # 🔥 RELACIONES (esto reemplaza los IDs en respuestas)
     marca = relationship("Marca")
     categoria = relationship("Categoria")
     tipo = relationship("Tipo")
@@ -132,3 +130,16 @@ class Calificacion(Base):
 
     # relación inversa
     producto = relationship("Producto", back_populates="calificaciones")
+
+# =========================
+# USUARIO
+# =========================
+
+class Usuario(Base):
+    __tablename__ = "Usuario"
+
+    correo = Column(Text, primary_key=True)
+    nombre = Column(String(45), nullable=False)
+    apellido = Column(String(45), nullable=False)
+    contrasena = Column(Text, nullable=False)
+    telefono = Column(String(15), nullable=False)

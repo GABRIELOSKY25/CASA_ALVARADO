@@ -1,0 +1,66 @@
+<!-- ================================================= -->
+<!-- ELIMINAR PRODUCTO -->
+<!-- eliminar-producto.html -->
+<!-- ================================================= -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Producto</title>
+
+    <link rel="stylesheet" href="crud.css">
+    <link rel="stylesheet" href="../CSS/index/main.css">
+</head>
+<body>
+
+<section class="crud">
+
+    <div class="crud-contenedor">
+
+        <h1>Eliminar Producto</h1>
+
+        <input
+        type="text"
+        id="modeloEliminar"
+        placeholder="Modelo del producto">
+
+        <button onclick="eliminarProducto()">
+            Eliminar
+        </button>
+
+    </div>
+
+</section>
+
+<script>
+
+const API_BASE = 'http://localhost:8000';
+
+async function eliminarProducto(){
+
+    const modelo = modeloEliminar.value;
+
+    const confirmar = confirm(
+        `¿Eliminar ${modelo}?`
+    );
+
+    if(!confirmar) return;
+
+    const respuesta = await fetch(
+        `${API_BASE}/productos/${modelo}`,
+        {
+            method:'DELETE'
+        }
+    );
+
+    const data = await respuesta.json();
+
+    alert(data.mensaje);
+}
+
+</script>
+
+</body>
+</html>

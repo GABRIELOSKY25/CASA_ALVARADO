@@ -1,0 +1,138 @@
+<!-- ================================================= -->
+<!-- EDITAR PRODUCTO -->
+<!-- editar-producto.html -->
+<!-- ================================================= -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto</title>
+
+    <link rel="stylesheet" href="crud.css">
+    <link rel="stylesheet" href="../CSS/index/main.css">
+</head>
+<body>
+
+<section class="crud">
+
+    <a href="admin.html" class="btn-volver">
+    ← Volver al Panel
+    </a>
+    <div class="crud-contenedor">
+
+        <h1>Editar Producto</h1>
+
+        <input
+        type="text"
+        id="buscarModelo"
+        placeholder="Modelo a buscar">
+
+        <button onclick="buscarProducto()">
+            Buscar Producto
+        </button>
+
+        <form id="formEditar">
+
+            <input type="text" id="modelo">
+
+            <input type="text" id="imagen">
+
+            <textarea id="descripcion"></textarea>
+
+            <input type="number" id="id_marca">
+
+            <input type="number" id="id_categoria">
+
+            <input type="number" id="id_tipo">
+
+            <input type="number" id="id_gamma">
+
+            <select id="novedad">
+
+                <option value="Si">Novedad</option>
+
+                <option value="No">Normal</option>
+
+            </select>
+
+            <button type="submit">
+                Actualizar Producto
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<script>
+
+const API_BASE = 'http://localhost:8000';
+
+let modeloOriginal = '';
+
+async function buscarProducto(){
+
+    const modeloBuscar = buscarModelo.value;
+
+    const res = await fetch(
+        `${API_BASE}/productos/buscar/${modeloBuscar}`
+    );
+
+    const productos = await res.json();
+
+    if(productos.length === 0){
+
+        alert('Producto no encontrado');
+
+        return;
+    }
+
+    const producto = productos[0];
+
+    modeloOriginal = producto.modelo;
+
+    modelo.value = producto.modelo;
+    imagen.value = producto.imagen;
+    descripcion.value = producto.descripcion;
+}
+
+formEditar.addEventListener('submit', async(e)=>{
+
+    e.preventDefault();
+
+    const datos = {
+
+        modelo:modelo.value,
+        imagen:imagen.value,
+        descripcion:descripcion.value,
+        novedad:novedad.value,
+
+        id_marca:Number(id_marca.value),
+        id_categoria:Number(id_categoria.value),
+        id_tipo:Number(id_tipo.value),
+        id_gamma:Number(id_gamma.value)
+    };
+
+    const respuesta = await fetch(
+        `${API_BASE}/productos/${modeloOriginal}`,
+        {
+            method:'PUT',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(datos)
+        }
+    );
+
+    const data = await respuesta.json();
+
+    alert(data.mensaje);
+});
+
+</script>
+
+</body>
+</html>

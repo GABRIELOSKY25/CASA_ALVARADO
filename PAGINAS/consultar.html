@@ -1,0 +1,90 @@
+<!-- ================================================= -->
+<!-- LISTA PRODUCTOS -->
+<!-- lista-productos.html -->
+<!-- ================================================= -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+
+    <link rel="stylesheet" href="crud.css">
+    <link rel="stylesheet" href="../CSS/index/main.css">
+</head>
+<body>
+
+<section class="crud">
+
+    <div class="crud-contenedor">
+
+        <h1>Lista de Productos</h1>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Imagen</th>
+                    <th>Modelo</th>
+                    <th>Marca</th>
+                    <th>Tipo</th>
+                    <th>Gamma</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaProductos">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<script>
+
+const API_BASE = 'http://localhost:8000';
+
+async function cargarProductos(){
+
+    const res = await fetch(
+        `${API_BASE}/productos/todos`
+    );
+
+    const productos = await res.json();
+
+    tablaProductos.innerHTML = '';
+
+    productos.forEach(producto=>{
+
+        tablaProductos.innerHTML += `
+
+        <tr>
+
+            <td>
+                <img src="${producto.imagen}">
+            </td>
+
+            <td>${producto.modelo}</td>
+
+            <td>${producto.marca}</td>
+
+            <td>${producto.tipo}</td>
+
+            <td>${producto.gamma}</td>
+
+        </tr>
+        `;
+    });
+}
+
+cargarProductos();
+
+</script>
+
+</body>
+</html>

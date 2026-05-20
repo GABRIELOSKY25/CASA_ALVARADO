@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador | Casa Alvarado</title>
+
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="../CSS/index/main.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<div id="header"></div>
+<section class="panel-admin">
+
+    <div class="contenedor">
+
+        <h1 class="panel-titulo">
+            Panel de Administración
+        </h1>
+
+        <p class="panel-subtitulo">
+            Gestiona los productos de Casa Alvarado
+        </p>
+
+        <div class="acciones-admin">
+
+            <!-- AGREGAR -->
+            <button class="card-admin" onclick="window.location.href='/Paginas/agregar.html'">
+
+                <div class="card-icono agregar">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+
+                <h2>Agregar Producto</h2>
+
+                <p>
+                    Registrar nuevos productos en el catálogo
+                </p>
+
+            </button>
+
+            <!-- MODIFICAR -->
+            <button class="card-admin" onclick="window.location.href='/Paginas/actualizar.html'">
+
+                <div class="card-icono editar">
+                    <i class="fa-solid fa-pen"></i>
+                </div>
+
+                <h2>Modificar Producto</h2>
+
+                <p>
+                    Editar información de productos existentes
+                </p>
+
+            </button>
+
+            <!-- ELIMINAR -->
+            <button class="card-admin" onclick="window.location.href='/Paginas/eliminar.html'">
+
+                <div class="card-icono eliminar">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+
+                <h2>Eliminar Producto</h2>
+
+                <p>
+                    Eliminar productos del sistema
+                </p>
+
+            </button>
+
+            <!-- VER -->
+            <button class="card-admin" onclick="window.location.href='/Paginas/consultar.html'">
+
+                <div class="card-icono ver">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+
+                <h2>Ver Productos</h2>
+
+                <p>
+                    Visualizar todos los productos registrados
+                </p>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+<div id="footer"></div>
+<script src="../JS/include.js"></script>
+<script src="../JS/app.js"></script>
+</body>
+</html>

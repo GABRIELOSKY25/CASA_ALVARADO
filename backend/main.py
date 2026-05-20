@@ -1,11 +1,21 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from database import SessionLocal
-from models import Producto, Calificacion, Gamma, Marca, Categoria, Tipo, Familia
+from models import (Producto, 
+                    Calificacion, 
+                    Gamma, 
+                    Marca, 
+                    Categoria, 
+                    Tipo, 
+                    Familia, 
+                    Usuario)
 from sqlalchemy import func
 from typing import Optional, List
 from pydantic import BaseModel
+from passlib.context import CryptContext
 
+# ENDPOINTS
+from endPoints_Producto import router as productos_router
 
 # Modelos Pydantic para respuestas
 class ProductoResponse(BaseModel):
@@ -23,8 +33,26 @@ class MarcaResponse(BaseModel):
     nombre: str
     imagen: Optional[str] = None
 
+class SignInRequest(BaseModel):
+    nombre: str
+    apellido: str
+    correo: str
+    telefono: str
+    contrasena: str
+
+
+class LoginRequest(BaseModel):
+    correo: str
+    contrasena: str
 
 app = FastAPI()
+app.include_router(productos_router)
+
+
+pwd_context = CryptContext(
+    schemes=["bcrypt"],
+    deprecated="auto"
+)
 
 # ACTIVAR CORS
 app.add_middleware(
@@ -34,6 +62,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+def hash_password(password: str):
+    return pwd_context.hash(password)
+
+
+def verify_password(plain_password: str, hashed_password: str):
+    return pwd_context.verify(
+        plain_password,
+        hashed_password
+    )
 
 @app.get("/")
 def inicio():
@@ -151,7 +189,7 @@ def obtener_todos_productos():
         for producto in productos:
             promedio = db.query(func.avg(Calificacion.estrellas)).filter(
                 Calificacion.modelo == producto.modelo
-            ).scalar()
+            ).scalar()  
 
             resultado.append({
                 "modelo": producto.modelo,
@@ -353,5 +391,86 @@ def filtrar_productos(
             })
         
         return resultado
+    finally:
+        db.close()
+
+
+# RUTAS DEL LOGIN Y SIGN IN
+@app.post("/signin")
+def signin(datos: SignInRequest):
+    db = SessionLocal()
+
+    try:
+
+        usuario_existente = db.query(Usuario).filter(
+            Usuario.correo == datos.correo
+        ).first()
+
+        if usuario_existente:
+            raise HTTPException(
+                status_code=400,
+                detail="El correo ya está registrado"
+            )
+
+        # HASH DE CONTRASEÑA
+        password_hashed = hash_password(
+            datos.contrasena
+        )
+
+        nuevo_usuario = Usuario(
+            correo=datos.correo,
+            nombre=datos.nombre,
+            apellido=datos.apellido,
+            contrasena=password_hashed,
+            telefono=datos.telefono
+        )
+
+        db.add(nuevo_usuario)
+        db.commit()
+
+        return {
+            "mensaje": "Usuario registrado correctamente"
+        }
+
+    finally:
+        db.close()
+
+@app.post("/login")
+def login(datos: LoginRequest):
+    db = SessionLocal()
+
+    try:
+
+        usuario = db.query(Usuario).filter(
+            Usuario.correo == datos.correo
+        ).first()
+
+        if not usuario:
+            raise HTTPException(
+                status_code=401,
+                detail="Correo o contraseña incorrectos"
+            )
+
+        # VERIFICAR HASH
+        password_correcta = verify_password(
+            datos.contrasena,
+            usuario.contrasena
+        )
+
+        if not password_correcta:
+            raise HTTPException(
+                status_code=401,
+                detail="Correo o contraseña incorrectos"
+            )
+
+        return {
+            "mensaje": "Login exitoso",
+            "usuario": {
+                "correo": usuario.correo,
+                "nombre": usuario.nombre,
+                "apellido": usuario.apellido
+            }
+        }
+
     finally:
         db.close()
