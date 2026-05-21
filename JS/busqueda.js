@@ -30,7 +30,15 @@ async function cargarProductosUnaVez() {
     console.log('Intentando conectar a:', API_BASE);
 
     try {
-        const response = await fetch(`${API_BASE}/productos/todos`);
+        let endpoint = `${API_BASE}/productos/todos`;
+
+            // Si viene categoría en URL
+            if (categoriaURL) {
+                endpoint =
+                    `${API_BASE}/productos/categoria/${encodeURIComponent(categoriaURL)}`;
+            }
+
+            const response = await fetch(endpoint);
 
         console.log('Respuesta status:', response.status);
 

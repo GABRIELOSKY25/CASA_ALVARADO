@@ -6,7 +6,8 @@ from models import (
     Tipo,
     Gamma,
     Calificacion, 
-    Categoria
+    Categoria,
+    Familia
 )
 
 from sqlalchemy import func
@@ -40,7 +41,6 @@ class ProductoCreate(BaseModel):
     novedad: str
 
     id_marca: int
-    id_categoria: int
     id_tipo: int
     id_gamma: int
 
@@ -286,7 +286,6 @@ def agregar_producto(datos: ProductoCreate):
             descripcion=datos.descripcion,
             novedad=datos.novedad,
             id_marca=datos.id_marca,
-            id_categoria=datos.id_categoria,
             id_tipo=datos.id_tipo,
             id_gamma=datos.id_gamma
         )
@@ -332,7 +331,6 @@ def actualizar_producto(
         producto.novedad = datos.novedad
 
         producto.id_marca = datos.id_marca
-        producto.id_categoria = datos.id_categoria
         producto.id_tipo = datos.id_tipo
         producto.id_gamma = datos.id_gamma
 
@@ -341,6 +339,49 @@ def actualizar_producto(
         return {
             "mensaje": "Producto actualizado correctamente"
         }
+
+    finally:
+        db.close()
+
+@router.get("/productos/categoria/{categoria}")
+def obtener_productos_por_categoria(categoria: str):
+
+    db = SessionLocal()
+
+    try:
+
+        productos = db.query(Producto).join(Marca).join(Categoria).filter(
+            Categoria.nombre == categoria
+        ).all()
+
+        resultado = []
+
+        for producto in productos:
+
+            promedio = db.query(
+                func.avg(Calificacion.estrellas)
+            ).filter(
+                Calificacion.modelo == producto.modelo
+            ).scalar()
+
+            resultado.append({
+                "modelo": producto.modelo,
+                "imagen": producto.imagen,
+                "descripcion": producto.descripcion,
+                "estrellas": int(promedio or 0),
+                "marca": producto.marca.nombre,
+                "categoria": producto.marca.categoria.nombre,
+                "tipo": producto.tipo.nombre,
+                "gamma": producto.gamma.nombre,
+                "prioridad_marca": producto.marca.prioridad
+            })
+
+        # ORDENAR POR PRIORIDAD
+        resultado.sort(
+            key=lambda x: x["prioridad_marca"] or 999
+        )
+
+        return resultado
 
     finally:
         db.close()
@@ -561,11 +602,53 @@ def obtener_marcas_por_categoria(id_categoria: int):
 
         return [
             {
-                "id_marca": marca.id_marca,
+                "id": marca.id_marca,
                 "nombre": marca.nombre
             }
             for marca in marcas
         ]
 
     finally:
-        db.close()     
+        db.close()   
+        
+@router.get("/categorias/familia/{id_familia}")
+def categorias_por_familia(id_familia: int):
+
+    db = SessionLocal()
+
+    try:
+
+        categorias = db.query(Categoria).filter(
+            Categoria.id_familia == id_familia
+        ).all()
+
+        return [
+            {
+                "id": c.id_categoria,
+                "nombre": c.nombre
+            }
+            for c in categorias
+        ]
+
+    finally:
+        db.close()
+
+@router.get("/familias")
+def obtener_familias():
+
+    db = SessionLocal()
+
+    try:
+
+        familias = db.query(Familia).all()
+
+        return [
+            {
+                "id": f.id_familia,
+                "nombre": f.nombre
+            }
+            for f in familias
+        ]
+
+    finally:
+        db.close()        

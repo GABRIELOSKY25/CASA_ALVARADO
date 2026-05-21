@@ -69,7 +69,7 @@ async function cargarMarcas(){
     marcas.forEach(m => {
 
         selectMarca.innerHTML += `
-            <option value="${m.id_marca}">
+            <option value="${m.id}">
                 ${m.nombre}
             </option>
         `;

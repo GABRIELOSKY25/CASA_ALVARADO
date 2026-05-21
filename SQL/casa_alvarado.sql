@@ -109,6 +109,7 @@ CREATE TABLE Usuario (
     apellido VARCHAR(45) NOT NULL,
     contrasena TEXT NOT NULL,
     telefono VARCHAR(10) NOT NULL
+    rol ENUM('Admin', 'Usuario') NOT NULL DEFAULT 'Usuario',
 ) ENGINE=InnoDB;
 
 -- =========================================

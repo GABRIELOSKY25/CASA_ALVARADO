@@ -24,30 +24,53 @@
 
             <input type="text" id="imagen" placeholder="URL Imagen" required>
 
-            <textarea id="descripcion"
-            placeholder="Descripción"></textarea>
+            <textarea
+                id="descripcion"
+                placeholder="Descripción">
+            </textarea>
 
-            <select id="id_marca" required>
-            <option value="">Seleccione una marca</option>
+            <!-- PRIMERO FAMILIA -->
+            <select id="id_familia" required>
+                <option value="">
+                    Seleccione una familia
+                </option>
             </select>
 
+            <!-- CATEGORIAS DEPENDEN DE FAMILIA -->
             <select id="id_categoria" required>
-            <option value="">Seleccione una categoria</option>
+                <option value="">
+                    Seleccione una categoria
+                </option>
             </select>
 
+            <!-- MARCAS DEPENDEN DE CATEGORIA -->
+            <select id="id_marca" required>
+                <option value="">
+                    Seleccione una marca
+                </option>
+            </select>
+            
             <select id="id_tipo" required>
-            <option value="">Seleccione un tipo</option>
+                <option value="">
+                    Seleccione un tipo
+                </option>
             </select>
 
             <select id="id_gamma" required>
-            <option value="">Seleccione una gamma</option>
+                <option value="">
+                    Seleccione una gamma
+                </option>
             </select>
 
             <select id="novedad">
 
-                <option value="Si">Novedad</option>
+                <option value="Si">
+                    Novedad
+                </option>
 
-                <option value="No">Normal</option>
+                <option value="No">
+                    Normal
+                </option>
 
             </select>
 
