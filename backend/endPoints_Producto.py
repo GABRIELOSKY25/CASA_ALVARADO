@@ -30,6 +30,7 @@ class ProductoResponse(BaseModel):
     categoria: str
     tipo: str
     gamma: str
+    prioridad_marca: int
 
 
 class ProductoCreate(BaseModel):
@@ -75,7 +76,8 @@ def obtener_todos_productos():
                 "marca": producto.marca.nombre,
                 "categoria": producto.marca.categoria.nombre,
                 "tipo": producto.tipo.nombre,
-                "gamma": producto.gamma.nombre
+                "gamma": producto.gamma.nombre,
+                "prioridad_marca": producto.marca.prioridad
             })
 
         return resultado
@@ -390,7 +392,7 @@ def obtener_marcas():
 
         return [
             {
-                "id": marca.id_marca,
+                "id_marca": marca.id_marca,
                 "nombre": marca.nombre
             }
             for marca in marcas
@@ -398,6 +400,41 @@ def obtener_marcas():
 
     finally:
         db.close()
+        
+class PrioridadRequest(BaseModel):
+    prioridad: str
+
+@router.put("/marcas/{id_marca}")
+def actualizar_prioridad(
+    id_marca:int,
+    datos:PrioridadRequest
+):
+
+    db = SessionLocal()
+
+    try:
+
+        marca = db.query(Marca).filter(
+            Marca.id_marca == id_marca
+        ).first()
+
+        if not marca:
+
+            raise HTTPException(
+                status_code=404,
+                detail="Marca no encontrada"
+            )
+
+        marca.prioridad = datos.prioridad
+
+        db.commit()
+
+        return {
+            "mensaje":"Prioridad actualizada"
+        }
+
+    finally:
+        db.close()    
 
 
 # =========================
@@ -472,4 +509,63 @@ def obtener_gammas():
         ]
 
     finally:
-        db.close()        
+        db.close()
+                        
+       
+class PrioridadRequest(BaseModel):
+    prioridad: str
+
+
+@router.put("/marcas/{id_marca}")
+def actualizar_prioridad(
+    id_marca:int,
+    datos:PrioridadRequest
+):
+
+    db = SessionLocal()
+
+    try:
+
+        marca = db.query(Marca).filter(
+            Marca.id_marca == id_marca
+        ).first()
+
+        if not marca:
+
+            raise HTTPException(
+                status_code=404,
+                detail="Marca no encontrada"
+            )
+
+        marca.prioridad = str(datos.prioridad)
+
+        db.commit()
+
+        return {
+            "mensaje":"Prioridad actualizada"
+        }
+
+    finally:
+        db.close()     
+      
+@router.get("/marcas/categoria/{id_categoria}")
+def obtener_marcas_por_categoria(id_categoria: int):
+
+    db = SessionLocal()
+
+    try:
+
+        marcas = db.query(Marca).filter(
+            Marca.id_categoria == id_categoria
+        ).all()
+
+        return [
+            {
+                "id_marca": marca.id_marca,
+                "nombre": marca.nombre
+            }
+            for marca in marcas
+        ]
+
+    finally:
+        db.close()     

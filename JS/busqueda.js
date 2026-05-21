@@ -44,6 +44,11 @@ async function cargarProductosUnaVez() {
 
         productosCache = productos;
 
+        // ORDENAR POR PRIORIDAD DE MARCA
+        productosCache.sort((a, b) => {
+            return (a.prioridad_marca || 999) - (b.prioridad_marca || 999);
+        });
+
 // ========= FILTRO AUTOMÁTICO POR CATEGORÍA =========
 // ========= FILTRO AUTOMÁTICO =========
 let productosFiltrados = [...productosCache];

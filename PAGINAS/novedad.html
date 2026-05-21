@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar Novedad</title>
+
+    <link rel="stylesheet" href="../CSS/index/main.css">
+</head>
+<body>
+
+<section class="crud">
+
+    <div class="crud-contenedor">
+
+        <h1>Cambiar Novedad</h1>
+
+        <input
+            type="text"
+            id="buscarModelo"
+            placeholder="Modelo del producto"
+        >
+
+        <button onclick="buscarProducto()">
+            Buscar
+        </button>
+
+        <div id="resultado"></div>
+
+    </div>
+
+</section>
+
+<script>
+
+const API_BASE = 'http://localhost:8000';
+
+let modeloActual = '';
+
+async function buscarProducto(){
+
+    const modelo = buscarModelo.value;
+
+    const respuesta = await fetch(
+        `${API_BASE}/productos/buscar/${modelo}`
+    );
+
+    const productos = await respuesta.json();
+
+    if(productos.length === 0){
+
+        resultado.innerHTML = `
+            <p>Producto no encontrado</p>
+        `;
+
+        return;
+    }
+
+    const producto = productos[0];
+
+    modeloActual = producto.modelo;
+
+    resultado.innerHTML = `
+
+        <div class="card-producto">
+
+            <img src="${producto.imagen}">
+
+            <h2>${producto.modelo}</h2>
+
+            <p>${producto.marca}</p>
+
+            <select id="novedad">
+
+                <option value="Si">
+                    Si
+                </option>
+
+                <option value="No">
+                    No
+                </option>
+
+            </select>
+
+            <button onclick="guardarNovedad()">
+                Guardar
+            </button>
+
+        </div>
+    `;
+}
+
+async function guardarNovedad(){
+
+    const respuestaBuscar = await fetch(
+        `${API_BASE}/productos/buscar/${modeloActual}`
+    );
+
+    const productos = await respuestaBuscar.json();
+
+    const producto = productos[0];
+
+    const datos = {
+
+        modelo: producto.modelo,
+        imagen: producto.imagen,
+        descripcion: producto.descripcion,
+
+        novedad: novedad.value,
+
+        id_marca: producto.id_marca,
+        id_categoria: producto.id_categoria,
+        id_tipo: producto.id_tipo,
+        id_gamma: producto.id_gamma
+    };
+
+    const respuesta = await fetch(
+        `${API_BASE}/productos/${modeloActual}`,
+        {
+            method:'PUT',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(datos)
+        }
+    );
+
+    const data = await respuesta.json();
+
+    alert(data.mensaje);
+}
+
+</script>
+
+</body>
+</html>
