@@ -7,8 +7,10 @@ async function cargarComponente(id, ruta) {
         if (contenedor) {
             contenedor.innerHTML = html;
         }
+        return true;
     } catch (error) {
         console.error("Error cargando componente:", error);
+        return false;
     }
 }
 
@@ -22,7 +24,6 @@ function actualizarHeaderPorSesion() {
     
     if (usuario) {
         const userData = JSON.parse(usuario);
-        // Cambiar el enlace por el nombre del usuario
         authLink.innerHTML = `
             <i class="fas fa-user-circle"></i> 
             ${userData.nombre.split(' ')[0]} ${userData.apellido.split(' ')[0]}
@@ -30,13 +31,11 @@ function actualizarHeaderPorSesion() {
         authLink.href = "#";
         authLink.classList.add("auth-user");
         
-        // Agregar menú desplegable al hacer clic
         authLink.onclick = (e) => {
             e.preventDefault();
             mostrarMenuUsuario();
         };
     } else {
-        // Mostrar "INICIAR SESION" normalmente
         authLink.innerHTML = "INICIAR SESION";
         authLink.href = "/PAGINAS/login.html";
         authLink.classList.remove("auth-user");
@@ -52,7 +51,6 @@ function mostrarMenuUsuario() {
     const userData = JSON.parse(usuario);
     const authLink = document.getElementById("authLink");
     
-    // Cerrar menú si ya existe
     const menuExistente = document.getElementById("userMenuModal");
     if (menuExistente) {
         menuExistente.remove();
@@ -83,7 +81,6 @@ function mostrarMenuUsuario() {
     
     document.body.appendChild(menu);
     
-    // Cerrar al hacer clic fuera
     setTimeout(() => {
         document.addEventListener("click", function cerrarMenu(e) {
             if (!menu.contains(e.target) && e.target !== authLink) {
@@ -94,10 +91,32 @@ function mostrarMenuUsuario() {
     }, 100);
 }
 
-// Cerrar sesión globalmente
 function cerrarSesionGlobal() {
     localStorage.removeItem("usuario");
     window.location.href = "/index.html";
+}
+
+// ========== MENÚ HAMBURGUESA ==========
+function inicializarMenuHamburguesa() {
+    const hamburguesaBtn = document.getElementById("hamburguesaBtn");
+    const nav = document.querySelector("nav");
+    
+    if (hamburguesaBtn && nav) {
+        hamburguesaBtn.addEventListener("click", function() {
+            this.classList.toggle("activo");
+            nav.classList.toggle("activo");
+        });
+        
+        nav.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                hamburguesaBtn.classList.remove("activo");
+                nav.classList.remove("activo");
+            });
+        });
+        console.log("Menú hamburguesa inicializado");
+    } else {
+        console.log("No se encontraron los elementos del menú hamburguesa");
+    }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -107,7 +126,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 2. Una vez cargados, actualizamos el header con la sesión
     actualizarHeaderPorSesion();
+    
+    // 3. Inicializar menú hamburguesa DESPUÉS de que el header esté cargado
+    inicializarMenuHamburguesa();
 
-    // 3. Avisamos que ya están listos
+    // 4. Avisamos que ya están listos
     document.dispatchEvent(new Event("componentesCargados"));
 });
