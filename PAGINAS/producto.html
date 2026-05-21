@@ -30,26 +30,13 @@
                     <div class="producto_info">
                         <div class="producto_info_header">
                             <p class="marca" id="producto-marca"></p>
-                            <h1 id="producto-modelo"></h1>
-                        </div>
-
-                        <div class="rating_container">
-                            <div class="rating_stars_display" id="rating-stars-display"></div>
-                            <span class="rating_num_display" id="rating-num"></span>
-                        </div>
-
-                        <!-- Sección de calificación (solo visible si el usuario ha iniciado sesión) -->
-                        <div class="calificacion-usuario" id="calificacionUsuario" style="display: none;">
-                            <h3>Califica este producto</h3>
-                            <div class="estrellas-calificacion" id="estrellasCalificacion">
-                                <i class="far fa-star" data-valor="1"></i>
-                                <i class="far fa-star" data-valor="2"></i>
-                                <i class="far fa-star" data-valor="3"></i>
-                                <i class="far fa-star" data-valor="4"></i>
-                                <i class="far fa-star" data-valor="5"></i>
+                            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+                                <h1 id="producto-modelo"></h1>
+                                <div class="rating_container">
+                                    <div class="rating_stars_display" id="rating-stars-display"></div>
+                                    <span class="rating_num_display" id="rating-num"></span>
+                                </div>
                             </div>
-                            <button id="btnEnviarCalificacion" class="btn-calificar">Enviar calificación</button>
-                            <p id="mensajeCalificacion" class="mensaje-calificacion"></p>
                         </div>
 
                         <div class="descripcion_container">
@@ -61,6 +48,23 @@
                             <button class="btn btn_contacto" id="btn-contactar">
                                 <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
                             </button>
+                        </div>
+
+                        <!-- Sección de calificación (solo visible si el usuario ha iniciado sesión) -->
+                        <div class="calificacion-usuario" id="calificacionUsuario" style="display: none;">
+                            <h3>Dejanos tu opinión</h3>
+                            <div class="estrellas-calificacion" id="estrellasCalificacion">
+                                <i class="far fa-star" data-valor="1"></i>
+                                <i class="far fa-star" data-valor="2"></i>
+                                <i class="far fa-star" data-valor="3"></i>
+                                <i class="far fa-star" data-valor="4"></i>
+                                <i class="far fa-star" data-valor="5"></i>
+                            </div>
+                            <button id="btnEnviarCalificacion" class="btn-calificar">Enviar calificación</button>
+                            <p id="mensajeCalificacion" class="mensaje-calificacion"></p>
+                        </div>
+
+                        <div class="botones_container">
                             <a href="catalogo.html" class="btn btn_volver">← Volver al catálogo</a>
                         </div>
                     </div>
