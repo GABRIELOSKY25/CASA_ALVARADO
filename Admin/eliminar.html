@@ -4,141 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Eliminar Producto</title>
-
-    <link rel="stylesheet" href="crud.css">
+    <title>Eliminar Producto | Casa Alvarado</title>
     <link rel="stylesheet" href="../CSS/index/main.css">
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="header"></div>
 
-<section class="crud">
-
-    <div class="crud-contenedor">
-
-        <h1>Eliminar Producto</h1>
-
-        <input
-            type="text"
-            id="modeloEliminarInput"
-            placeholder="Modelo del producto">
-
-            <button onclick="buscarProducto()">
-                Buscar
-            </button>
-
-            <div id="resultado"></div>
-
+    <section class="crud-section">
+        <div class="contenedor">
+            <div class="crud-card">
+                <div class="crud-header">
+                    <i class="fas fa-trash-alt"></i>
+                    <h1>Eliminar Producto</h1>
+                    <p>Busca y elimina un producto del catálogo</p>
                 </div>
 
-            </section>
+                <div class="crud-form">
+                    <div class="buscar-section">
+                        <div class="input-group">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="modeloEliminarInput" placeholder="Modelo del producto a buscar">
+                        </div>
+                        <button id="btnBuscar" class="btn-buscar" onclick="buscarProducto()">
+                            <i class="fas fa-search"></i> Buscar Producto
+                        </button>
+                    </div>
 
-<script id="sq1r3v">
+                    <div id="resultado" class="resultado-container"></div>
 
-const API_BASE = 'http://localhost:8000';
+                    <div class="form-buttons" style="margin-top: 20px;">
+                        <a href="/Admin/admin.html" class="btn-cancel">
+                            <i class="fas fa-arrow-left"></i> Volver al Panel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-let modeloEliminar = '';
+    <div id="footer"></div>
 
-async function buscarProducto(){
-
-    const modelo = modeloEliminarInput.value;
-
-    const respuesta = await fetch(
-        `${API_BASE}/productos/buscar/${modelo}`
-    );
-
-    const productos = await respuesta.json();
-
-    const resultado = document.getElementById(
-        'resultado'
-    );
-
-    if(productos.length === 0){
-
-        resultado.innerHTML = `
-            <p>Producto no encontrado</p>
-        `;
-
-        return;
-    }
-
-    const producto = productos[0];
-
-    modeloEliminar = producto.modelo;
-
-    resultado.innerHTML = `
-
-        <table class="tabla-producto">
-
-            <thead>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Modelo</th>
-                    <th>Marca</th>
-                    <th>Tipo</th>
-                    <th>Gamma</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-
-                    <td>
-                        <img 
-                            src="${producto.imagen}"
-                            width="80"
-                        >
-                    </td>
-
-                    <td>
-                        ${producto.modelo}
-                    </td>
-
-                    <td>
-                        ${producto.marca}
-                    </td>
-
-                    <td>
-                        ${producto.tipo}
-                    </td>
-
-                    <td>
-                        ${producto.gamma}
-                    </td>
-
-                </tr>
-            </tbody>
-
-        </table>
-
-        <button onclick="eliminarProducto()">
-            Confirmar Eliminación
-        </button>
-    `;
-}
-
-async function eliminarProducto(){
-
-    const confirmar = confirm(
-        `¿Eliminar ${modeloEliminar}?`
-    );
-
-    if(!confirmar) return;
-
-    const respuesta = await fetch(
-        `${API_BASE}/productos/${modeloEliminar}`,
-        {
-            method:'DELETE'
-        }
-    );
-
-    const data = await respuesta.json();
-
-    alert(data.mensaje);
-
-    location.reload();
-}
-
-</script>
-
+    <script src="../JS/include.js"></script>
+    <script src="../JS/eliminar.js"></script>
+    <script src="../JS/app.js"></script>
 </body>
 </html>

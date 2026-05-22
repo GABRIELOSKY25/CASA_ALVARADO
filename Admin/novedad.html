@@ -3,134 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cambiar Novedad</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Cambiar Novedad | Casa Alvarado</title>
     <link rel="stylesheet" href="../CSS/index/main.css">
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="header"></div>
 
-<section class="crud">
+    <section class="crud-section">
+        <div class="contenedor">
+            <div class="crud-card">
+                <div class="crud-header">
+                    <i class="fas fa-fire"></i>
+                    <h1>Cambiar Novedad</h1>
+                    <p>Marca o desmarca productos como novedad</p>
+                </div>
 
-    <div class="crud-contenedor">
+                <div class="crud-form">
+                    <div class="buscar-section">
+                        <div class="input-group">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="buscarModelo" placeholder="Modelo del producto a buscar">
+                        </div>
+                        <button id="btnBuscar" class="btn-buscar" onclick="buscarProducto()">
+                            <i class="fas fa-search"></i> Buscar Producto
+                        </button>
+                    </div>
 
-        <h1>Cambiar Novedad</h1>
+                    <div id="resultado" class="resultado-container"></div>
 
-        <input
-            type="text"
-            id="buscarModelo"
-            placeholder="Modelo del producto"
-        >
-
-        <button onclick="buscarProducto()">
-            Buscar
-        </button>
-
-        <div id="resultado"></div>
-
-    </div>
-
-</section>
-
-<script>
-
-const API_BASE = 'http://localhost:8000';
-
-let modeloActual = '';
-
-async function buscarProducto(){
-
-    const modelo = buscarModelo.value;
-
-    const respuesta = await fetch(
-        `${API_BASE}/productos/buscar/${modelo}`
-    );
-
-    const productos = await respuesta.json();
-
-    if(productos.length === 0){
-
-        resultado.innerHTML = `
-            <p>Producto no encontrado</p>
-        `;
-
-        return;
-    }
-
-    const producto = productos[0];
-
-    modeloActual = producto.modelo;
-
-    resultado.innerHTML = `
-
-        <div class="card-producto">
-
-            <img src="${producto.imagen}">
-
-            <h2>${producto.modelo}</h2>
-
-            <p>${producto.marca}</p>
-
-            <select id="novedad">
-
-                <option value="Si">
-                    Si
-                </option>
-
-                <option value="No">
-                    No
-                </option>
-
-            </select>
-
-            <button onclick="guardarNovedad()">
-                Guardar
-            </button>
-
+                    <div class="form-buttons" style="margin-top: 20px;">
+                        <a href="/Admin/admin.html" class="btn-cancel">
+                            <i class="fas fa-arrow-left"></i> Volver al Panel
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    `;
-}
+    </section>
 
-async function guardarNovedad(){
+    <div id="footer"></div>
 
-    const respuestaBuscar = await fetch(
-        `${API_BASE}/productos/buscar/${modeloActual}`
-    );
-
-    const productos = await respuestaBuscar.json();
-
-    const producto = productos[0];
-
-    const datos = {
-
-        modelo: producto.modelo,
-        imagen: producto.imagen,
-        descripcion: producto.descripcion,
-
-        novedad: novedad.value,
-
-        id_marca: producto.id_marca,
-        id_categoria: producto.id_categoria,
-        id_tipo: producto.id_tipo,
-        id_gamma: producto.id_gamma
-    };
-
-    const respuesta = await fetch(
-        `${API_BASE}/productos/${modeloActual}`,
-        {
-            method:'PUT',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(datos)
-        }
-    );
-
-    const data = await respuesta.json();
-
-    alert(data.mensaje);
-}
-
-</script>
-
+    <script src="../JS/include.js"></script>
+    <script src="../JS/novedad_admi.js"></script>
+    <script src="../JS/app.js"></script>
 </body>
 </html>

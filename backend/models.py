@@ -156,8 +156,9 @@ class Calificacion(Base):
 class Usuario(Base):
     __tablename__ = "Usuario"
 
-    correo = Column(Text, primary_key=True)
+    correo = Column(String(100), primary_key=True)
     nombre = Column(String(45), nullable=False)
     apellido = Column(String(45), nullable=False)
     contrasena = Column(Text, nullable=False)
-    telefono = Column(String(15), nullable=False)
+    telefono = Column(String(10), nullable=False)
+    rol = Column(String(20), default='Usuario')  # ← Agrega esta línea

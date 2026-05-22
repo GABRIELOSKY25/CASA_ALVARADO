@@ -179,9 +179,39 @@
 
 .user-info-footer {
     margin-top: 30px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
+/* Botón Administrar - AZUL */
+.btn-admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #003b6f;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+}
+
+.btn-admin:hover {
+    background: transparent;
+    color: #003b6f;
+    border-color: #003b6f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 59, 111, 0.2);
+}
+
+/* Botón Cerrar Sesión */
 .btn-logout {
     background: transparent;
     color: #dc2626;
@@ -199,6 +229,7 @@
     background: #dc2626;
     color: white;
 }
+
 /* Lado Derecho - Información */
 .auth-info {
     flex: 1;
@@ -320,5 +351,9 @@
     .feature i {
         width: 25px;
         font-size: 0.9rem;
+    }
+    
+    .user-info-footer {
+        gap: 10px;
     }
 }

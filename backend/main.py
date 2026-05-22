@@ -443,13 +443,13 @@ def login(datos: LoginRequest):
                 detail="Correo o contraseña incorrectos"
             )
 
-        # Devuelve los campos que existen en tu tabla Usuario
         return {
             "mensaje": "Login exitoso",
             "nombre": usuario.nombre,
             "apellido": usuario.apellido,
             "correo": usuario.correo,
-            "telefono": usuario.telefono
+            "telefono": usuario.telefono,
+            "rol": usuario.rol or 'Usuario'
         }
     finally:
         db.close()
@@ -501,5 +501,61 @@ def obtener_calificacion_usuario(correo: str, modelo: str):
         ).first()
         
         return {"calificacion": calificacion.estrellas if calificacion else None}
+    finally:
+        db.close()
+
+# ========== ENDPOINTS PARA PRIORIDAD DE MARCAS ==========
+
+@app.get("/categorias")
+def obtener_categorias():
+    """Obtener todas las categorías"""
+    db = SessionLocal()
+    try:
+        categorias = db.query(Categoria).all()
+        return [
+            {
+                "id": c.id_categoria,
+                "nombre": c.nombre
+            }
+            for c in categorias
+        ]
+    finally:
+        db.close()
+
+@app.get("/marcas/categoria/{id_categoria}")
+def obtener_marcas_por_categoria(id_categoria: int):
+    """Obtener marcas por categoría"""
+    db = SessionLocal()
+    try:
+        marcas = db.query(Marca).filter(Marca.id_categoria == id_categoria).all()
+        return [
+            {
+                "id": m.id_marca,
+                "nombre": m.nombre,
+                "prioridad": m.prioridad
+            }
+            for m in marcas
+        ]
+    finally:
+        db.close()
+
+@app.put("/marcas/{id_marca}/prioridad")
+def actualizar_prioridad_marca(id_marca: int, datos: dict):
+    """Actualizar prioridad de una marca"""
+    db = SessionLocal()
+    try:
+        marca = db.query(Marca).filter(Marca.id_marca == id_marca).first()
+        
+        if not marca:
+            raise HTTPException(status_code=404, detail="Marca no encontrada")
+        
+        nueva_prioridad = datos.get("prioridad")
+        if nueva_prioridad not in ['1', '2', '3']:
+            raise HTTPException(status_code=400, detail="Prioridad debe ser 1, 2 o 3")
+        
+        marca.prioridad = nueva_prioridad
+        db.commit()
+        
+        return {"mensaje": f"Prioridad de {marca.nombre} actualizada a {nueva_prioridad}"}
     finally:
         db.close()

@@ -24,7 +24,7 @@ document.getElementById("registroForm").addEventListener("submit", async (e) => 
         
         if (respuesta.ok) {
             alert("Registro exitoso. Ahora puedes iniciar sesión.");
-            window.location.href = "../index.html";
+            window.location.href = "./login.html";
         } else {
             alert(resultado.detail || resultado.mensaje || "Error al registrarse");
         }

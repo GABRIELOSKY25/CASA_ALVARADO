@@ -6,121 +6,76 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Administrador | Casa Alvarado</title>
     <link rel="stylesheet" href="../CSS/index/main.css">
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-<div id="header"></div>
-<section class="panel-admin">
+    <div id="header"></div>
 
-    <div class="contenedor">
+    <section class="panel-admin">
+        <div class="contenedor">
+            <h1 class="panel-titulo">Panel de Administración</h1>
+            <p class="panel-subtitulo">Gestiona los productos de Casa Alvarado</p>
 
-        <h1 class="panel-titulo">
-            Panel de Administración
-        </h1>
+            <div class="acciones-admin">
+                <!-- AGREGAR -->
+                <button class="card-admin" onclick="window.location.href='/Admin/agregar.html'">
+                    <div class="card-icono agregar">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <h2>Agregar Producto</h2>
+                    <p>Registrar nuevos productos en el catálogo</p>
+                </button>
 
-        <p class="panel-subtitulo">
-            Gestiona los productos de Casa Alvarado
-        </p>
-
-        <div class="acciones-admin">
-
-            <!-- AGREGAR -->
-            <button class="card-admin" onclick="window.location.href='/Admin/agregar.html'">
-
-                <div class="card-icono agregar">
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-
-                <h2>Agregar Producto</h2>
-
-                <p>
-                    Registrar nuevos productos en el catálogo
-                </p>
-
-            </button>
-
-            <!-- MODIFICAR -->
-            <button class="card-admin" onclick="window.location.href='/Admin/actualizar.html'">
-
-                <div class="card-icono editar">
-                    <i class="fa-solid fa-pen"></i>
-                </div>
-
-                <h2>Modificar Producto</h2>
-
-                <p>
-                    Editar información de productos existentes
-                </p>
-
-            </button>
-
-            <!-- ELIMINAR -->
-            <button class="card-admin" onclick="window.location.href='/Admin/eliminar.html'">
-
-                <div class="card-icono eliminar">
-                    <i class="fa-solid fa-trash"></i>
-                </div>
-
-                <h2>Eliminar Producto</h2>
-
-                <p>
-                    Eliminar productos del sistema
-                </p>
-
-            </button>
-            <!-- NOVEDADES -->
-                <button class="card-admin" onclick="window.location.href='/Admin/novedad.html'">
-
+                <!-- MODIFICAR -->
+                <button class="card-admin" onclick="window.location.href='/Admin/actualizar.html'">
                     <div class="card-icono editar">
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+                    <h2>Modificar Producto</h2>
+                    <p>Editar información de productos existentes</p>
+                </button>
+
+                <!-- ELIMINAR -->
+                <button class="card-admin" onclick="window.location.href='/Admin/eliminar.html'">
+                    <div class="card-icono eliminar">
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
+                    <h2>Eliminar Producto</h2>
+                    <p>Eliminar productos del sistema</p>
+                </button>
+
+                <!-- NOVEDADES -->
+                <button class="card-admin" onclick="window.location.href='/Admin/novedad.html'">
+                    <div class="card-icono novedad">
                         <i class="fa-solid fa-fire"></i>
                     </div>
-
                     <h2>Cambiar Novedad</h2>
-
-                    <p>
-                        Marcar productos como novedad o quitarles la novedad
-                    </p>
-
+                    <p>Marcar productos como novedad o quitarles la novedad</p>
                 </button>
 
                 <!-- PRIORIDAD -->
                 <button class="card-admin" onclick="window.location.href='/Admin/prioridad.html'">
-
-                    <div class="card-icono agregar">
+                    <div class="card-icono prioridad">
                         <i class="fa-solid fa-ranking-star"></i>
                     </div>
-
                     <h2>Prioridad Marcas</h2>
-
-                    <p>
-                        Configurar prioridad de visualización de marcas
-                    </p>
-
+                    <p>Configurar prioridad de visualización de marcas</p>
                 </button>
 
-            <!-- VER -->
-            <button class="card-admin" onclick="window.location.href='/Admin/consultar.html'">
-
-                <div class="card-icono ver">
-                    <i class="fa-solid fa-box"></i>
-                </div>
-
-                <h2>Ver Productos</h2>
-
-                <p>
-                    Visualizar todos los productos registrados
-                </p>
-
-            </button>
-
+                <!-- VER -->
+                <button class="card-admin" onclick="window.location.href='/Admin/consultar.html'">
+                    <div class="card-icono ver">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+                    <h2>Ver Productos</h2>
+                    <p>Visualizar todos los productos registrados</p>
+                </button>
+            </div>
         </div>
+    </section>
 
-    </div>
+    <div id="footer"></div>
 
-</section>
-<div id="footer"></div>
-<script src="../JS/include.js"></script>
-<script src="../JS/app.js"></script>
+    <script src="../JS/include.js"></script>
+    <script src="../JS/app.js"></script>
 </body>
 </html>

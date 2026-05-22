@@ -4,78 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Editar Producto</title>
-
+    <title>Editar Producto | Casa Alvarado</title>
     <link rel="stylesheet" href="../CSS/index/main.css">
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="header"></div>
 
-<section class="crud">
+    <section class="crud-section">
+        <div class="contenedor">
+            <div class="crud-card">
+                <div class="crud-header">
+                    <i class="fas fa-pen"></i>
+                    <h1>Editar Producto</h1>
+                    <p>Busca y modifica la información de un producto existente</p>
+                </div>
 
-    <a href="admin.html" class="btn-volver">
-    ← Volver al Panel
-    </a>
-    <div class="crud-contenedor">
+                <div class="crud-form">
+                    <div class="buscar-section">
+                        <div class="input-group">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="buscarModelo" placeholder="Modelo del producto a buscar">
+                        </div>
+                        <button id="btnBuscar" class="btn-buscar" onclick="buscarProducto()">
+                            <i class="fas fa-search"></i> Buscar Producto
+                        </button>
+                    </div>
 
-        <h1>Editar Producto</h1>
+                    <div id="mensajeError" class="error-mensaje" style="display: none;"></div>
 
-        <input
-        type="text"
-        id="buscarModelo"
-        placeholder="Modelo a buscar">
+                    <form id="formEditar" style="display: none;">
+                        <div class="form-grid">
+                            <div class="input-group full-width">
+                                <i class="fas fa-tag"></i>
+                                <input type="text" id="modelo" placeholder="Modelo">
+                            </div>
 
-        <button onclick="buscarProducto()">
-            Buscar Producto
-        </button>
+                            <div class="input-group full-width">
+                                <i class="fas fa-image"></i>
+                                <input type="text" id="imagen" placeholder="URL de la imagen">
+                            </div>
 
-        <form id="formEditar">
+                            <div class="input-group full-width">
+                                <i class="fas fa-align-left"></i>
+                                <textarea id="descripcion" placeholder="Descripción del producto" rows="4"></textarea>
+                            </div>
 
-            <input type="text" id="modelo">
+                            <div class="input-group">
+                                <i class="fas fa-folder"></i>
+                                <select id="id_categoria">
+                                    <option value="">Seleccione una categoría</option>
+                                </select>
+                            </div>
 
-            <input type="text" id="imagen">
+                            <div class="input-group">
+                                <i class="fas fa-trademark"></i>
+                                <select id="id_marca">
+                                    <option value="">Seleccione una marca</option>
+                                </select>
+                            </div>
 
-            <textarea id="descripcion"></textarea>
+                            <div class="input-group">
+                                <i class="fas fa-list"></i>
+                                <select id="id_tipo">
+                                    <option value="">Seleccione un tipo</option>
+                                </select>
+                            </div>
 
-            <!-- CATEGORIA -->
-            <select id="id_categoria">
-                <option value="">
-                    Seleccione una categoria
-                </option>
-            </select>
+                            <div class="input-group">
+                                <i class="fas fa-chart-line"></i>
+                                <select id="id_gamma">
+                                    <option value="">Seleccione una gamma</option>
+                                </select>
+                            </div>
 
-            <!-- MARCA -->
-            <select id="id_marca">
-                <option value="">
-                    Seleccione una marca
-                </option>
-            </select>
+                            <div class="input-group">
+                                <i class="fas fa-fire"></i>
+                                <select id="novedad">
+                                    <option value="Si">Novedad (Sí)</option>
+                                    <option value="No">Normal (No)</option>
+                                </select>
+                            </div>
+                        </div>
 
-            <select id="id_tipo"></select>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-save"></i> Actualizar Producto
+                            </button>
+                        </div>
+                    </form>
 
-            <select id="id_gamma"></select>
+                    <!-- Botón Volver al Panel -->
+                    <div class="form-buttons" style="margin-top: 20px;">
+                        <a href="/Admin/admin.html" class="btn-cancel">
+                            <i class="fas fa-arrow-left"></i> Volver al Panel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <select id="novedad">
+    <div id="footer"></div>
 
-                <option value="Si">
-                    Novedad
-                </option>
-
-                <option value="No">
-                    Normal
-                </option>
-
-            </select>
-
-            <button type="submit">
-                Actualizar Producto
-            </button>
-
-        </form>
-    </div>
-
-</section>
-
-<script src="../JS/modificar.js"></script>
-
+    <script src="../JS/include.js"></script>
+    <script src="../JS/modificar.js"></script>
+    <script src="../JS/app.js"></script>
 </body>
 </html>

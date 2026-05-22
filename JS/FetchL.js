@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (usuarioGuardado) {
         const usuario = JSON.parse(usuarioGuardado);
         mostrarInfoUsuario(usuario);
+        mostrarBotonAdmin(usuario);  // ← Mostrar botón si es admin
     }
 });
 
@@ -35,7 +36,8 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
                 nombre: resultado.nombre,
                 apellido: resultado.apellido,
                 correo: resultado.correo,
-                telefono: resultado.telefono
+                telefono: resultado.telefono,
+                rol: resultado.rol || 'Usuario'
             }));
             
             // Mostrar información del usuario
@@ -43,11 +45,15 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
                 nombre: resultado.nombre,
                 apellido: resultado.apellido,
                 correo: resultado.correo,
-                telefono: resultado.telefono
+                telefono: resultado.telefono,
+                rol: resultado.rol || 'Usuario'
             });
             
-            // Redirigir al index después de 1 segundo
-            window.location.href = "login.html";
+            // Mostrar botón de admin si corresponde
+            mostrarBotonAdmin({ rol: resultado.rol || 'Usuario' });
+            
+            alert(`¡Bienvenido ${resultado.nombre} ${resultado.apellido}!`);
+            
         } else {
             alert(resultado.detail || "Error al iniciar sesión");
         }
@@ -56,6 +62,19 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         alert("Error de conexión con el servidor");
     }
 });
+
+// Función para mostrar el botón de administrador
+function mostrarBotonAdmin(usuario) {
+    const btnAdmin = document.getElementById('btnAdministrar');
+    if (btnAdmin) {
+        // Comparar con 'admin' (minúsculas)
+        if (usuario.rol && usuario.rol.toLowerCase() === 'admin') {
+            btnAdmin.style.display = 'flex';
+        } else {
+            btnAdmin.style.display = 'none';
+        }
+    }
+}
 
 // Función para mostrar la información del usuario y ocultar el formulario
 function mostrarInfoUsuario(usuario) {
@@ -109,8 +128,5 @@ if (btnCerrarSesion) {
         }
         
         alert('Has cerrado sesión correctamente');
-        
-        // Redirigir al index
-        window.location.href = "login.html";
     });
 }

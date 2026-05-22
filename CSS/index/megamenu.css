@@ -1,7 +1,7 @@
 /* === MEGA MENÚ === */
 .mega-menu {
     position: fixed;
-    top: 70px;
+    top: 80px;
     left: 0;
     width: 100%;
     background: var(--blanco);
