@@ -63,10 +63,10 @@
 
 .logo a span {
     white-space: nowrap;
-    font-size: 1.8rem;        /* Tamaño de fuente */
-    font-weight: 500;         /* Grosor (100-900) */
-    letter-spacing: 1px;      /* Espaciado entre letras */
-    color: white;             /* Color */
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: white;
 }
 
 /* Botón hamburguesa */
@@ -131,7 +131,7 @@ nav a:hover,
     font-size: 0.9rem;
 }
 
-/* Mega Menü */
+/* Mega Menú */
 .mega-menu {
     position: absolute;
     top: 100%;
@@ -238,30 +238,59 @@ nav a:hover,
     color: #003b6f;
 }
 
-/* Responsive - Menú hamburguesa */
-@media (max-width: 900px) {
-    .hamburguesa-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+/* Responsive Header - Diseño moderno */
+@media (max-width: 992px) {
+    .logo a span {
+        font-size: 1.4rem;
     }
     
+    nav ul {
+        gap: 1.5rem;
+    }
+    
+    nav a,
+    .auth-user {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu_navegacion .contenedor {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 15px;
+    }
+
+    .header-left {
+        display: flex;
+        justify-content: space-between; /* Empuja el logo a la izquierda y la hamburguesa a la derecha */
+        align-items: center; /* Centra verticalmente ambos elementos */
+        width: 100%; /* Ocupa todo el ancho disponible */
+    }
+    
+    /* Botón hamburguesa visible */
+    .hamburguesa-btn {
+        display: block;
+    }
+    
+    /* Menú lateral que se desliza desde la derecha */
     nav {
         position: fixed;
         top: 70px;
-        left: -280px;
+        right: -100%;
+        left: auto;
         width: 280px;
         height: calc(100vh - 70px);
         background-color: #003b6f;
-        transition: left 0.3s ease;
+        transition: right 0.3s ease;
         z-index: 1000;
         padding: 1rem;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
         overflow-y: auto;
     }
     
     nav.activo {
-        left: 0;
+        right: 0;
     }
     
     nav ul {
@@ -272,6 +301,7 @@ nav a:hover,
     
     nav ul li {
         width: 100%;
+        white-space: normal;
     }
     
     nav a,
@@ -289,9 +319,46 @@ nav a:hover,
         background: rgba(255, 255, 255, 0.1);
     }
     
+    /* Ajustes del logo */
     .logo a img {
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .logo a span {
+        font-size: 1rem;
+        white-space: normal;
+    }
+    
+    /* Mega menú en móvil */
+    .mega-menu {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: none;
+        border-top: none;
+        background: transparent;
+        padding: 0;
+        margin-top: 1rem;
+        display: block;
+    }
+    
+    .mega-menu.hidden {
+        display: none;
+    }
+    
+    .categorias {
+        border-right: none;
+        padding-right: 0;
+    }
+    
+    .subcategorias {
+        padding: 0;
+    }
+    
+    .grid-subcategorias {
+        grid-template-columns: 1fr;
     }
     
     .user-menu-modal {
@@ -303,12 +370,26 @@ nav a:hover,
     .user-menu-content {
         width: 260px;
     }
+
+    .header-left{
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 @media (max-width: 480px) {
+    .logo a img {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .logo a span {
+        font-size: 0.85rem;
+    }
+    
     nav {
         width: 100%;
-        left: -100%;
+        right: -100%;
     }
     
     .user-menu-modal {

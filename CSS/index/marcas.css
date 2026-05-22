@@ -1,6 +1,7 @@
 .marcas {
     background: linear-gradient(135deg, var(--blanco) 0%, #f8fbff 100%);
     padding: 3rem 0 0.5rem 0;
+    margin-top: 80px;  /* ← Agrega esto */
     overflow: hidden;
     position: relative;
 }
@@ -185,4 +186,59 @@
 .carrusel-item:hover img {
     filter: grayscale(0%) brightness(1.1);
     transform: scale(1.1);
+}
+
+/* Marca destacada */
+.marca-destacada {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #023c76, #eef2f6);
+    border-radius: 20px;
+}
+
+.marca-destacada-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marca-destacada-contenido img {
+    width: 100%;
+    max-width: 600px;      /* Aumenta este valor (era 500px) */
+    height: auto;
+    max-height: 300px;      /* Aumenta este valor (era 250px) */
+    object-fit: contain;
+    background: white;
+    padding: 10px 20px;     /* ← Reduce el padding */
+    border-radius: 20px;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.marca-destacada-contenido img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 45px rgba(0, 59, 111, 0.15);
+    border-color: #003b6f;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .marca-destacada {
+        padding: 25px 15px;
+        margin-bottom: 30px;
+    }
+    
+    .marca-destacada-contenido img {
+        max-width: 90%;
+        padding: 20px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .marca-destacada-contenido img {
+        max-width: 100%;
+        padding: 15px 20px;
+    }
 }

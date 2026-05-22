@@ -168,71 +168,74 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-    .contacto {
+    .inicio {
         padding: 100px 0 40px 0;
+        min-height: auto;
     }
     
-    .contacto-titulo {
-        font-size: 1.5rem;
-    }
-    
-    .contacto-contenido {
-        flex-direction: column;
+    .hero-contenido {
         gap: 40px;
     }
     
-    .contacto-logo {
+    .hero-texto h1 {
+        font-size: 2.2rem;
+        letter-spacing: 3px;
+    }
+    
+    .hero-texto h1::before,
+    .hero-texto h1::after {
+        width: 30px;
+    }
+    
+    .hero-texto h1::before {
+        left: -40px;
+    }
+    
+    .hero-texto h1::after {
+        right: -40px;
+    }
+    
+    .hero-texto h2 {
+        font-size: 0.9rem;
+        letter-spacing: 4px;
+    }
+    
+    .hero-texto p {
+        font-size: 0.9rem;
+    }
+    
+    .hero-logo {
         width: 200px;
         height: 200px;
-    }
-    
-    .contacto-lista {
-        min-width: 260px;
-        width: 100%;
-    }
-    
-    .contacto-item {
-        padding: 15px 20px;
-    }
-    
-    .contacto-item-icono {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .contacto-item-icono i {
-        font-size: 22px;
-    }
-    
-    .contacto-item-info h3 {
-        font-size: 1rem;
-    }
-    
-    .contacto-item-info p {
-        font-size: 0.7rem;
     }
 }
 
 @media (max-width: 480px) {
-    .contacto {
+    .inicio {
         padding: 90px 0 30px 0;
     }
     
-    .contacto-logo {
+    .hero-texto h1 {
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+    }
+    
+    .hero-texto h1::before,
+    .hero-texto h1::after {
+        display: none;
+    }
+    
+    .hero-texto h2 {
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+    }
+    
+    .hero-texto p {
+        font-size: 0.8rem;
+    }
+    
+    .hero-logo {
         width: 160px;
         height: 160px;
-    }
-    
-    .contacto-item {
-        padding: 12px 15px;
-    }
-    
-    .contacto-item-icono {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .contacto-item-icono i {
-        font-size: 20px;
     }
 }

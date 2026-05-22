@@ -559,3 +559,18 @@ def actualizar_prioridad_marca(id_marca: int, datos: dict):
         return {"mensaje": f"Prioridad de {marca.nombre} actualizada a {nueva_prioridad}"}
     finally:
         db.close()
+
+@app.get("/marca/destacada")
+def obtener_marca_destacada():
+    db = SessionLocal()
+    try:
+        marca = db.query(Marca).filter(Marca.prioridad == '1').first()
+        if marca:
+            return {
+                "nombre": marca.nombre,
+                "imagen": marca.imagen,  # ← Esto debe venir de la BD
+                "id_marca": marca.id_marca
+            }
+        return None
+    finally:
+        db.close()
