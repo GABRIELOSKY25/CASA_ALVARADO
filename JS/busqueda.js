@@ -25,23 +25,6 @@ async function inicializar() {
     }
 }
 
-// ========== MARCA DESTACADA (PRIORIDAD 1) ==========
-async function cargarMarcaDestacada() {
-    try {
-        const response = await fetch(`${API_BASE}/marca/destacada`);
-        const marca = await response.json();
-        
-        const marcaLogo = document.getElementById('marcaLogo');
-        
-        if (marcaLogo && marca.imagen) {
-            marcaLogo.src = marca.imagen;
-            marcaLogo.style.display = 'block';
-        }
-    } catch (error) {
-        console.error('Error cargando marca destacada:', error);
-    }
-}
-
 // Cargar productos desde la API
 async function cargarProductosUnaVez() {
     console.log('Intentando conectar a:', API_BASE);
@@ -74,7 +57,6 @@ async function cargarProductosUnaVez() {
             return (a.prioridad_marca || 999) - (b.prioridad_marca || 999);
         });
 
-// ========= FILTRO AUTOMÁTICO POR CATEGORÍA =========
 // ========= FILTRO AUTOMÁTICO =========
 let productosFiltrados = [...productosCache];
 

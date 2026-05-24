@@ -269,3 +269,82 @@ INSERT INTO Producto (modelo, imagen, descripcion, novedad, id_marca, id_gamma, 
 ('MTC-5485', 'https://kaiser.shop/cdn/shop/files/MTC-5485_c9cefc49-532d-42cf-a42f-8f67f2f339af_960x_crop_center.jpg?v=1762532937', 'Teclado musical con 54 teclas, 100 tonos y 10 demos KSR MTC-5485', 'No', 55, 1, 31),
 ('MTC-5490', 'https://ss631.liverpool.com.mx/xl/1117588579.jpg', 'Teclado digital de 61 teclas MTC-5490', 'No', 55, 1, 31),
 ('Par 118', 'https://http2.mlstatic.com/D_NQ_NP_2X_742876-MLM79041702871_092024-F.webp', 'SUPER BRIGHT PAR118 PAR LED 18X1 RGBW', 'No', 56, 1, 32);
+
+-- =========================================
+-- PRODUCTOS FALTANTES - Casa Alvarado
+-- =========================================
+
+-- =========================================
+-- NUEVAS CATEGORIAS (id 17 en adelante)
+-- =========================================
+-- id_familia 6 = Iluminacion LED
+INSERT INTO Categoria (nombre, id_familia) VALUES
+('Estrobos', 6),        -- id_categoria = 17
+('Cabeza Robotica', 6), -- id_categoria = 18
+('Cabeza Movil', 6),    -- id_categoria = 19
+('Laser', 6);           -- id_categoria = 20
+
+-- =========================================
+-- NUEVAS MARCAS (id 57 en adelante)
+-- =========================================
+INSERT INTO Marca (nombre, imagen, prioridad, id_categoria) VALUES
+('Megaluz', '', '3', 16),       -- id_marca = 57  (Par LED)
+('Super bright', '', '3', 17),  -- id_marca = 58  (Estrobos)
+('Megaluz', '', '3', 17),       -- id_marca = 59  (Estrobos)
+('Megaluz', '', '3', 18),       -- id_marca = 60  (Cabeza Robotica)
+('Super bright', '', '3', 19),  -- id_marca = 61  (Cabeza Movil)
+('Megaluz', '', '3', 19),       -- id_marca = 62  (Cabeza Movil)
+('Super bright', '', '3', 20),  -- id_marca = 63  (Laser)
+('Megaluz', '', '3', 20);       -- id_marca = 64  (Laser)
+
+-- =========================================
+-- NUEVOS TIPOS (id 33 en adelante)
+-- =========================================
+INSERT INTO Tipo (nombre) VALUES
+('Estroboscopico'),    -- id_tipo = 33
+('Spot LED'),         -- id_tipo = 34
+('Multiefectos'),     -- id_tipo = 35
+('Triple de efectos'),-- id_tipo = 36
+('Beam'),             -- id_tipo = 37
+('Spot'),             -- id_tipo = 38
+('Wash'),             -- id_tipo = 39
+('Laser');            -- id_tipo = 40
+
+-- =========================================
+-- PRODUCTOS FALTANTES
+-- =========================================
+-- Nota: 490-351 y 490-352 no tienen Tipo en el Excel.
+-- Se asigna tipo 'Alambrico' (id=1) como valor por defecto;
+-- ajusta si conoces el tipo correcto.
+INSERT INTO Producto (modelo, imagen, descripcion, novedad, id_marca, id_gamma, id_tipo) VALUES
+-- RADOX sin tipo (id_marca=5 RADOX/Microfono, id_gamma=1 Profesional)
+('490-351', 'RADOX 490-351 Microfono de Diadema con Plug 3.5mm Mono, Repuesto', 'Microfono de Diadema con Plug 3.5mm Mono, Repuesto', 'No', 5, 1, 1),
+('490-352', 'RADOX 490-352 Microfono de Diadema con Jack Mini XLR Canon, Repuesto', 'Microfono de Diadema con Jack Mini XLR Canon, Repuesto', 'No', 5, 1, 1),
+
+-- Tarolas corregidas (id_marca=41 New beat/Tarolas, id_marca=42 J. Banks/Tarolas, id_tipo=21 Metal)
+('NBS-1455', 'https://http2.mlstatic.com/D_Q_NP_857255-MLM42270391014_062020-B.webp', 'Nbs-1455 Tarola New Beat De 14 X 5.5 Pulg Con 8 Lugs', 'No', 41, 1, 21),
+('SHS 14SD', 'https://http2.mlstatic.com/D_Q_NP_801154-MLM78322288357_082024-B.webp', 'Tarola 14 Cromada J. Banks Sms14sd', 'No', 42, 1, 21),
+
+-- Par LED nuevos (id_marca=57 Megaluz/Par LED, id_marca=56 Super bright/Par LED, id_tipo=32 Par)
+('Lum005', 'https://http2.mlstatic.com/D_Q_NP_669870-MLM84027246174_052025-B.webp', 'Luz Par Led 18 X 1w Rgb Dmx Megaluz Lum-005', 'No', 57, 1, 32),
+('par 180A', 'https://www.musicalesdoris.com/cdn/shop/products/d1e67480e053_1280x.jpg?v=1667060476', 'Par Led Super bright Par180a Mezcla RGBA 18 Leds 10 Watts', 'No', 56, 1, 32),
+('par 188A', 'https://www.musicalesdoris.com/cdn/shop/files/866dacc6824b9bda7ec4879b03d4b642-par-led-superbright-18w-rgba-par188a_1280x.jpg?v=1778261549', 'Par Led Super Bright Par188a Rgba 18w', 'No', 56, 1, 32),
+('Par 1888 w', 'https://http2.mlstatic.com/D_Q_NP_622847-MLM75938575557_042024-L.webp', 'Par Led Super Bright Par188w Rgbw 18 Leds', 'No', 56, 1, 32),
+
+-- Estrobos (id_marca=58 Super bright/Estrobos, id_marca=59 Megaluz/Estrobos, id_tipo=33 Estroboscopico)
+('Circus200', 'https://http2.mlstatic.com/D_Q_NP_616887-MLA99972040053_112025-L.webp', 'Estrobo Destellador Super Bright Circus 200', 'No', 58, 1, 33),
+('Circus250', 'https://http2.mlstatic.com/D_Q_NP_743571-MLM77028742462_062024-L.webp', 'Estrobo Super Bright Circus 250 8 Secciones 96 Leds', 'No', 59, 1, 33),
+
+-- Cabeza Robotica (id_marca=60 Megaluz/Cabeza Robotica, id_tipo=34 Spot LED)
+('Countor 30', 'https://http2.mlstatic.com/D_Q_NP_948572-MLA99591373730_122025-L.webp', 'Cabeza Movil Contour 30 Cm007 Megaluz 30 W', 'No', 60, 1, 34),
+
+-- Cabeza Movil (id_marca=61 Super bright/Cabeza Movil, id_marca=62 Megaluz/Cabeza Movil)
+('Elicopter', 'https://http2.mlstatic.com/D_Q_NP_642209-MLM90061210278_082025-L.webp', 'Cabeza Movil Super Bright Helicopter 10 Leds 10w Rgbw 4 En 1', 'No', 61, 1, 35),
+('Triton', 'https://superbright.com.mx/wp-content/uploads/2025/04/Triton-lateral.png', 'Cabeza Movil Super Bright Triton', 'No', 61, 1, 36),
+('Disco ball', 'https://gamamusic.com/cdn/shop/files/DISCOBALL-1.webp?v=1708725413&width=700', 'Super Bright Discoball Iluminacion Cabeza Movil 8 Led 10w', 'No', 61, 1, 37),
+('Python spot', 'https://http2.mlstatic.com/D_Q_NP_959452-MLM86353959497_062025-B.webp', 'Megaluz Python Spot Led 30w Cabezal Movil 1 Unidad', 'No', 62, 1, 38),
+('Tiny wash', 'https://http2.mlstatic.com/D_Q_NP_799704-MLM96978145269_112025-B.webp', 'Cabeza Movil Led 18x3 Megaluz Tiny Wash Rgb 54w Dmx 14ch', 'No', 62, 1, 39),
+
+-- Laser (id_marca=63 Super bright/Laser, id_marca=64 Megaluz/Laser, id_tipo=40 Laser)
+('sufer Fx 1500', 'https://www.luxbeat.mx/pub/media/catalog/product/cache/73ee67912d9a8ad7a258b18a80cedf53/s/u/super_fx1500.png', 'LASER SUPER FX 1500 DE SUPER BRIGHT AND LOUD', 'No', 63, 1, 40),
+('LA016', 'https://holocaustomusic.com/cdn/shop/products/594-250_360x.jpg?v=1756861334', 'LA016-WL1W LASER 1W DMX512 MEGALUZ', 'No', 64, 1, 40);

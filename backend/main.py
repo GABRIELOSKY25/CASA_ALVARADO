@@ -10,6 +10,7 @@ from models import (Producto,
                     Familia, 
                     Usuario)
 from sqlalchemy import func
+from sqlalchemy import cast, Integer
 from typing import Optional, List
 from pydantic import BaseModel
 from passlib.context import CryptContext
@@ -261,24 +262,6 @@ def productos_similares(modelo: str):
 
         return resultado
 
-    finally:
-        db.close()
-
-
-@app.get("/marcas/todas", response_model=List[MarcaResponse])
-def obtener_todas_marcas():
-    """Obtener todas las marcas para el carrusel"""
-    db = SessionLocal()
-    try:
-        marcas = db.query(Marca).all()
-        return [
-            {
-                "id_marca": m.id_marca,
-                "nombre": m.nombre,
-                "imagen": m.imagen
-            }
-            for m in marcas
-        ]
     finally:
         db.close()
 
@@ -561,16 +544,103 @@ def actualizar_prioridad_marca(id_marca: int, datos: dict):
         db.close()
 
 @app.get("/marca/destacada")
-def obtener_marca_destacada():
+def obtener_marca_destacada(categoria: str):
+
+    print("Categoria recibida:", categoria)
+
     db = SessionLocal()
+
     try:
-        marca = db.query(Marca).filter(Marca.prioridad == '1').first()
+
+        marcas = (
+            db.query(Marca)
+            .join(Categoria, Marca.id_categoria == Categoria.id_categoria)
+            .filter(Categoria.nombre == categoria)
+            .all()
+        )
+
+        print("Marcas encontradas:", marcas)
+
+        marca = (
+            db.query(Marca)
+            .join(Categoria, Marca.id_categoria == Categoria.id_categoria)
+            .filter(
+                Categoria.nombre == categoria,
+                Marca.prioridad == 1
+            )
+            .first()
+        )
+
+        print("Marca destacada:", marca)
+
         if marca:
+
             return {
                 "nombre": marca.nombre,
-                "imagen": marca.imagen,  # ← Esto debe venir de la BD
+                "imagen": marca.imagen,
                 "id_marca": marca.id_marca
             }
+
         return None
+
     finally:
+
+        db.close()
+ 
+@app.get("/marcas/carrusel")
+def obtener_marcas_carrusel():
+
+    db = SessionLocal()
+
+    try:
+
+        marcas = (
+            db.query(Marca)
+            .filter(Marca.prioridad == '1')
+            .all()
+        )
+
+        return [
+            {
+                "nombre": marca.nombre,
+                "imagen": marca.imagen,
+                "id_marca": marca.id_marca
+            }
+            for marca in marcas
+        ]
+
+    finally:
+
+        db.close()
+               
+@app.get("/marcas/todas")
+def obtener_marcas(categoria: str):
+
+    db = SessionLocal()
+
+    try:
+
+        marcas = (
+            db.query(Marca)
+            .join(
+                Categoria,
+                Marca.id_categoria == Categoria.id_categoria
+            )
+            .filter(Categoria.nombre == categoria)
+            .order_by(cast(Marca.prioridad, Integer))
+            .all()
+        )
+
+        return [
+            {
+                "nombre": marca.nombre,
+                "imagen": marca.imagen,
+                "id_marca": marca.id_marca,
+                "prioridad": marca.prioridad
+            }
+            for marca in marcas
+        ]
+
+    finally:
+
         db.close()
