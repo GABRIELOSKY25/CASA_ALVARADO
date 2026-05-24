@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Catálogo - Casa Alvarado</title>
+    <link rel="stylesheet" href="../CSS/index/main.css">
+</head>
+<body>
+    <div id="header"></div>
+    
+    <main>
+        <!-- CARRUSEL DE MARCAS -->
+        <section class="marcas">
+            <div class="contenedor">
+                <div class="marca-destacada" id="marcaDestacada">
+                    <div class="marca-destacada-contenido">
+                        <img id="marcaLogo" src="" alt="Marca destacada" style="display: none;">
+                    </div>
+                </div>
+                <div class="carrusel-contenedor">
+                    <div class="carrusel-track" id="track"></div>
+                    <div class="controles-carrusel">
+                        <button class="btn-carrusel btn-prev" onclick="moverCarrusel(-1)" aria-label="Anterior">&#10094;</button>
+                        <button class="btn-carrusel btn-next" onclick="moverCarrusel(1)" aria-label="Siguiente">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATÁLOGO CON FILTROS -->
+        <section class="catalogo">
+            <aside class="filtros" id="filtros-container">
+                <div class="filtros-logo">
+                    <img src="../Logo.png" alt="Casa Alvarado Logo">
+                </div>
+                <h2>Filtros</h2>
+                <div id="filtros-contenido">
+                    <div id="filtros-loading">Cargando filtros...</div>
+                </div>
+            </aside>
+
+            <!-- BUSCADOR EN TIEMPO REAL -->
+            <div style="flex: 1;">
+                <div class="buscador-container" style="margin-bottom: 20px;">
+                    <input type="text" 
+                        id="buscador-productos" 
+                        placeholder="Buscar en el catálogo" 
+                        style="width: 100%; 
+                                padding: 12px 20px; 
+                                font-size: 16px; 
+                                border: 2px solid #e0e0e0; 
+                                border-radius: 8px; 
+                                outline: none;
+                                transition: all 0.3s ease;">
+                </div>
+
+                <section class="tarjeta_productos">
+                    <div class="contenedor">
+                        <div class="grid_productos" id="grid-productos">
+                            <div class="loading">Cargando productos...</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+    <script src="/JS/app.js"></script>
+    <script src="../JS/include.js"></script>
+    <script src="../JS/busqueda.js"></script>
+    <script src="../JS/marcasC.js"></script>
+</body>
+</html>

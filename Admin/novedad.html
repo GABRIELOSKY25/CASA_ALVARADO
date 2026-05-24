@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Cambiar Novedad | Casa Alvarado</title>
+    <link rel="stylesheet" href="../CSS/index/main.css">
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header"></div>
+
+    <section class="crud-section">
+        <div class="contenedor">
+            <div class="crud-card">
+                <div class="crud-header">
+                    <i class="fas fa-fire"></i>
+                    <h1>Cambiar Novedad</h1>
+                    <p>Marca o desmarca productos como novedad</p>
+                </div>
+
+                <div class="crud-form">
+                    <div class="buscar-section">
+                        <div class="input-group">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="buscarModelo" placeholder="Modelo del producto a buscar">
+                        </div>
+                        <button id="btnBuscar" class="btn-buscar" onclick="buscarProducto()">
+                            <i class="fas fa-search"></i> Buscar Producto
+                        </button>
+                    </div>
+
+                    <div id="resultado" class="resultado-container"></div>
+
+                    <div class="form-buttons" style="margin-top: 20px;">
+                        <a href="/Admin/admin.html" class="btn-cancel">
+                            <i class="fas fa-arrow-left"></i> Volver al Panel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="../JS/include.js"></script>
+    <script src="../JS/novedad_admi.js"></script>
+    <script src="../JS/app.js"></script>
+</body>
+</html>

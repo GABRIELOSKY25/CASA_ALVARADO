@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome 6 Free -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../CSS/index/main.css">
+    <link rel="stylesheet" href="../CSS/auth.css">
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+    
+    <title>Iniciar Sesión - Casa Alvarado</title>
+</head>
+<!--Contenido de la Pagina-->
+<body>
+    <div id="header"></div>
+    <!--Contenido principal-->
+    <main>
+        <section class="auth-section">
+            <div class="auth-container">
+                <!-- Lado Izquierdo: Formulario de Login (oculto después del login) -->
+                <div class="auth-form" id="authForm">
+                    <h2>Iniciar Sesión</h2>
+                    <p class="auth-subtitle">Bienvenido de vuelta a Casa Alvarado</p>
+                    
+                    <form id="loginForm">
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="loginCorreo" placeholder="Correo electrónico" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginContrasena" placeholder="Contraseña" required>
+                        </div>
+                        
+                        <button type="submit" class="btn-auth">Ingresar</button>
+                    </form>
+                    
+                    <p class="auth-link">
+                        ¿No tienes cuenta? <a href="./signIn.html">Regístrate aquí</a>
+                    </p>
+                </div>
+
+                <!-- Lado Izquierdo: Información del Usuario (oculto inicialmente) -->
+                <div class="user-info-card" id="userInfoCard" style="display: none;">
+                    <div class="user-info-header">
+                        <i class="fas fa-user-circle"></i>
+                        <h2>Mi Cuenta</h2>
+                    </div>
+                    <div class="user-info-body">
+                        <div class="user-info-field">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <label>Nombre completo</label>
+                                <p id="userNombreCompleto"></p>
+                            </div>
+                        </div>
+                        <div class="user-info-field">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <label>Correo electrónico</label>
+                                <p id="userCorreoInfo"></p>
+                            </div>
+                        </div>
+                        <div class="user-info-field">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <label>Teléfono</label>
+                                <p id="userTelefonoInfo"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-info-footer">
+                        <a href="../Admin/admin.html" id="btnAdministrar" class="btn-admin" style="display: none;">
+                            <i class="fas fa-cogs"></i> Administrar
+                        </a>
+                        <button id="btnCerrarSesion" class="btn-logout">
+                            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lado Derecho: Información de la tienda (siempre visible) -->
+                <div class="auth-info">
+                    <div class="auth-info-logo">
+                        <img src="../Logo.png" alt="Casa Alvarado">
+                    </div>
+                    <h3>Casa Alvarado</h3>
+                    <p>Tu tienda de confianza en instrumentos musicales.</p>
+                    
+                    <div class="auth-info-features">
+                        <div class="feature">
+                            <i class="fas fa-star"></i>
+                            <span>Deja tu calificación</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-guitar"></i>
+                            <span>Descubre nuestro catálogo</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-headset"></i>
+                            <span>Atención personalizada</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Sé el primero en conocer novedades</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+    
+    <script src="../JS/include.js"></script>
+    <script src="../JS/FetchL.js"></script>
+    <script src="../JS/app.js"></script>
+</body>
+</html>

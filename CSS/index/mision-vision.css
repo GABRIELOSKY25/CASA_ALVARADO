@@ -1,0 +1,85 @@
+/* === MISIÓN Y VISIÓN === */
+.mision-vision {
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    padding: 80px 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.mision-vision .contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.mision, .vision {
+    text-align: center;
+}
+
+.mision h2, .vision h2 {
+    font-family: 'Prata', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #003b6f;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+
+.mision h2::after, .vision h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #003b6f;
+    border-radius: 2px;
+}
+
+.mision p, .vision p {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mision-vision {
+        padding: 50px 0;
+    }
+    
+    .mision-vision .contenedor {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .mision h2, .vision h2 {
+        font-size: 1.5rem;
+    }
+    
+    .mision p, .vision p {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .mision-vision {
+        padding: 40px 0;
+    }
+    
+    .mision h2, .vision h2 {
+        font-size: 1.3rem;
+    }
+    
+    .mision p, .vision p {
+        font-size: 0.85rem;
+    }
+}

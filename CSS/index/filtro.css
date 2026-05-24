@@ -1,0 +1,216 @@
+/* ========== FILTROS LATERAL ========== */
+.filtros {
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: fit-content;
+    box-shadow: 0 5px 20px rgba(0, 59, 111, 0.08);
+    border: 1px solid #e0e0e0;
+}
+
+/* Logo en filtros */
+.filtros-logo {
+    flex: 0 0 auto;
+    width: 180px;
+    height: 180px;
+    background: white;
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(0, 59, 111, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin: 0 auto 1rem auto;
+}
+
+.filtros-logo:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
+    border-color: #003b6f;
+}
+
+.filtros-logo img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+.filtros h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    color: #003b6f;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #003b6f;
+    font-family: 'Prata', serif;
+    text-align: center;
+}
+
+/* ========== GRUPO DE FILTRO (DESPLEGABLE) ========== */
+.grupo_filtro {
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+}
+
+.grupo_filtro:hover {
+    border-color: #003b6f;
+}
+
+/* Header del filtro (clickeable) */
+.filtro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filtro-header:hover {
+    background: #eef2ff;
+}
+
+.filtro-header h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #003b6f;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.flecha {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+    color: #003b6f;
+}
+
+/* Contenido del filtro (opciones) */
+.filtro-contenido {
+    max-height: 0;
+    overflow-y: auto;
+    transition: max-height 0.3s ease-out;
+    background: white;
+}
+
+.filtro-contenido::-webkit-scrollbar {
+    width: 4px;
+}
+
+.filtro-contenido::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+.filtro-contenido::-webkit-scrollbar-thumb {
+    background: #003b6f;
+    border-radius: 4px;
+}
+
+/* Opciones individuales */
+.opcion_filtro {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+    color: #444;
+    border-top: 1px solid #f0f0f0;
+}
+
+.opcion_filtro:hover {
+    background: #f0f7ff;
+}
+
+.opcion_filtro input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: #003b6f;
+}
+
+.opcion_filtro .contador {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: #888;
+    background: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 20px;
+}
+
+/* ========== BUSCADOR ========== */
+.buscador-container {
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+#buscador-productos {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+#buscador-productos:focus {
+    border-color: #003b6f;
+    box-shadow: 0 0 0 3px rgba(0, 59, 111, 0.1);
+}
+
+/* ========== CONTENEDOR PRINCIPAL ========== */
+.catalogo {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Mensaje cuando no hay filtros */
+#filtros-loading {
+    text-align: center;
+    padding: 1rem;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .catalogo {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .filtros {
+        width: 100%;
+        position: static;
+    }
+    
+    .filtros-logo img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filtros {
+        padding: 1rem;
+    }
+    
+    .filtros h2 {
+        font-size: 1.1rem;
+    }
+}

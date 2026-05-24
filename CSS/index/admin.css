@@ -1,0 +1,178 @@
+/* ========== PANEL DE ADMINISTRACIÓN ========== */
+.panel-admin {
+    padding: 120px 0 60px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2f6 100%);
+    min-height: calc(100vh - 200px);
+}
+
+.panel-admin .contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.panel-titulo {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #003b6f;
+    margin-bottom: 15px;
+    font-family: 'Prata', serif;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.panel-titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #003b6f;
+    border-radius: 2px;
+}
+
+.panel-subtitulo {
+    text-align: center;
+    color: #64748b;
+    font-size: 1rem;
+    margin-bottom: 50px;
+}
+
+/* Grid de acciones */
+.acciones-admin {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+/* Tarjetas de administrador */
+.card-admin {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 59, 111, 0.08);
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    width: 100%;
+}
+
+.card-admin:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 59, 111, 0.15);
+    border-color: #003b6f;
+}
+
+/* Iconos de las tarjetas */
+.card-icono {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    transition: all 0.3s ease;
+}
+
+.card-icono i {
+    font-size: 32px;
+    color: white;
+}
+
+/* Colores de iconos */
+.card-icono.agregar {
+    background: #10b981;
+}
+
+.card-icono.editar {
+    background: #f59e0b;
+}
+
+.card-icono.eliminar {
+    background: #ef4444;
+}
+
+.card-icono.novedad {
+    background: #ff6b6b;
+}
+
+.card-icono.prioridad {
+    background: #8b5cf6;
+}
+
+.card-icono.ver {
+    background: #3b82f6;
+}
+
+.card-admin:hover .card-icono {
+    transform: scale(1.05);
+}
+
+/* Títulos de las tarjetas */
+.card-admin h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #003b6f;
+    margin-bottom: 10px;
+    font-family: 'Prata', serif;
+}
+
+.card-admin p {
+    font-size: 0.8rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .panel-admin {
+        padding: 100px 0 40px 0;
+    }
+    
+    .panel-titulo {
+        font-size: 1.5rem;
+    }
+    
+    .acciones-admin {
+        gap: 1.5rem;
+    }
+    
+    .card-admin {
+        padding: 20px;
+    }
+    
+    .card-icono {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .card-icono i {
+        font-size: 28px;
+    }
+    
+    .card-admin h2 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .acciones-admin {
+        grid-template-columns: 1fr;
+    }
+    
+    .panel-titulo {
+        font-size: 1.3rem;
+    }
+    
+    .panel-subtitulo {
+        font-size: 0.85rem;
+        margin-bottom: 30px;
+    }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Producto - Casa Alvarado</title>
+
+    <link rel="stylesheet" href="../CSS/index/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div id="header"></div> 
+    
+    <main>
+        <section class="producto_body">
+            <!-- PRODUCTO PRINCIPAL -->
+            <div class="producto_main">   
+                <div class="producto_detalle">
+
+                    <div class="producto_imagen">
+                        <img id="producto-img" src="" alt="Producto">
+                    </div>
+
+                    <div class="producto_info">
+                        <div class="producto_info_header">
+                            <p class="marca" id="producto-marca"></p>
+                            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+                                <h1 id="producto-modelo"></h1>
+                                <div class="rating_container">
+                                    <div class="rating_stars_display" id="rating-stars-display"></div>
+                                    <span class="rating_num_display" id="rating-num"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="descripcion_container">
+                            <h3>Descripción del producto</h3>
+                            <p class="descripcion" id="producto-descripcion"></p>
+                        </div>
+
+                        <div class="botones_container">
+                            <button class="btn btn_contacto" id="btn-contactar">
+                                <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                            </button>
+                        </div>
+
+                        <!-- Sección de calificación (solo visible si el usuario ha iniciado sesión) -->
+                        <div class="calificacion-usuario" id="calificacionUsuario" style="display: none;">
+                            <h3>Dejanos tu opinión</h3>
+                            <div class="estrellas-calificacion" id="estrellasCalificacion">
+                                <i class="far fa-star" data-valor="1"></i>
+                                <i class="far fa-star" data-valor="2"></i>
+                                <i class="far fa-star" data-valor="3"></i>
+                                <i class="far fa-star" data-valor="4"></i>
+                                <i class="far fa-star" data-valor="5"></i>
+                            </div>
+                            <button id="btnEnviarCalificacion" class="btn-calificar">Enviar calificación</button>
+                            <p id="mensajeCalificacion" class="mensaje-calificacion"></p>
+                        </div>
+
+                        <div class="botones_container">
+                            <a href="catalogo.html" class="btn btn_volver">← Volver al catálogo</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PRODUCTOS SIMILARES -->
+            <section class="tarjeta_productos">
+                <h2>Productos Similares</h2>
+                <div class="grid_productos" id="productos-similares">
+                    <div class="loading">Cargando productos similares...</div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="../JS/include.js"></script>
+    <script src="../JS/app.js"></script>
+    <script src="../JS/producto.js"></script>
+    <script src="../JS/productos_detalle.js"></script>
+    <script src="../JS/calificacion.js"></script>
+
+</body>
+</html>
+</html>

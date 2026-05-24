@@ -1,0 +1,22 @@
+/* === MAIN.CSS - ARCHIVO PRINCIPAL === */
+/* Este archivo importa todos los CSS modulares */
+
+@import url('variables.css');
+@import url('header.css');
+@import url('megamenu.css');
+@import url('hero.css');
+@import url('mision-vision.css');
+@import url('marcas.css');
+@import url('tarjeta_producto.css');
+@import url('producto.css');
+@import url('filtro.css');
+@import url('sucursales.css');
+@import url('contacto.css');
+@import url('footer.css');
+@import url('responsive.css');
+@import url('telefonos.css');
+@import url('novedades.css');
+@import url('crud.css');
+@import url('admin.css');
+@import url('iniciar_sesion.css');
+@import url('login.css');

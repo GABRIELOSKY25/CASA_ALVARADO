@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Agregar Producto | Casa Alvarado</title>
+    <link rel="stylesheet" href="../CSS/index/main.css">
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header"></div>
+
+    <section class="crud-section">
+        <div class="contenedor">
+            <div class="crud-card">
+                <div class="crud-header">
+                    <i class="fas fa-plus-circle"></i>
+                    <h1>Agregar Producto</h1>
+                    <p>Complete los datos para registrar un nuevo producto</p>
+                </div>
+
+                <form id="formAgregar" class="crud-form">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <i class="fas fa-tag"></i>
+                            <input type="text" id="modelo" placeholder="Modelo" required>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-image"></i>
+                            <input type="text" id="imagen" placeholder="URL de la imagen" required>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <i class="fas fa-align-left"></i>
+                            <textarea id="descripcion" placeholder="Descripción del producto" rows="4" required></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-layer-group"></i>
+                            <select id="id_familia" required>
+                                <option value="">Seleccione una familia</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-folder"></i>
+                            <select id="id_categoria" required>
+                                <option value="">Seleccione una categoria</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-trademark"></i>
+                            <select id="id_marca" required>
+                                <option value="">Seleccione una marca</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-list"></i>
+                            <select id="id_tipo" required>
+                                <option value="">Seleccione un tipo</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-chart-line"></i>
+                            <select id="id_gamma" required>
+                                <option value="">Seleccione una gamma</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-fire"></i>
+                            <select id="novedad">
+                                <option value="Si">Novedad (Sí)</option>
+                                <option value="No">Normal (No)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-save"></i> Agregar Producto
+                        </button>
+                        <a href="/Admin/admin.html" class="btn-cancel">
+                            <i class="fas fa-arrow-left"></i> volver al Panel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="../JS/include.js"></script>
+    <script src="../JS/add.js"></script>
+    <script src="../JS/app.js"></script>
+
+</body>
+</html>

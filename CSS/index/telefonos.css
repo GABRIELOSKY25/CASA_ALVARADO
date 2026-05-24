@@ -1,0 +1,327 @@
+/* ========== SECCIÓN DE NÚMEROS TELEFÓNICOS ========== */
+.telefonos-seccion {
+    padding: 50px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2f6 100%);
+}
+
+.telefonos-seccion .contenedor {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.telefonos-titulo {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #003b6f;
+    margin-bottom: 50px;
+    font-family: 'Prata', serif;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.telefonos-titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #003b6f;
+    border-radius: 2px;
+}
+
+/* Grid de teléfonos */
+.telefonos-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* Tarjeta de teléfono - SIN MOVIMIENTO */
+.telefono-card {
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    text-align: center;
+    width: 400px;
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.telefono-card:hover {
+    box-shadow: 0 15px 35px rgba(0, 59, 111, 0.12);
+    border-color: #003b6f;
+}
+
+/* Imagen del local */
+.telefono-card-imagen {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.telefono-card-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.telefono-card:hover .telefono-card-imagen img {
+    transform: scale(1.03);
+}
+
+/* Icono de la tarjeta - SIN SUPERPOSICIÓN */
+.telefono-card-icono {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #003b6f, #1e4d8f);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -45px;
+    margin-bottom: 5px;
+    border: 4px solid white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+    transition: none;
+}
+
+.telefono-card-icono i {
+    font-size: 38px;
+    color: white;
+    transition: none;
+}
+
+.telefono-card:hover .telefono-card-icono {
+    transform: none;
+    background: linear-gradient(135deg, #003b6f, #1e4d8f);
+}
+
+.telefono-card:hover .telefono-card-icono i {
+    transform: none;
+}
+
+/* Título */
+.telefono-card-titulo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #003b6f;
+    margin: 10px 0 5px;
+    font-family: 'Prata', serif;
+}
+
+/* Número de teléfono */
+.telefono-card-numero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #f0f4f8;
+    padding: 14px 24px;
+    border-radius: 60px;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.telefono-card-numero i {
+    font-size: 1.2rem;
+    color: #25D366;
+}
+
+.telefono-card-numero span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+/* Contenedor de botones */
+.telefono-card-botones {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Botón llamar - AZUL */
+.telefono-card-btn.llamar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #003b6f;
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.telefono-card-btn.llamar:hover {
+    background: transparent;
+    color: #003b6f;
+    border-color: #003b6f;
+}
+
+/* Botón WhatsApp */
+.telefono-card-btn.whatsapp {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.telefono-card-btn.whatsapp:hover {
+    background: transparent;
+    color: #25D366;
+    border-color: #25D366;
+}
+
+.telefono-card-btn i {
+    font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .telefono-card {
+        width: 350px;
+        padding: 25px;
+    }
+    
+    .telefono-card-imagen {
+        height: 210px;
+    }
+    
+    .telefono-card-icono {
+        width: 70px;
+        height: 70px;
+        margin-top: -40px;
+    }
+    
+    .telefono-card-icono i {
+        font-size: 32px;
+    }
+    
+    .telefono-card-titulo {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .telefonos-seccion {
+        padding: 50px 0;
+    }
+    
+    .telefonos-titulo {
+        font-size: 1.5rem;
+        margin-bottom: 35px;
+    }
+    
+    .telefonos-grid {
+        gap: 30px;
+    }
+    
+    .telefono-card {
+        width: 100%;
+        max-width: 380px;
+        padding: 20px;
+    }
+    
+    .telefono-card-imagen {
+        height: 200px;
+    }
+    
+    .telefono-card-icono {
+        width: 65px;
+        height: 65px;
+        margin-top: -35px;
+    }
+    
+    .telefono-card-icono i {
+        font-size: 30px;
+    }
+    
+    .telefono-card-titulo {
+        font-size: 1.2rem;
+    }
+    
+    .telefono-card-numero span {
+        font-size: 1rem;
+    }
+    
+    .telefono-card-botones {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .telefono-card-btn.llamar,
+    .telefono-card-btn.whatsapp {
+        padding: 12px 15px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .telefonos-seccion {
+        padding: 40px 0;
+    }
+    
+    .telefono-card {
+        padding: 15px;
+    }
+    
+    .telefono-card-imagen {
+        height: 180px;
+    }
+    
+    .telefono-card-icono {
+        width: 55px;
+        height: 55px;
+        margin-top: -30px;
+    }
+    
+    .telefono-card-icono i {
+        font-size: 26px;
+    }
+    
+    .telefono-card-titulo {
+        font-size: 1.1rem;
+    }
+    
+    .telefono-card-numero {
+        padding: 10px 16px;
+    }
+    
+    .telefono-card-numero span {
+        font-size: 0.9rem;
+    }
+}
