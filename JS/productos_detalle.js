@@ -232,8 +232,7 @@ function mostrarError(mensaje) {
             <div class="error-mensaje" style="text-align: center; padding: 2rem;">
                 <h3>⚠️ Error</h3>
                 <p>${mensaje}</p>
-                <a href="${urlCatalogo}" class="btn btn_volver" style="margin-top: 1rem; display: inline-block;">← Volver al catálogo</a>
-            </div>
+                </div>
         `;
     }
 }
