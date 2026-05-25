@@ -64,15 +64,25 @@ async function cargarProducto() {
         window.location.href = getUrlCatalogoConFiltros();
         return;
     }
-
-    // Guardar los parámetros de la URL de referencia (desde catálogo)
-    const referrer = document.referrer;
+     const referrer = document.referrer;
     if (referrer && referrer.includes('catalogo.html')) {
         const url = new URL(referrer);
         const familia = url.searchParams.get('familia') || '';
         const categoria = url.searchParams.get('categoria') || '';
-        guardarParametrosCatalogo(familia, categoria);
+        if (familia || categoria) {
+            guardarParametrosCatalogo(familia, categoria);
+            console.log('📌 Parámetros guardados:', { familia, categoria });
+        }
     }
+
+    // También revisar si los parámetros vienen en la URL actual
+    const urlParamsActual = new URLSearchParams(window.location.search);
+    const familiaFromUrl = urlParamsActual.get('familia');
+    const categoriaFromUrl = urlParamsActual.get('categoria');
+    if (familiaFromUrl || categoriaFromUrl) {
+        guardarParametrosCatalogo(familiaFromUrl || '', categoriaFromUrl || '');
+    }
+
     try {
         const url = `${API_BASE}/producto/${encodeURIComponent(modeloProducto)}`;
         console.log('Fetching:', url);
