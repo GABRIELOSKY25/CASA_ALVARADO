@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "https://casaalvarado-production.up.railway.app";
 
 document.getElementById("registroForm").addEventListener("submit", async (e) => {
     e.preventDefault();

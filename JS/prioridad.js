@@ -1,5 +1,5 @@
 const API_BASE =
-    "https://TU-APP.up.railway.app";
+    "https://casaalvarado-production.up.railway.app";
 
 console.log('JS CARGADO');
 

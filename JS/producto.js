@@ -8,7 +8,7 @@ async function cargarProducto() {
     }
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/producto/${modelo}`);
+        const response = await fetch(`https://casaalvarado-production.up.railway.app/producto/${modelo}`);
 
         if (!response.ok) {
             throw new Error("Error HTTP: " + response.status);

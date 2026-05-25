@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "https://casaalvarado-production.up.railway.app";
 
 // Verificar si ya hay sesión iniciada al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
