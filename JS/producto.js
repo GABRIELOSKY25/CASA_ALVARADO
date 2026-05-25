@@ -4,6 +4,9 @@ const API_BASE = window.API_BASE || 'https://casaalvarado-production.up.railway.
 // Número de WhatsApp de la tienda
 const WHATSAPP_NUMBER = "529614049572";
 
+// Variables para calificación
+let calificacionSeleccionada = 0;
+
 // Obtener modelo de producto de la URL
 const urlParams = new URLSearchParams(window.location.search);
 const modeloProducto = urlParams.get('modelo');
@@ -15,6 +18,7 @@ console.log('Modelo producto:', modeloProducto);
 async function cargarProducto() {
     if (!modeloProducto) {
         console.error('No se especificó modelo de producto');
+        alert("No se especificó producto");
         window.location.href = 'catalogo.html';
         return;
     }
@@ -63,14 +67,29 @@ async function cargarProducto() {
             descripcionElement.textContent = producto.descripcion || '';
         }
 
-        // ========= CALIFICACIÓN =========
+        // ========= CALIFICACIÓN PROMEDIO =========
         const estrellas = Number(producto.estrellas || 0);
         const ratingNumElement = document.getElementById('rating-num');
         if (ratingNumElement) {
             ratingNumElement.textContent = `${estrellas} / 5`;
         }
+        mostrarEstrellasPromedio(estrellas);
 
-        generarEstrellasVisuales(estrellas);
+        // ========= VERIFICAR SESIÓN PARA CALIFICAR =========
+        const usuario = localStorage.getItem("usuario");
+        const calificacionDiv = document.getElementById("calificacionUsuario");
+        
+        if (usuario && calificacionDiv) {
+            calificacionDiv.style.display = "block";
+            const userData = JSON.parse(usuario);
+            await verificarCalificacionExistente(modeloProducto, userData.correo);
+            inicializarEstrellasCalificacion();
+            
+            const btnEnviar = document.getElementById("btnEnviarCalificacion");
+            if (btnEnviar) {
+                btnEnviar.onclick = () => enviarCalificacion(modeloProducto, userData.correo);
+            }
+        }
 
         // ========= WHATSAPP =========
         configurarWhatsApp(producto);
@@ -84,18 +103,134 @@ async function cargarProducto() {
     }
 }
 
-// ========== GENERAR ESTRELLAS VISUALES ==========
-function generarEstrellasVisuales(calificacion) {
-    const estrellasContainer = document.getElementById('rating-stars-display');
-    if (!estrellasContainer) return;
-
+// ========== MOSTRAR ESTRELLAS PROMEDIO ==========
+function mostrarEstrellasPromedio(calificacion) {
+    const container = document.getElementById("rating-stars-display");
+    if (!container) return;
+    
+    container.innerHTML = "";
     const estrellas = Math.round(calificacion || 0);
-    let estrellasHTML = '';
+    
     for (let i = 1; i <= 5; i++) {
-        const caracter = i <= estrellas ? '★' : '☆';
-        estrellasHTML += `<span style="color: #ffc107; font-size: 1.5rem;">${caracter}</span>`;
+        const star = document.createElement("span");
+        star.textContent = i <= estrellas ? "★" : "☆";
+        star.style.color = "#ffc107";
+        star.style.fontSize = "1.3rem";
+        star.style.marginRight = "3px";
+        container.appendChild(star);
     }
-    estrellasContainer.innerHTML = estrellasHTML;
+}
+
+// ========== INICIALIZAR ESTRELLAS DE CALIFICACIÓN ==========
+function inicializarEstrellasCalificacion() {
+    const estrellas = document.querySelectorAll("#estrellasCalificacion i");
+    if (!estrellas.length) return;
+    
+    estrellas.forEach(estrella => {
+        estrella.onmouseenter = () => {
+            const valor = parseInt(estrella.getAttribute("data-valor"));
+            resaltarEstrellas(valor);
+        };
+        
+        estrella.onmouseleave = () => {
+            resaltarEstrellas(calificacionSeleccionada);
+        };
+        
+        estrella.onclick = () => {
+            calificacionSeleccionada = parseInt(estrella.getAttribute("data-valor"));
+            resaltarEstrellas(calificacionSeleccionada);
+        };
+    });
+}
+
+function resaltarEstrellas(valor) {
+    const estrellas = document.querySelectorAll("#estrellasCalificacion i");
+    estrellas.forEach((estrella, index) => {
+        if (index < valor) {
+            estrella.className = "fas fa-star";
+            estrella.style.color = "#ffc107";
+        } else {
+            estrella.className = "far fa-star";
+            estrella.style.color = "#ccc";
+        }
+    });
+}
+
+// ========== VERIFICAR SI EL USUARIO YA CALIFICÓ ==========
+async function verificarCalificacionExistente(modelo, correo) {
+    try {
+        const url = `${API_BASE}/calificacion/usuario/${correo}/${modelo}`;
+        const response = await fetch(url);
+        
+        if (response.ok) {
+            const data = await response.json();
+            if (data.calificacion) {
+                calificacionSeleccionada = data.calificacion;
+                resaltarEstrellas(calificacionSeleccionada);
+                const mensaje = document.getElementById("mensajeCalificacion");
+                if (mensaje) {
+                    mensaje.textContent = "Ya calificaste este producto. Puedes actualizar tu calificación.";
+                    mensaje.style.color = "#003b6f";
+                }
+            }
+        }
+    } catch (error) {
+        console.log("No hay calificación previa o error:", error);
+    }
+}
+
+// ========== ENVIAR CALIFICACIÓN ==========
+async function enviarCalificacion(modelo, correo) {
+    if (calificacionSeleccionada === 0) {
+        const mensaje = document.getElementById("mensajeCalificacion");
+        if (mensaje) {
+            mensaje.textContent = "Selecciona una calificación";
+            mensaje.style.color = "red";
+        }
+        return;
+    }
+    
+    try {
+        const response = await fetch(`${API_BASE}/calificacion`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                modelo: modelo,
+                correo: correo,
+                estrellas: calificacionSeleccionada,
+                fecha: new Date().toISOString().split("T")[0]
+            })
+        });
+        
+        const resultado = await response.json();
+        
+        if (response.ok) {
+            const mensaje = document.getElementById("mensajeCalificacion");
+            if (mensaje) {
+                mensaje.textContent = "¡Gracias por tu calificación!";
+                mensaje.style.color = "green";
+            }
+            // Actualizar promedio mostrado
+            mostrarEstrellasPromedio(resultado.nuevoPromedio);
+            const ratingNumElement = document.getElementById("rating-num");
+            if (ratingNumElement) {
+                ratingNumElement.textContent = `${resultado.nuevoPromedio || 0} / 5`;
+            }
+        } else {
+            const mensaje = document.getElementById("mensajeCalificacion");
+            if (mensaje) {
+                mensaje.textContent = resultado.detail || "Error al calificar";
+                mensaje.style.color = "red";
+            }
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        const mensaje = document.getElementById("mensajeCalificacion");
+        if (mensaje) {
+            mensaje.textContent = "Error de conexión";
+            mensaje.style.color = "red";
+        }
+    }
 }
 
 // ========== CONFIGURAR BOTÓN DE WHATSAPP ==========
@@ -141,16 +276,6 @@ async function cargarProductosSimilares(modelo) {
             return;
         }
         
-        const estrellasHTML = (calificacion) => {
-            const estrellas = Math.round(calificacion || 0);
-            let stars = '';
-            for (let i = 1; i <= 5; i++) {
-                const caracter = i <= estrellas ? '★' : '☆';
-                stars += `<span style="color: #ffc107;">${caracter}</span>`;
-            }
-            return stars;
-        };
-        
         productos.forEach(producto => {
             contenedor.innerHTML += `
                 <div class="tarjeta_producto">
@@ -161,7 +286,7 @@ async function cargarProductosSimilares(modelo) {
                     <p class="marca-producto">${producto.marca || ''}</p>
                     <div class="rating">
                         <span class="rating-number">${producto.estrellas || 0}</span>
-                        <span class="rating-stars">${estrellasHTML(producto.estrellas)}</span>
+                        <span class="rating-stars">${generarEstrellasSimples(producto.estrellas)}</span>
                     </div>
                     <a href="producto.html?modelo=${encodeURIComponent(producto.modelo)}" class="boton_producto">Ver más</a>
                 </div>
@@ -172,6 +297,15 @@ async function cargarProductosSimilares(modelo) {
         console.error('Error cargando similares:', error);
         contenedor.innerHTML = '<div class="error-mensaje">❌ Error al cargar productos similares</div>';
     }
+}
+
+function generarEstrellasSimples(calificacion) {
+    const estrellas = Math.round(calificacion || 0);
+    let stars = '';
+    for (let i = 1; i <= 5; i++) {
+        stars += `<span style="color: #ffc107;">${i <= estrellas ? '★' : '☆'}</span>`;
+    }
+    return stars;
 }
 
 // ========== MOSTRAR ERROR ==========
