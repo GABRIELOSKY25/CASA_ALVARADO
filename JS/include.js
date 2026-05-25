@@ -37,7 +37,7 @@ function actualizarHeaderPorSesion() {
         };
     } else {
         authLink.innerHTML = "INICIAR SESION";
-        authLink.href = "/PAGINAS/login.html";
+        authLink.href = "/Paginas/login.html";
         authLink.classList.remove("auth-user");
         authLink.onclick = null;
     }
@@ -69,7 +69,7 @@ function mostrarMenuUsuario() {
                 </div>
             </div>
             <div class="user-menu-options">
-                <a href="/PAGINAS/login.html">
+                <a href="/Paginas/login.html">
                     <i class="fas fa-id-card"></i> Mi Cuenta
                 </a>
                 <button onclick="cerrarSesionGlobal()">
