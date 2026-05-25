@@ -2,7 +2,7 @@
 const API_BASE = 'https://casaalvarado-production.up.railway.app';
 
 // Número de WhatsApp de la tienda
-const WHATSAPP_NUMBER = "529614049572";
+const WHATSAPP_NUMBER = "29611543145";
 
 // Obtener modelo de producto de la URL
 const urlParams = new URLSearchParams(window.location.search);
