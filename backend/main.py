@@ -76,9 +76,9 @@ app.mount(
 )
 
 app.mount(
-    "/PAGINAS",
-    StaticFiles(directory=os.path.join(BASE_DIR, "PAGINAS")),
-    name="PAGINAS"
+    "/IMG",
+    StaticFiles(directory=os.path.join(BASE_DIR, "IMG")),
+    name="IMG"
 )
 
 @app.get("/")
