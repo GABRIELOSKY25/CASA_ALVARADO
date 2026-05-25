@@ -100,7 +100,16 @@ app.mount("/Admin", StaticFiles(directory=os.path.join(BASE_DIR, "Admin")), name
 async def serve_index():
     return FileResponse(os.path.join(BASE_DIR, "index.html"))
 
-
+@app.get("/api/list-routes")
+def list_routes():
+    from fastapi import FastAPI
+    routes = []
+    for route in app.routes:
+        routes.append({
+            "path": route.path,
+            "methods": list(route.methods) if route.methods else []
+        })
+    return {"routes": routes}
 
 # ACTIVAR CORS
 app.add_middleware(
