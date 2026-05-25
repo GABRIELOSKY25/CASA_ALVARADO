@@ -16,7 +16,7 @@ from pydantic import BaseModel
 from passlib.context import CryptContext
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-
+import os
 # ENDPOINTSs
 from endPoints_Producto import router as productos_router
 from datetime import date
@@ -61,9 +61,25 @@ class LoginRequest(BaseModel):
 app = FastAPI()
 app.include_router(productos_router)
 
-app.mount("/css", StaticFiles(directory="../css"), name="css")
-app.mount("/js", StaticFiles(directory="../js"), name="js")
-app.mount("/img", StaticFiles(directory="../img"), name="img")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+app.mount(
+    "/CSS",
+    StaticFiles(directory=os.path.join(BASE_DIR, "CSS")),
+    name="CSS"
+)
+
+app.mount(
+    "/JS",
+    StaticFiles(directory=os.path.join(BASE_DIR, "JS")),
+    name="JS"
+)
+
+app.mount(
+    "/PAGINAS",
+    StaticFiles(directory=os.path.join(BASE_DIR, "PAGINAS")),
+    name="PAGINAS"
+)
 
 @app.get("/")
 def inicio():
