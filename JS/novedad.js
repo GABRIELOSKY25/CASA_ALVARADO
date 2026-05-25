@@ -1,5 +1,5 @@
-// ========== DEFINIR API BASE ==========
-const API_BASE = window.API_BASE || 'https://casaalvarado-production.up.railway.app';
+// NO declarar API_BASE aquí - usar la variable global de config.js
+// Solo asegurarse de que existe
 
 // ========== CARGAR PRODUCTOS NOVEDAD ==========
 async function cargarNovedades() {
@@ -14,7 +14,8 @@ async function cargarNovedades() {
 
     try {
 
-        console.log('Cargando desde:', `${API_BASE}/productos/novedades`);
+        // Usar la variable global de config.js
+        const API_BASE = window.API_BASE || 'https://casaalvarado-production.up.railway.app';
 
         const response = await fetch(
             `${API_BASE}/productos/novedades`
@@ -22,13 +23,11 @@ async function cargarNovedades() {
 
         if (!response.ok) {
             throw new Error(
-                `Error HTTP: ${response.status}`
+                'Error al cargar novedades'
             );
         }
 
         const productos = await response.json();
-
-        console.log('Productos recibidos:', productos);
 
         if (!productos.length) {
 
@@ -48,6 +47,11 @@ async function cargarNovedades() {
 
             let stars = '';
 
+            const colorEstrella =
+                estrellas > 0
+                    ? '#ffc107'
+                    : '#ccc';
+
             for (let i = 1; i <= 5; i++) {
 
                 const caracter =
@@ -55,13 +59,8 @@ async function cargarNovedades() {
                         ? '★'
                         : '☆';
 
-                const color =
-                    i <= estrellas
-                        ? '#ffc107'
-                        : '#ccc';
-
                 stars += `
-                    <span style="color:${color};">
+                    <span style="color:${colorEstrella};">
                         ${caracter}
                     </span>
                 `;
@@ -116,8 +115,7 @@ async function cargarNovedades() {
 
         contenedor.innerHTML = `
             <div class="error-mensaje">
-                ❌ Error al cargar novedades: ${error.message}
-                <br><small>Verifica que el backend esté corriendo</small>
+                ❌ Error al cargar novedades
             </div>
         `;
     }
