@@ -31,7 +31,7 @@ async function cargarMenuDesdeAPI() {
     try {
 
         const response = await fetch(
-            'http://127.0.0.1:8000/menu/categorias'
+            'https://casaalvarado-production.up.railway.app/menu/categorias'
         )
 
         if (!response.ok) {
