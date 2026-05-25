@@ -61,25 +61,13 @@ class LoginRequest(BaseModel):
 app = FastAPI()
 app.include_router(productos_router)
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Esto apunta a /app/
 
-app.mount(
-    "/CSS",
-    StaticFiles(directory=os.path.join(BASE_DIR, "CSS")),
-    name="CSS"
-)
-
-app.mount(
-    "/JS",
-    StaticFiles(directory=os.path.join(BASE_DIR, "JS")),
-    name="JS"
-)
-
-app.mount(
-    "/IMG",
-    StaticFiles(directory=os.path.join(BASE_DIR, "IMG")),
-    name="IMG"
-)
+# Ahora monta las carpetas estáticas
+app.mount("/CSS", StaticFiles(directory=os.path.join(BASE_DIR, "CSS")), name="CSS")
+app.mount("/JS", StaticFiles(directory=os.path.join(BASE_DIR, "JS")), name="JS")
+app.mount("/components", StaticFiles(directory=os.path.join(BASE_DIR, "components")), name="components")
+app.mount("/PAGINAS", StaticFiles(directory=os.path.join(BASE_DIR, "PAGINAS")), name="PAGINAS")
 
 @app.get("/")
 def inicio():
