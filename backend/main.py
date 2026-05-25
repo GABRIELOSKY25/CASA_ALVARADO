@@ -18,7 +18,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 import os
 # ENDPOINTSs
-from endPoints_Producto import router as productos_router
+from backend.endPoints_Producto import router as productos_router
 from datetime import date
 
 
