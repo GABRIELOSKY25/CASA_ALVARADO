@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from backend.database import SessionLocal  # Si usas database aquí también
+from backend.database import SessionLocal, engine, Base, test_connection  # Si usas database aquí también
 from backend.models import (Producto, 
                     Calificacion, 
                     Gamma, 
@@ -17,10 +17,25 @@ from passlib.context import CryptContext
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 import os
+
 # ENDPOINTSs
 from backend.endPoints_Producto import router as productos_router
 from datetime import date
 
+# 🔴 IMPORTANTE: Probar conexión a la base de datos
+print("🚀 Iniciando aplicación...")
+print("🔌 Probando conexión a MySQL...")
+
+# Esto mostrará el mensaje en los logs de Railway
+conexion_ok = test_connection()
+
+if conexion_ok:
+    print("✅ Base de datos conectada exitosamente")
+    # Crear tablas si no existen
+    Base.metadata.create_all(bind=engine)
+    print("📦 Tablas verificadas")
+else:
+    print("❌ Error conectando a la base de datos")
 
 class CalificacionRequest(BaseModel):
     modelo: str
@@ -59,6 +74,16 @@ class LoginRequest(BaseModel):
     contrasena: str
 
 app = FastAPI()
+
+# CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(productos_router)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
