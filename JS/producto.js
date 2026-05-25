@@ -106,7 +106,7 @@ function resaltarEstrellas(valor) {
 // Verificar si el usuario ya calificó
 async function verificarCalificacionExistente(modelo, correo) {
     try {
-        const response = await fetch(`http://127.0.0.1:8000/calificacion/usuario/${correo}/${modelo}`);
+        const response = await fetch(`https://casaalvarado-production.up.railway.app/calificacion/usuario/${correo}/${modelo}`);
         if (response.ok) {
             const data = await response.json();
             if (data.calificacion) {
@@ -136,7 +136,7 @@ async function enviarCalificacion(modelo, correo) {
     }
     
     try {
-        const response = await fetch("http://127.0.0.1:8000/calificacion", {
+        const response = await fetch("https://casaalvarado-production.up.railway.app/calificacion", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
