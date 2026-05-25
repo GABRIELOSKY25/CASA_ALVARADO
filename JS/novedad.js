@@ -50,7 +50,7 @@ async function cargarNovedades() {
                     <span class="rating-number">${producto.estrellas || 0}</span>
                     <span class="rating-stars">${estrellasHTML(producto.estrellas)}</span>
                 </div>
-                <a href="/Paginas/producto.html?modelo=${encodeURIComponent(producto.modelo)}" 
+                <a href="/PAGINAS/producto.html?modelo=${encodeURIComponent(producto.modelo)}" 
                    class="boton_producto">Ver más</a>
             </div>
         `).join('');

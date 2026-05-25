@@ -71,7 +71,7 @@ function mostrarSubcategorias(cat) {
         item.addEventListener("click", () => {
 
             window.location.href =
-                `/Paginas/catalogo.html?familia=${encodeURIComponent(cat)}&categoria=${encodeURIComponent(nombre)}`
+                `/PAGINAS/catalogo.html?familia=${encodeURIComponent(cat)}&categoria=${encodeURIComponent(nombre)}`
         })
 
         grid.appendChild(item)
