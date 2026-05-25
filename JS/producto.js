@@ -13,13 +13,13 @@ const modeloProducto = urlParams.get('modelo');
 
 // ========== FUNCIONES PARA PRESERVAR FILTROS ==========
 function obtenerParametrosCatalogo() {
-    // Primero intentar obtener de localStorage
-    const paramsGuardados = localStorage.getItem('catalogo_params');
+    // Intentar obtener de sessionStorage (se limpia al cerrar la pestaña)
+    const paramsGuardados = sessionStorage.getItem('catalogo_params');
     if (paramsGuardados) {
         return JSON.parse(paramsGuardados);
     }
     
-    // Si no hay guardados, intentar obtener de la URL actual (referrer)
+    // Si no hay guardados, intentar obtener de la URL de referencia
     const referrer = document.referrer;
     if (referrer && referrer.includes('catalogo.html')) {
         const url = new URL(referrer);
@@ -34,7 +34,7 @@ function obtenerParametrosCatalogo() {
 
 function guardarParametrosCatalogo(familia, categoria) {
     if (familia || categoria) {
-        localStorage.setItem('catalogo_params', JSON.stringify({ familia, categoria }));
+        sessionStorage.setItem('catalogo_params', JSON.stringify({ familia, categoria }));
     }
 }
 
@@ -42,11 +42,12 @@ function getUrlCatalogoConFiltros() {
     const params = obtenerParametrosCatalogo();
     let urlCatalogo = '/Paginas/catalogo.html';
     
-    if (params.familia || params.categoria) {
-        const queryParams = [];
-        if (params.familia) queryParams.push(`familia=${encodeURIComponent(params.familia)}`);
-        if (params.categoria) queryParams.push(`categoria=${encodeURIComponent(params.categoria)}`);
-        urlCatalogo = `/Paginas/catalogo.html?${queryParams.join('&')}`;
+    if (params.familia && params.categoria) {
+        urlCatalogo = `/Paginas/catalogo.html?familia=${encodeURIComponent(params.familia)}&categoria=${encodeURIComponent(params.categoria)}`;
+    } else if (params.familia) {
+        urlCatalogo = `/Paginas/catalogo.html?familia=${encodeURIComponent(params.familia)}`;
+    } else if (params.categoria) {
+        urlCatalogo = `/Paginas/catalogo.html?categoria=${encodeURIComponent(params.categoria)}`;
     }
     
     return urlCatalogo;
