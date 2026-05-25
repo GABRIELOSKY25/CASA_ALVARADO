@@ -696,3 +696,16 @@ def obtener_marcas(categoria: str):
     finally:
 
         db.close()
+        
+@app.get("/api/version")
+def version():
+    return {
+        "version": "2.0",
+        "timestamp": "2026-05-24",
+        "endpoints": [
+            "/productos/novedades",
+            "/marcas/carrusel",
+            "/menu/categorias",
+            "/api/version"
+        ]
+    }        
