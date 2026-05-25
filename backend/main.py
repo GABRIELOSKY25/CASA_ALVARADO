@@ -61,18 +61,32 @@ class LoginRequest(BaseModel):
 app = FastAPI()
 app.include_router(productos_router)
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Esto apunta a /app/
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Ahora monta las carpetas estáticas
+# Servir archivos estáticos
 app.mount("/CSS", StaticFiles(directory=os.path.join(BASE_DIR, "CSS")), name="CSS")
 app.mount("/JS", StaticFiles(directory=os.path.join(BASE_DIR, "JS")), name="JS")
 app.mount("/components", StaticFiles(directory=os.path.join(BASE_DIR, "components")), name="components")
 app.mount("/PAGINAS", StaticFiles(directory=os.path.join(BASE_DIR, "PAGINAS")), name="PAGINAS")
+app.mount("/Admin", StaticFiles(directory=os.path.join(BASE_DIR, "Admin")), name="Admin")
 
+# Servir index.html en la raíz
 @app.get("/")
-def inicio():
-    return FileResponse("../index.html")
+async def serve_index():
+    return FileResponse(os.path.join(BASE_DIR, "index.html"))
 
+# Para cualquier otra ruta que no sea archivo estático, intentar servir el HTML correspondiente
+@app.get("/{full_path:path}")
+async def serve_spa(full_path: str):
+    # Si es un archivo estático, FastAPI ya lo manejará antes
+    # Si no, intentamos servir un archivo HTML
+    file_path = os.path.join(BASE_DIR, full_path)
+    if os.path.exists(file_path) and os.path.isfile(file_path):
+        return FileResponse(file_path)
+    else:
+        # Si no existe, devolvemos index.html (para SPA)
+        return FileResponse(os.path.join(BASE_DIR, "index.html"))
+    
 pwd_context = CryptContext(
     schemes=["bcrypt"],
     deprecated="auto"
