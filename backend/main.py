@@ -140,6 +140,10 @@ def verify_password(plain_password: str, hashed_password: str):
 def inicio():
     return {"mensaje": "Conectado a Casa Alvarado API"}
 
+@app.get("/api/test-json")
+def test_json():
+    return {"mensaje": "Esto es JSON", "status": "ok"}
+
 @app.get("/menu/categorias")
 def obtener_menu():
     db = SessionLocal()
