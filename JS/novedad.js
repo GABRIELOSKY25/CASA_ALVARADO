@@ -1,5 +1,5 @@
-// API Base URL
-const API_BASE = 'https://casaalvarado-production.up.railway.app';
+// ========== DEFINIR API BASE ==========
+const API_BASE = window.API_BASE || 'https://casaalvarado-production.up.railway.app';
 
 // ========== CARGAR PRODUCTOS NOVEDAD ==========
 async function cargarNovedades() {
@@ -14,17 +14,21 @@ async function cargarNovedades() {
 
     try {
 
+        console.log('Cargando desde:', `${API_BASE}/productos/novedades`);
+
         const response = await fetch(
             `${API_BASE}/productos/novedades`
         );
 
         if (!response.ok) {
             throw new Error(
-                'Error al cargar novedades'
+                `Error HTTP: ${response.status}`
             );
         }
 
         const productos = await response.json();
+
+        console.log('Productos recibidos:', productos);
 
         if (!productos.length) {
 
@@ -44,11 +48,6 @@ async function cargarNovedades() {
 
             let stars = '';
 
-            const colorEstrella =
-                estrellas > 0
-                    ? '#ffc107'
-                    : '#ccc';
-
             for (let i = 1; i <= 5; i++) {
 
                 const caracter =
@@ -56,8 +55,13 @@ async function cargarNovedades() {
                         ? '★'
                         : '☆';
 
+                const color =
+                    i <= estrellas
+                        ? '#ffc107'
+                        : '#ccc';
+
                 stars += `
-                    <span style="color:${colorEstrella};">
+                    <span style="color:${color};">
                         ${caracter}
                     </span>
                 `;
@@ -112,7 +116,8 @@ async function cargarNovedades() {
 
         contenedor.innerHTML = `
             <div class="error-mensaje">
-                ❌ Error al cargar novedades
+                ❌ Error al cargar novedades: ${error.message}
+                <br><small>Verifica que el backend esté corriendo</small>
             </div>
         `;
     }
