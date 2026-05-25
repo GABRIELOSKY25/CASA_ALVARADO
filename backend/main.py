@@ -100,22 +100,7 @@ app.mount("/Admin", StaticFiles(directory=os.path.join(BASE_DIR, "Admin")), name
 async def serve_index():
     return FileResponse(os.path.join(BASE_DIR, "index.html"))
 
-# Para cualquier otra ruta que no sea archivo estático, intentar servir el HTML correspondiente
-@app.get("/{full_path:path}")
-async def serve_spa(full_path: str):
-    # Si es un archivo estático, FastAPI ya lo manejará antes
-    # Si no, intentamos servir un archivo HTML
-    file_path = os.path.join(BASE_DIR, full_path)
-    if os.path.exists(file_path) and os.path.isfile(file_path):
-        return FileResponse(file_path)
-    else:
-        # Si no existe, devolvemos index.html (para SPA)
-        return FileResponse(os.path.join(BASE_DIR, "index.html"))
-    
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto"
-)
+
 
 # ACTIVAR CORS
 app.add_middleware(
@@ -126,15 +111,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def hash_password(password: str):
-    return pwd_context.hash(password)
 
-
-def verify_password(plain_password: str, hashed_password: str):
-    return pwd_context.verify(
-        plain_password,
-        hashed_password
-    )
 
 @app.get("/")
 def inicio():
@@ -418,80 +395,6 @@ def filtrar_productos(
         db.close()
 
 # RUTAS DEL LOGIN Y SIGN IN
-@app.post("/signin")
-def signin(datos: SignInRequest):
-    db = SessionLocal()
-
-    try:
-
-        usuario_existente = db.query(Usuario).filter(
-            Usuario.correo == datos.correo
-        ).first()
-
-        if usuario_existente:
-            raise HTTPException(
-                status_code=400,
-                detail="El correo ya está registrado"
-            )
-
-        # HASH DE CONTRASEÑA
-        password_hashed = hash_password(
-            datos.contrasena
-        )
-
-        nuevo_usuario = Usuario(
-            correo=datos.correo,
-            nombre=datos.nombre,
-            apellido=datos.apellido,
-            contrasena=password_hashed,
-            telefono=datos.telefono
-        )
-
-        db.add(nuevo_usuario)
-        db.commit()
-
-        return {
-            "mensaje": "Usuario registrado correctamente"
-        }
-
-    finally:
-        db.close()
-
-@app.post("/login")
-def login(datos: LoginRequest):
-    db = SessionLocal()
-    try:
-        usuario = db.query(Usuario).filter(
-            Usuario.correo == datos.correo
-        ).first()
-
-        if not usuario:
-            raise HTTPException(
-                status_code=401,
-                detail="Correo o contraseña incorrectos"
-            )
-
-        password_correcta = verify_password(
-            datos.contrasena,
-            usuario.contrasena
-        )
-
-        if not password_correcta:
-            raise HTTPException(
-                status_code=401,
-                detail="Correo o contraseña incorrectos"
-            )
-
-        return {
-            "mensaje": "Login exitoso",
-            "nombre": usuario.nombre,
-            "apellido": usuario.apellido,
-            "correo": usuario.correo,
-            "telefono": usuario.telefono,
-            "rol": usuario.rol or 'Usuario'
-        }
-    finally:
-        db.close()
 
 # Endpoint para guardar calificación
 @app.post("/calificacion")
