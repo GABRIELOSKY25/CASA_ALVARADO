@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from database import SessionLocal
-from models import (
+from backend.database import SessionLocal  
+from backend.models import  (
     Producto,
     Marca,
     Tipo,

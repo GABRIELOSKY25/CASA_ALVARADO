@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from backend.database import SessionLocal
+from backend.database import SessionLocal  # Si usas database aquí también
 from backend.models import (Producto, 
                     Calificacion, 
                     Gamma, 
