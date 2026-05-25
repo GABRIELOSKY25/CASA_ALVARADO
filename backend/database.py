@@ -1,12 +1,26 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+import os
 
-# FORMATO:
-# mysql+pymysql://usuario:password@host/basedatos
+# CORREGIDO: URL completa con host, puerto y base de datos
+DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:JHwNsXUWdguEuIWyCYTnDxfsLQGfGRtQ@zephyr.proxy.rlwy.net:33741/Casa_Alvarado")
 
-DATABASE_URL = "mysql+pymysql://root:@localhost:3308/casa_alvarado"
+# Railway usa "mysql://" pero SQLAlchemy necesita "mysql+pymysql://"
+if DATABASE_URL and DATABASE_URL.startswith("mysql://"):
+    DATABASE_URL = DATABASE_URL.replace("mysql://", "mysql+pymysql://", 1)
 
-engine = create_engine(DATABASE_URL)
+# Asegurar que usa la base correcta (Casa_Alvarado, no railway)
+if DATABASE_URL and '/railway' in DATABASE_URL:
+    DATABASE_URL = DATABASE_URL.replace('/railway', '/Casa_Alvarado')
+
+# Configuración adicional para MySQL en Railway
+connect_args = {
+    "pool_size": 5,
+    "pool_recycle": 3600,
+    "pool_pre_ping": True,
+}
+
+engine = create_engine(DATABASE_URL, connect_args=connect_args)
 
 SessionLocal = sessionmaker(
     autocommit=False,
@@ -15,3 +29,14 @@ SessionLocal = sessionmaker(
 )
 
 Base = declarative_base()
+
+# Función para probar la conexión
+def test_connection():
+    try:
+        with engine.connect() as conn:
+            conn.execute("SELECT 1")
+            print("✅ Conexión a MySQL exitosa")
+            return True
+    except Exception as e:
+        print(f"❌ Error de conexión: {e}")
+        return False
