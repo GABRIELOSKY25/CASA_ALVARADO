@@ -14,6 +14,8 @@ from sqlalchemy import cast, Integer
 from typing import Optional, List
 from pydantic import BaseModel
 from passlib.context import CryptContext
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 # ENDPOINTSs
 from endPoints_Producto import router as productos_router
@@ -59,6 +61,13 @@ class LoginRequest(BaseModel):
 app = FastAPI()
 app.include_router(productos_router)
 
+app.mount("/css", StaticFiles(directory="../css"), name="css")
+app.mount("/js", StaticFiles(directory="../js"), name="js")
+app.mount("/img", StaticFiles(directory="../img"), name="img")
+
+@app.get("/")
+def inicio():
+    return FileResponse("../index.html")
 
 pwd_context = CryptContext(
     schemes=["bcrypt"],

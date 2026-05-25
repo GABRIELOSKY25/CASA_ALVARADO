@@ -1,4 +1,5 @@
-const API_BASE = 'http://localhost:8000';
+const API_BASE =
+    "https://TU-APP.up.railway.app";
 
 // =============================
 // ENVIAR FORMULARIO
