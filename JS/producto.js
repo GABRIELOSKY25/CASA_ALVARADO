@@ -11,6 +11,47 @@ let calificacionSeleccionada = 0;
 const urlParams = new URLSearchParams(window.location.search);
 const modeloProducto = urlParams.get('modelo');
 
+// ========== FUNCIONES PARA PRESERVAR FILTROS ==========
+function obtenerParametrosCatalogo() {
+    // Primero intentar obtener de localStorage
+    const paramsGuardados = localStorage.getItem('catalogo_params');
+    if (paramsGuardados) {
+        return JSON.parse(paramsGuardados);
+    }
+    
+    // Si no hay guardados, intentar obtener de la URL actual (referrer)
+    const referrer = document.referrer;
+    if (referrer && referrer.includes('catalogo.html')) {
+        const url = new URL(referrer);
+        return {
+            familia: url.searchParams.get('familia') || '',
+            categoria: url.searchParams.get('categoria') || ''
+        };
+    }
+    
+    return { familia: '', categoria: '' };
+}
+
+function guardarParametrosCatalogo(familia, categoria) {
+    if (familia || categoria) {
+        localStorage.setItem('catalogo_params', JSON.stringify({ familia, categoria }));
+    }
+}
+
+function getUrlCatalogoConFiltros() {
+    const params = obtenerParametrosCatalogo();
+    let urlCatalogo = '/Paginas/catalogo.html';
+    
+    if (params.familia || params.categoria) {
+        const queryParams = [];
+        if (params.familia) queryParams.push(`familia=${encodeURIComponent(params.familia)}`);
+        if (params.categoria) queryParams.push(`categoria=${encodeURIComponent(params.categoria)}`);
+        urlCatalogo = `/Paginas/catalogo.html?${queryParams.join('&')}`;
+    }
+    
+    return urlCatalogo;
+}
+
 console.log('API_BASE:', API_BASE);
 console.log('Modelo producto:', modeloProducto);
 
@@ -19,10 +60,18 @@ async function cargarProducto() {
     if (!modeloProducto) {
         console.error('No se especificó modelo de producto');
         alert("No se especificó producto");
-        window.location.href = 'catalogo.html';
+        window.location.href = getUrlCatalogoConFiltros();
         return;
     }
 
+    // Guardar los parámetros de la URL de referencia (desde catálogo)
+    const referrer = document.referrer;
+    if (referrer && referrer.includes('catalogo.html')) {
+        const url = new URL(referrer);
+        const familia = url.searchParams.get('familia') || '';
+        const categoria = url.searchParams.get('categoria') || '';
+        guardarParametrosCatalogo(familia, categoria);
+    }
     try {
         const url = `${API_BASE}/producto/${encodeURIComponent(modeloProducto)}`;
         console.log('Fetching:', url);
@@ -276,7 +325,14 @@ async function cargarProductosSimilares(modelo) {
             return;
         }
         
+        // Obtener parámetros para los enlaces
+        const params = obtenerParametrosCatalogo();
+        
         productos.forEach(producto => {
+            let urlProducto = `producto.html?modelo=${encodeURIComponent(producto.modelo)}`;
+            if (params.familia) urlProducto += `&familia=${encodeURIComponent(params.familia)}`;
+            if (params.categoria) urlProducto += `&categoria=${encodeURIComponent(params.categoria)}`;
+            
             contenedor.innerHTML += `
                 <div class="tarjeta_producto">
                     <img src="${producto.imagen || 'https://via.placeholder.com/300x220?text=Sin+imagen'}" 
@@ -288,7 +344,7 @@ async function cargarProductosSimilares(modelo) {
                         <span class="rating-number">${producto.estrellas || 0}</span>
                         <span class="rating-stars">${generarEstrellasSimples(producto.estrellas)}</span>
                     </div>
-                    <a href="producto.html?modelo=${encodeURIComponent(producto.modelo)}" class="boton_producto">Ver más</a>
+                    <a href="${urlProducto}" class="boton_producto">Ver más</a>
                 </div>
             `;
         });
@@ -312,16 +368,17 @@ function generarEstrellasSimples(calificacion) {
 function mostrarError(mensaje) {
     const productoInfo = document.querySelector('.producto_info');
     if (productoInfo) {
+        const urlCatalogo = getUrlCatalogoConFiltros();
+        
         productoInfo.innerHTML = `
             <div class="error-mensaje" style="text-align: center; padding: 2rem;">
                 <h3>⚠️ Error</h3>
                 <p>${mensaje}</p>
-                <a href="catalogo.html" class="btn btn_volver" style="margin-top: 1rem; display: inline-block;">← Volver al catálogo</a>
+                <a href="${urlCatalogo}" class="btn btn_verde" style="margin-top: 1rem; display: inline-block;">← Volver al catálogo</a>
             </div>
         `;
     }
 }
-
 // ========== INICIALIZAR ==========
 document.addEventListener('DOMContentLoaded', () => {
     cargarProducto();

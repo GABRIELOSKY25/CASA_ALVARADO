@@ -8,13 +8,62 @@ const WHATSAPP_NUMBER = "29611543145";
 const urlParams = new URLSearchParams(window.location.search);
 const modeloProducto = urlParams.get('modelo');
 
+// ========== FUNCIONES PARA PRESERVAR FILTROS ==========
+function obtenerParametrosCatalogo() {
+    // Primero intentar obtener de localStorage
+    const paramsGuardados = localStorage.getItem('catalogo_params');
+    if (paramsGuardados) {
+        return JSON.parse(paramsGuardados);
+    }
+    
+    // Si no hay guardados, intentar obtener de la URL actual (referrer)
+    const referrer = document.referrer;
+    if (referrer && referrer.includes('catalogo.html')) {
+        const url = new URL(referrer);
+        return {
+            familia: url.searchParams.get('familia') || '',
+            categoria: url.searchParams.get('categoria') || ''
+        };
+    }
+    
+    return { familia: '', categoria: '' };
+}
+
+function guardarParametrosCatalogo(familia, categoria) {
+    if (familia || categoria) {
+        localStorage.setItem('catalogo_params', JSON.stringify({ familia, categoria }));
+    }
+}
+
+function getUrlCatalogoConFiltros() {
+    const params = obtenerParametrosCatalogo();
+    let urlCatalogo = '/Paginas/catalogo.html';
+    
+    if (params.familia || params.categoria) {
+        const queryParams = [];
+        if (params.familia) queryParams.push(`familia=${encodeURIComponent(params.familia)}`);
+        if (params.categoria) queryParams.push(`categoria=${encodeURIComponent(params.categoria)}`);
+        urlCatalogo = `/Paginas/catalogo.html?${queryParams.join('&')}`;
+    }
+    
+    return urlCatalogo;
+}
+
 // ========== CARGAR PRODUCTO PRINCIPAL ==========
 async function cargarProducto() {
     if (!modeloProducto) {
         console.error('No se especificó modelo de producto');
-
-        window.location.href = 'catalogo.html';
+        window.location.href = getUrlCatalogoConFiltros();
         return;
+    }
+
+    // Guardar los parámetros de la URL de referencia (desde catálogo)
+    const referrer = document.referrer;
+    if (referrer && referrer.includes('catalogo.html')) {
+        const url = new URL(referrer);
+        const familia = url.searchParams.get('familia') || '';
+        const categoria = url.searchParams.get('categoria') || '';
+        guardarParametrosCatalogo(familia, categoria);
     }
 
     try {
@@ -31,59 +80,40 @@ async function cargarProducto() {
         console.log('Producto cargado:', producto);
 
         // ========= TÍTULO =========
-        document.title =
-            `${producto.modelo} - Casa Alvarado`;
+        document.title = `${producto.modelo} - Casa Alvarado`;
 
         // ========= IMAGEN =========
-        const imgElement =
-            document.getElementById('producto-img');
-
+        const imgElement = document.getElementById('producto-img');
         if (imgElement) {
             imgElement.src = producto.imagen;
-
-            imgElement.alt =
-                producto.modelo;
-
+            imgElement.alt = producto.modelo;
             imgElement.onerror = () => {
-                imgElement.src =
-                    'https://via.placeholder.com/300x220?text=Sin+imagen';
+                imgElement.src = 'https://via.placeholder.com/300x220?text=Sin+imagen';
             };
         }
 
         // ========= MARCA =========
-        document.querySelectorAll('#producto-marca')
-            .forEach(el => {
-                el.textContent = producto.marca || '';
-            });
+        document.querySelectorAll('#producto-marca').forEach(el => {
+            el.textContent = producto.marca || '';
+        });
 
         // ========= MODELO =========
-        const modeloElement =
-            document.getElementById('producto-modelo');
-
+        const modeloElement = document.getElementById('producto-modelo');
         if (modeloElement) {
-            modeloElement.textContent =
-                producto.modelo || '';
+            modeloElement.textContent = producto.modelo || '';
         }
 
         // ========= DESCRIPCIÓN =========
-        const descripcionElement =
-            document.getElementById('producto-descripcion');
-
+        const descripcionElement = document.getElementById('producto-descripcion');
         if (descripcionElement) {
-            descripcionElement.textContent =
-                producto.descripcion || '';
+            descripcionElement.textContent = producto.descripcion || '';
         }
 
         // ========= CALIFICACIÓN =========
-        const estrellas =
-            Number(producto.estrellas || 0);
-
-        const ratingNumElement =
-            document.getElementById('rating-num');
-
+        const estrellas = Number(producto.estrellas || 0);
+        const ratingNumElement = document.getElementById('rating-num');
         if (ratingNumElement) {
-            ratingNumElement.textContent =
-                `${estrellas} / 5`;
+            ratingNumElement.textContent = `${estrellas} / 5`;
         }
 
         generarEstrellasVisuales(estrellas);
@@ -95,14 +125,8 @@ async function cargarProducto() {
         await cargarProductosSimilares(producto.modelo);
 
     } catch (error) {
-        console.error(
-            'Error cargando producto:',
-            error
-        );
-
-        mostrarError(
-            'No se pudo cargar el producto.'
-        );
+        console.error('Error cargando producto:', error);
+        mostrarError('No se pudo cargar el producto.');
     }
 }
 
@@ -140,10 +164,8 @@ function configurarWhatsApp(producto) {
 // ========== CARGAR PRODUCTOS SIMILARES ==========
 async function cargarProductosSimilares(modelo) {
     const contenedor = document.getElementById("productos-similares");
-    
     if (!contenedor) return;
     
-    // Mostrar loading
     contenedor.innerHTML = '<div class="loading">🔄 Cargando productos similares...</div>';
 
     try {
@@ -172,7 +194,14 @@ async function cargarProductosSimilares(modelo) {
             return stars;
         };
         
+        // Obtener parámetros para los enlaces
+        const params = obtenerParametrosCatalogo();
+        
         productos.forEach(producto => {
+            let urlProducto = `producto.html?modelo=${encodeURIComponent(producto.modelo)}`;
+            if (params.familia) urlProducto += `&familia=${encodeURIComponent(params.familia)}`;
+            if (params.categoria) urlProducto += `&categoria=${encodeURIComponent(params.categoria)}`;
+            
             contenedor.innerHTML += `
                 <div class="tarjeta_producto">
                     <img src="${producto.imagen}" alt="${producto.modelo}" onerror="this.src='https://via.placeholder.com/300x220?text=Sin+imagen'">
@@ -182,7 +211,7 @@ async function cargarProductosSimilares(modelo) {
                         <span class="rating-number">${producto.estrellas || 0}</span>
                         <span class="rating-stars">${estrellasHTML(producto.estrellas)}</span>
                     </div>
-                    <a href="producto.html?modelo=${encodeURIComponent(producto.modelo)}" class="boton_producto">Ver más</a>
+                    <a href="${urlProducto}" class="boton_producto">Ver más</a>
                 </div>
             `;
         });
@@ -193,15 +222,17 @@ async function cargarProductosSimilares(modelo) {
     }
 }
 
-// ========== MOSTRAR ERROR ==========
+// ========== MOSTRAR ERROR CON BOTÓN INTELIGENTE ==========
 function mostrarError(mensaje) {
     const productoInfo = document.querySelector('.producto_info');
     if (productoInfo) {
+        const urlCatalogo = getUrlCatalogoConFiltros();
+        
         productoInfo.innerHTML = `
             <div class="error-mensaje" style="text-align: center; padding: 2rem;">
                 <h3>⚠️ Error</h3>
                 <p>${mensaje}</p>
-                <a href="catalogo.html" class="btn btn_volver" style="margin-top: 1rem; display: inline-block;">← Volver al catálogo</a>
+                <a href="${urlCatalogo}" class="btn btn_volver" style="margin-top: 1rem; display: inline-block;">← Volver al catálogo</a>
             </div>
         `;
     }
