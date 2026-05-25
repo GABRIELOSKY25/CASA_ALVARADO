@@ -13,14 +13,14 @@ if DATABASE_URL and DATABASE_URL.startswith("mysql://"):
 if DATABASE_URL and '/railway' in DATABASE_URL:
     DATABASE_URL = DATABASE_URL.replace('/railway', '/Casa_Alvarado')
 
-# Configuración adicional para MySQL en Railway
-connect_args = {
-    "pool_size": 5,
-    "pool_recycle": 3600,
-    "pool_pre_ping": True,
-}
-
-engine = create_engine(DATABASE_URL, connect_args=connect_args)
+# Configuración CORREGIDA - SIN pool_size como argumento directo
+# En su lugar, usamos argumentos válidos para PyMySQL
+engine = create_engine(
+    DATABASE_URL,
+    pool_recycle=3600,  # Reciclar conexiones cada hora
+    pool_pre_ping=True,  # Verificar conexión antes de usarla
+    echo=False  # No mostrar SQL en consola
+)
 
 SessionLocal = sessionmaker(
     autocommit=False,
