@@ -92,7 +92,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 app.mount("/CSS", StaticFiles(directory=os.path.join(BASE_DIR, "CSS")), name="CSS")
 app.mount("/JS", StaticFiles(directory=os.path.join(BASE_DIR, "JS")), name="JS")
 app.mount("/components", StaticFiles(directory=os.path.join(BASE_DIR, "components")), name="components")
-app.mount("/PAGINAS", StaticFiles(directory=os.path.join(BASE_DIR, "PAGINAS")), name="PAGINAS")
+app.mount("/Paginas", StaticFiles(directory=os.path.join(BASE_DIR, "Paginas")), name="Paginas")
 app.mount("/Admin", StaticFiles(directory=os.path.join(BASE_DIR, "Admin")), name="Admin")
 
 # Servir index.html en la raíz
